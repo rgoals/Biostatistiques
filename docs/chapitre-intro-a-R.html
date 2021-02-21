@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapitre 2 La science des données avec R | Biostatistiques</title>
+  <meta name="description" content="Notes de cours de Biostatistiques" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapitre 2 La science des données avec R | Biostatistiques" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notes de cours de Biostatistiques" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapitre 2 La science des données avec R | Biostatistiques" />
+  
+  <meta name="twitter:description" content="Notes de cours de Biostatistiques" />
+  
+
+<meta name="author" content="S. É. Parent, Ingénieur, PhD.; Z. Coulibali, Agronome, PhD." />
+
+
+<meta name="date" content="2021-02-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="chapitre-tableaux.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#étapes-du-projet-en-science-des-données"><i class="fa fa-check"></i><b>1.1</b> Étapes du projet en science des données</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#statistiques-ou-science-des-données"><i class="fa fa-check"></i><b>1.2</b> Statistiques ou Science des données ?</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#table-des-matières"><i class="fa fa-check"></i><b>1.3</b> Table des matières</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html"><i class="fa fa-check"></i><b>2</b> La science des données avec R</a><ul>
+<li class="chapter" data-level="2.1" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#organiser-son-environnement-de-travail-en-r"><i class="fa fa-check"></i><b>2.1</b> Organiser son environnement de travail en R</a></li>
+<li class="chapter" data-level="2.2" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#préparer-son-flux-de-travail"><i class="fa fa-check"></i><b>2.2</b> Préparer son flux de travail</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#installation-classique-de-r"><i class="fa fa-check"></i><b>2.2.1</b> Installation classique de R</a></li>
+<li class="chapter" data-level="2.2.2" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#linterpréteur-de-commandes-rstudio"><i class="fa fa-check"></i><b>2.2.2</b> L’interpréteur de commandes RStudio</a></li>
+<li class="chapter" data-level="2.2.3" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#r-markdown"><i class="fa fa-check"></i><b>2.2.3</b> R markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#premiers-pas-avec-r"><i class="fa fa-check"></i><b>2.3</b> Premiers pas avec R</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#types-de-données"><i class="fa fa-check"></i><b>2.3.1</b> Types de données</a></li>
+<li class="chapter" data-level="2.3.2" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#les-collections-de-données"><i class="fa fa-check"></i><b>2.3.2</b> Les collections de données</a></li>
+<li class="chapter" data-level="2.3.3" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#les-fonctions"><i class="fa fa-check"></i><b>2.3.3</b> Les fonctions</a></li>
+<li class="chapter" data-level="2.3.4" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#les-boucles"><i class="fa fa-check"></i><b>2.3.4</b> Les boucles</a></li>
+<li class="chapter" data-level="2.3.5" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#conditions-if-else-if-else"><i class="fa fa-check"></i><b>2.3.5</b> Conditions : if, else if, else</a></li>
+<li class="chapter" data-level="2.3.6" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#installer-et-charger-un-module"><i class="fa fa-check"></i><b>2.3.6</b> Installer et charger un module</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#enfin"><i class="fa fa-check"></i><b>2.4</b> Enfin…</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html"><i class="fa fa-check"></i><b>3</b> Organisation des données et opérations sur les tableaux</a><ul>
+<li class="chapter" data-level="3.1" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#les-collections-de-données"><i class="fa fa-check"></i><b>3.1</b> Les collections de données</a></li>
+<li class="chapter" data-level="3.2" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#organiser-un-tableau-de-données"><i class="fa fa-check"></i><b>3.2</b> Organiser un tableau de données</a></li>
+<li class="chapter" data-level="3.3" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#formats-de-tableau"><i class="fa fa-check"></i><b>3.3</b> Formats de tableau</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#xls-ou-xlsx"><i class="fa fa-check"></i><b>3.3.1</b> <em>xls</em> ou <em>xlsx</em></a></li>
+<li class="chapter" data-level="3.3.2" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#csv"><i class="fa fa-check"></i><b>3.3.2</b> <em>csv</em></a></li>
+<li class="chapter" data-level="3.3.3" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#json"><i class="fa fa-check"></i><b>3.3.3</b> <em>json</em></a></li>
+<li class="chapter" data-level="3.3.4" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#sqlite"><i class="fa fa-check"></i><b>3.3.4</b> SQLite</a></li>
+<li class="chapter" data-level="3.3.5" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#suggestion"><i class="fa fa-check"></i><b>3.3.5</b> Suggestion</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#entreposer-ses-données"><i class="fa fa-check"></i><b>3.4</b> Entreposer ses données</a></li>
+<li class="chapter" data-level="3.5" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#manipuler-des-données-en-mode-tidyverse"><i class="fa fa-check"></i><b>3.5</b> Manipuler des données en mode tidyverse</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#importer-vos-données-dans-voter-session-de-travail"><i class="fa fa-check"></i><b>3.5.1</b> Importer vos données dans voter session de travail</a></li>
+<li class="chapter" data-level="3.5.2" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#comment-sélectionner-et-filtrer-des-données"><i class="fa fa-check"></i><b>3.5.2</b> Comment sélectionner et filtrer des données?</a></li>
+<li class="chapter" data-level="3.5.3" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#le-format-long-et-le-format-large"><i class="fa fa-check"></i><b>3.5.3</b> Le format long et le format large</a></li>
+<li class="chapter" data-level="3.5.4" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#combiner-des-tableaux"><i class="fa fa-check"></i><b>3.5.4</b> Combiner des tableaux</a></li>
+<li class="chapter" data-level="3.5.5" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#opérations-sur-les-tableaux"><i class="fa fa-check"></i><b>3.5.5</b> Opérations sur les tableaux</a></li>
+<li class="chapter" data-level="3.5.6" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#exemple-difficile"><i class="fa fa-check"></i><b>3.5.6</b> Exemple (difficile)</a></li>
+<li class="chapter" data-level="3.5.7" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#exporter-un-tableau"><i class="fa fa-check"></i><b>3.5.7</b> Exporter un tableau</a></li>
+<li class="chapter" data-level="3.5.8" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#aller-plus-loin-dans-le-tidyverse"><i class="fa fa-check"></i><b>3.5.8</b> Aller plus loin dans le tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#références"><i class="fa fa-check"></i><b>3.6</b> Références</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html"><i class="fa fa-check"></i><b>4</b> Biostatistiques</a><ul>
+<li class="chapter" data-level="4.1" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#populations-et-échantillons"><i class="fa fa-check"></i><b>4.1</b> Populations et échantillons</a></li>
+<li class="chapter" data-level="4.2" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#les-variables"><i class="fa fa-check"></i><b>4.2</b> Les variables</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#variables-quantitatives"><i class="fa fa-check"></i><b>4.2.1</b> Variables quantitatives</a></li>
+<li class="chapter" data-level="4.2.2" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#variables-qualitatives"><i class="fa fa-check"></i><b>4.2.2</b> Variables qualitatives</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#les-probabilités"><i class="fa fa-check"></i><b>4.3</b> Les probabilités</a></li>
+<li class="chapter" data-level="4.4" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#les-distributions"><i class="fa fa-check"></i><b>4.4</b> Les distributions</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#distribution-binomiale"><i class="fa fa-check"></i><b>4.4.1</b> Distribution binomiale</a></li>
+<li class="chapter" data-level="4.4.2" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#distribution-de-poisson"><i class="fa fa-check"></i><b>4.4.2</b> Distribution de Poisson</a></li>
+<li class="chapter" data-level="4.4.3" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#distribution-uniforme"><i class="fa fa-check"></i><b>4.4.3</b> Distribution uniforme</a></li>
+<li class="chapter" data-level="4.4.4" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#distribution-normale"><i class="fa fa-check"></i><b>4.4.4</b> Distribution normale</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#statistiques-descriptives"><i class="fa fa-check"></i><b>4.5</b> Statistiques descriptives</a></li>
+<li class="chapter" data-level="4.6" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#tests-dhypothèses-à-un-et-deux-échantillons"><i class="fa fa-check"></i><b>4.6</b> Tests d’hypothèses à un et deux échantillons</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#test-de-t-à-un-seul-échantillon"><i class="fa fa-check"></i><b>4.6.1</b> Test de t à un seul échantillon</a></li>
+<li class="chapter" data-level="4.6.2" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#attention-mauvaises-interprétations-des-p-values"><i class="fa fa-check"></i><b>4.6.2</b> Attention: mauvaises interprétations des <em>p-values</em></a></li>
+<li class="chapter" data-level="4.6.3" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#test-de-wilcoxon-à-un-seul-échantillon"><i class="fa fa-check"></i><b>4.6.3</b> Test de Wilcoxon à un seul échantillon</a></li>
+<li class="chapter" data-level="4.6.4" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#tests-de-t-à-deux-échantillons"><i class="fa fa-check"></i><b>4.6.4</b> Tests de t à deux échantillons</a></li>
+<li class="chapter" data-level="4.6.5" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#comparaison-des-variances"><i class="fa fa-check"></i><b>4.6.5</b> Comparaison des variances</a></li>
+<li class="chapter" data-level="4.6.6" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#tests-de-wilcoxon-à-deux-échantillons"><i class="fa fa-check"></i><b>4.6.6</b> Tests de Wilcoxon à deux échantillons</a></li>
+<li class="chapter" data-level="4.6.7" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#les-tests-pairés"><i class="fa fa-check"></i><b>4.6.7</b> Les tests pairés</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#lanalyse-de-variance"><i class="fa fa-check"></i><b>4.7</b> L’analyse de variance</a></li>
+<li class="chapter" data-level="4.8" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#les-modèles-statistiques"><i class="fa fa-check"></i><b>4.8</b> Les modèles statistiques</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#modèles-à-effets-fixes"><i class="fa fa-check"></i><b>4.8.1</b> Modèles à effets fixes</a></li>
+<li class="chapter" data-level="4.8.2" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#modèles-à-effets-mixtes"><i class="fa fa-check"></i><b>4.8.2</b> Modèles à effets mixtes</a></li>
+<li class="chapter" data-level="4.8.3" data-path="chapitre-biostats.html"><a href="chapitre-biostats.html#aller-plus-loin"><i class="fa fa-check"></i><b>4.8.3</b> Aller plus loin</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html"><i class="fa fa-check"></i><b>5</b> Association, partitionnement et ordination</a><ul>
+<li class="chapter" data-level="5.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#espaces-danalyse"><i class="fa fa-check"></i><b>5.1</b> Espaces d’analyse</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#abondance-et-occurence"><i class="fa fa-check"></i><b>5.1.1</b> Abondance et occurence</a></li>
+<li class="chapter" data-level="5.1.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#environnement"><i class="fa fa-check"></i><b>5.1.2</b> Environnement</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#analyse-dassociation"><i class="fa fa-check"></i><b>5.2</b> Analyse d’association</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#association-entre-objets-mode-q"><i class="fa fa-check"></i><b>5.2.1</b> Association entre objets (mode Q)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#associations-entre-variables-mode-r"><i class="fa fa-check"></i><b>5.2.2</b> Associations entre variables (mode R)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#conclusion-sur-les-associations"><i class="fa fa-check"></i><b>5.2.3</b> Conclusion sur les associations</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement"><i class="fa fa-check"></i><b>5.3</b> Partitionnement</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#évaluation-dun-partitionnement"><i class="fa fa-check"></i><b>5.3.1</b> Évaluation d’un partitionnement</a></li>
+<li class="chapter" data-level="5.3.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-non-hiérarchique"><i class="fa fa-check"></i><b>5.3.2</b> Partitionnement non hiérarchique</a></li>
+<li class="chapter" data-level="5.3.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-hiérarchique"><i class="fa fa-check"></i><b>5.3.3</b> Partitionnement hiérarchique</a></li>
+<li class="chapter" data-level="5.3.4" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-hiérarchique-basée-sur-la-densité-des-points"><i class="fa fa-check"></i><b>5.3.4</b> Partitionnement hiérarchique basée sur la densité des points</a></li>
+<li class="chapter" data-level="5.3.5" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#conclusion-sur-le-partitionnement"><i class="fa fa-check"></i><b>5.3.5</b> Conclusion sur le partitionnement</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination"><i class="fa fa-check"></i><b>5.4</b> Ordination</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination-non-contraignante"><i class="fa fa-check"></i><b>5.4.1</b> Ordination non contraignante</a></li>
+<li class="chapter" data-level="5.4.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination-contraignante"><i class="fa fa-check"></i><b>5.4.2</b> Ordination contraignante</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#chapitre-ordination"><i class="fa fa-check"></i><b>6</b> Association, partitionnement et ordination</a><ul>
+<li class="chapter" data-level="6.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#espaces-danalyse"><i class="fa fa-check"></i><b>6.1</b> Espaces d’analyse</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#abondance-et-occurence"><i class="fa fa-check"></i><b>6.1.1</b> Abondance et occurence</a></li>
+<li class="chapter" data-level="6.1.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#environnement"><i class="fa fa-check"></i><b>6.1.2</b> Environnement</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#analyse-dassociation"><i class="fa fa-check"></i><b>6.2</b> Analyse d’association</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#association-entre-objets-mode-q"><i class="fa fa-check"></i><b>6.2.1</b> Association entre objets (mode Q)</a></li>
+<li class="chapter" data-level="6.2.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#associations-entre-variables-mode-r"><i class="fa fa-check"></i><b>6.2.2</b> Associations entre variables (mode R)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#conclusion-sur-les-associations"><i class="fa fa-check"></i><b>6.2.3</b> Conclusion sur les associations</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement"><i class="fa fa-check"></i><b>6.3</b> Partitionnement</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#évaluation-dun-partitionnement"><i class="fa fa-check"></i><b>6.3.1</b> Évaluation d’un partitionnement</a></li>
+<li class="chapter" data-level="6.3.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-non-hiérarchique"><i class="fa fa-check"></i><b>6.3.2</b> Partitionnement non hiérarchique</a></li>
+<li class="chapter" data-level="6.3.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-hiérarchique"><i class="fa fa-check"></i><b>6.3.3</b> Partitionnement hiérarchique</a></li>
+<li class="chapter" data-level="6.3.4" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-hiérarchique-basée-sur-la-densité-des-points"><i class="fa fa-check"></i><b>6.3.4</b> Partitionnement hiérarchique basée sur la densité des points</a></li>
+<li class="chapter" data-level="6.3.5" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#conclusion-sur-le-partitionnement"><i class="fa fa-check"></i><b>6.3.5</b> Conclusion sur le partitionnement</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination"><i class="fa fa-check"></i><b>6.4</b> Ordination</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination-non-contraignante"><i class="fa fa-check"></i><b>6.4.1</b> Ordination non contraignante</a></li>
+<li class="chapter" data-level="6.4.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination-contraignante"><i class="fa fa-check"></i><b>6.4.2</b> Ordination contraignante</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#chapitre-ordination"><i class="fa fa-check"></i><b>7</b> Association, partitionnement et ordination</a><ul>
+<li class="chapter" data-level="7.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#espaces-danalyse"><i class="fa fa-check"></i><b>7.1</b> Espaces d’analyse</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#abondance-et-occurence"><i class="fa fa-check"></i><b>7.1.1</b> Abondance et occurence</a></li>
+<li class="chapter" data-level="7.1.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#environnement"><i class="fa fa-check"></i><b>7.1.2</b> Environnement</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#analyse-dassociation"><i class="fa fa-check"></i><b>7.2</b> Analyse d’association</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#association-entre-objets-mode-q"><i class="fa fa-check"></i><b>7.2.1</b> Association entre objets (mode Q)</a></li>
+<li class="chapter" data-level="7.2.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#associations-entre-variables-mode-r"><i class="fa fa-check"></i><b>7.2.2</b> Associations entre variables (mode R)</a></li>
+<li class="chapter" data-level="7.2.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#conclusion-sur-les-associations"><i class="fa fa-check"></i><b>7.2.3</b> Conclusion sur les associations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement"><i class="fa fa-check"></i><b>7.3</b> Partitionnement</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#évaluation-dun-partitionnement"><i class="fa fa-check"></i><b>7.3.1</b> Évaluation d’un partitionnement</a></li>
+<li class="chapter" data-level="7.3.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-non-hiérarchique"><i class="fa fa-check"></i><b>7.3.2</b> Partitionnement non hiérarchique</a></li>
+<li class="chapter" data-level="7.3.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-hiérarchique"><i class="fa fa-check"></i><b>7.3.3</b> Partitionnement hiérarchique</a></li>
+<li class="chapter" data-level="7.3.4" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-hiérarchique-basée-sur-la-densité-des-points"><i class="fa fa-check"></i><b>7.3.4</b> Partitionnement hiérarchique basée sur la densité des points</a></li>
+<li class="chapter" data-level="7.3.5" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#conclusion-sur-le-partitionnement"><i class="fa fa-check"></i><b>7.3.5</b> Conclusion sur le partitionnement</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination"><i class="fa fa-check"></i><b>7.4</b> Ordination</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination-non-contraignante"><i class="fa fa-check"></i><b>7.4.1</b> Ordination non contraignante</a></li>
+<li class="chapter" data-level="7.4.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination-contraignante"><i class="fa fa-check"></i><b>7.4.2</b> Ordination contraignante</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Biostatistiques</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chapitre-intro-a-R" class="section level1">
+<h1><span class="header-section-number">Chapitre 2</span> La science des données avec R</h1>
+<hr />
+<p>️ <strong>Objectifs spécifiques</strong>:</p>
+<p>À la fin de ce chapitre,</p>
+<ul>
+<li><p>vous saurez contextualiser la science des données par rapport aux statistiques,</p></li>
+<li><p>vous serez en mesure de vous lancer dans un environnement de programmation R,</p></li>
+<li><p>vous serez en mesure d’effectuer des opérations de base en R,</p></li>
+<li><p>vous saurez différencier les grands types d’objets de R et</p></li>
+<li><p>vous saurez installer et charger des modules complémentaires.</p></li>
+</ul>
+<hr />
+<div id="organiser-son-environnement-de-travail-en-r" class="section level2">
+<h2><span class="header-section-number">2.1</span> Organiser son environnement de travail en R</h2>
+<p><a href="https://www.r-project.org"><strong>R</strong></a> est un langage de programmation dérivé du <a href="https://fr.wikipedia.org/wiki/S_(langage)"><strong>langage S</strong></a>, qui fut initialement lancé en 1976.<strong>R</strong> figure parmi <a href="https://www.tiobe.com/tiobe-index/"><strong>les langages de programmation les plus utilisés au monde</strong></a>.</p>
+<center>
+<img src="images/1_R_logo.png">
+</center>
+<p>Bien qu’il soit basé sur les <strong>langages statiques <a href="https://fr.wikipedia.org/wiki/C_(langage)">C</a> et <a href="https://fr.wikipedia.org/wiki/Fortran">Fortran</a></strong>, <strong>R</strong> est un langage dynamique, c’est-à-dire que le code peut être exécuté ligne par ligne ou bloc par bloc : un avantage majeur pour des activités qui nécessitent des interactions fréquentes.</p>
+<p>Bien que <strong>R</strong> soit surtout utilisé pour le calcul statistique, il s’impose de plus en plus comme outil privilégié en sciences des données en raison des récents développements de modules d’analyse, de modélisation et de visualisation, dont plusieurs seront utilisés dans ce manuel.</p>
+</div>
+<div id="préparer-son-flux-de-travail" class="section level2">
+<h2><span class="header-section-number">2.2</span> Préparer son flux de travail</h2>
+<p>Il existe de nombreuses manières d’installer <strong>R</strong>. Je couvrirai ici seulement l’installation classique.</p>
+<div id="installation-classique-de-r" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Installation classique de R</h3>
+<p>Sous <a href="https://fr.wikipedia.org/wiki/Microsoft_Windows"><strong>Windows</strong></a> ou <a href="https://fr.wikipedia.org/wiki/Mac_OS"><strong>Mac</strong></a>, dirigez-vous <a href="https://cloud.r-project.org/">ici</a>, téléchargez et installez.</p>
+<p>Sous <a href="https://fr.wikipedia.org/wiki/Linux"><strong>Linux</strong></a>, ouvrez votre gestionnaire d’application, chercher <strong><code>r-base</code></strong> (Ubuntu, Debian), <strong><code>R-base</code></strong> (openSuse) ou <strong><code>R-core</code></strong> (Fedora) et installez-le (assurez-vous que les librairies suivantes sont aussi installées: <strong><code>gcc</code></strong>, <strong><code>gcc-fortran</code></strong>, <strong><code>gcc-c++</code></strong> et <strong><code>make</code></strong>), vous aurez peut-être besoin d’installer des librairies supplémentaires pour faire fonctionner certains modules.</p>
+<blockquote>
+<p><strong>Note</strong>. Les modules présentés dans ce cours devraient être disponibles sur Linux, Windows et Mac. Ce n’est pas le cas pour tous les modules R. La plupart fonctionnent néanmoins sur Linux, dont les systèmes d’opération sont de bonnes options pour le calcul scientifique. Je recommande <a href="https://www.ubuntu.com/download/desktop"><strong>Ubuntu</strong></a> ou l’une de ses dérivées.</p>
+</blockquote>
+</div>
+<div id="linterpréteur-de-commandes-rstudio" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> L’interpréteur de commandes RStudio</h3>
+<p>À cette étape, <strong>R</strong> devrait fonctionner dans un <a href="https://fr.wikipedia.org/wiki/Interpr%C3%A9teur_de_commandes"><strong>interpréteur de commande</strong></a>. Si vous lancez <strong>R</strong> dans un terminal (chercher <code>cmd</code> dans le menu si vous êtes sur Windows), vous obtiendrez quelque chose comme ceci.</p>
+<center>
+<img src="images/1_terminal-prompt.png" width=800>
+</center>
+<p>Le symbole <strong><code>&gt;</code></strong> indique que <strong>R</strong> attend vos instructions. Vous voilà dans un état méditatif devant l’indéchiffrable vide du terminal. Afin de travailler dans un environnement de travail plus convivial, je recommande l’installation de l’interface <a href="https://www.rstudio.com/products/rstudio/download/"><strong>RStudio</strong></a>, gratuite et open source. Téléchargez l’installateur et suivez les instructions. RStudio ressemble à ceci.</p>
+<center>
+<img src="images/1_rstudio.png" width=800>
+</center>
+<p>En haut à droite se trouve un menu <strong>Project (None)</strong>. Il s’agit d’un menu de vos projets. Je recommande d’utiliser ces projets avec <strong>RStudio</strong>, qui vous permettront de mieux gérer vos environnements de travail, en particulier en lien avec les chemins vers vos données, graphiques, etc., que vous pouvez gérer relativement à l’emplacement de votre dossier de projet plutôt qu’à l’emplacement des fichiers sur votre machine.</p>
+<ul>
+<li>En haut à gauche, vous avez vos feuilles de calcul, qui apparaîtront en tant qu’<strong>onglets</strong>.</li>
+</ul>
+<p>Vous pouvez prendre en main les <strong>R notebooks</strong>, dans lesquels vous pouvez écrire du texte en format <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet"><strong>Markdown</strong></a> entre des blocs de code. Ceci vous permet de détailler votre flux de travail.</p>
+<ul>
+<li><p>En bas à gauche apparaît la Console, où vous voyez les commandes envoyées à R ainsi que ses sorties. Si vous travaillez en format <strong>notebook</strong>, vous n’en aurez probablement pas besoin.</p></li>
+<li><p>En haut à droite, les différents onglets indiquent où vous en êtes dans vos calculs. En particulier, la liste sous <strong>Environment</strong> indique les objets qui ont été générés jusqu’alors.</p></li>
+<li><p>En bas à droite, on retrouve des onglets de nature variés dont :</p></li>
+<li><p><strong><code>Files</code></strong> contient les sous-dossiers et fichiers du dossier de projets.</p></li>
+<li><p><strong><code>Plots</code></strong> est l’endroit où apparaîtront vos graphiques.</p></li>
+<li><p><strong><code>Packages</code></strong> contient la liste des modules déjà installés, ainsi qu’un outil de gestion des modules pour leur installation, leur désinstallation et leur mise à jour.</p></li>
+<li><p><strong><code>Help</code></strong> affiche les fiches d’aide des fonctions (pour obtenir de l’aide sur une fonction dans RStudio, surlignez la fonction dans votre feuille de calcul, puis appuyez sur <strong><code>F1</code></strong>).</p></li>
+<li><p><strong><code>Viewer</code></strong> affichera les sorties <strong><code>HTML</code></strong>, en particulier les graphiques interactifs que vous générerez par exemple avec le module <strong><code>plotly</code></strong>.</p></li>
+</ul>
+</div>
+<div id="r-markdown" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> R markdown</h3>
+<p>Le format <strong>R markdown</strong> offre une approche de programmation littéraire, c’est-à-dire que vous écrivez votre code comme vous écrivez un article, une thèse ou une histoire. Cette approche permet de partager plus facilement vos codes, que ce soit avec une équipe de travail ou à la communauté scientifique pour accompagner un article scientifique en tant que matériel supplémentaire.</p>
+<p>Lorsque vous créez un notebook (<strong>File &gt; New file &gt; R markdown</strong>), les instructions de base apparaissent. Ajoutons que pour lancer du code ligne par ligne, vous pouvez surligner le code en question ou placez le curseur sur la ligne à exécuter, puis taper <strong><code>Ctrl + Enter</code></strong>. La sortie de R apparaîtra sous le bloc de code.</p>
+<p>Dans votre texte, vous pouvez ajouter des équations mathématiques en format <strong>Mathjax</strong> inspiré du format <strong>Latex</strong>. Par exemple <code>$a = \sum_{i=1}^n x_i^2$</code> sera affiché comme <span class="math inline">\(a = \sum_{i=1}^n x_i^2\)</span>. Pour aider dans l’édition d’équation, vous pouvez utiliser un <a href="http://www.sciweavers.org/free-online-latex-equation-editor">éditeur dans les nuages</a>.</p>
+<p>Pour les titres, les caractères gras, l’insertion d’image, les hyperliens, les tableaux, etc., référez-vous à la documentation de <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet"><strong>Markdown</strong></a>.</p>
+<p>Pour une meilleure compréhension de la notion d’interpréteur ou interface de commande, si votre environnement de travail était un avion, <strong>R</strong> serait le moteur et <strong>RStudio</strong> serait le cockpit !</p>
+<p><img src="https://media.giphy.com/media/GmaV9oet9MAmI/giphy.gif" /></p>
+</div>
+</div>
+<div id="premiers-pas-avec-r" class="section level2">
+<h2><span class="header-section-number">2.3</span> Premiers pas avec R</h2>
+<p><strong>R</strong> ne fonctionne pas avec des menus, en faisant danser une souris sous une musique de clics. Vous devrez donc entrer des commandes avec votre clavier, <strong>que vous apprendrez par cœur au fur et à mesure, ou que vous retrouverez en lançant des recherches sur internet</strong>. Par expérience personnelle, lorsque je travaille avec R, j’ai toujours un navigateur ouvert prêt à recevoir une question.</p>
+<p>Les étapes qui suivent sont des premiers pas. Elles ne feront pas de vous des <em>ceintures noires</em> de la programmation. La plupart des utilisateurs de <strong>R</strong> l’ont appris en se pratiquant sur leurs données, en frappant des murs, en apprenant comment les escalader ou les contourner…</p>
+<p>Pour l’instant, ouvrez seulement un interpréteur de commande, et lancez <strong>R</strong>. Voyons si <strong>R</strong> est aussi libre qu’on le prétend.</p>
+<blockquote>
+<p>“La liberté, c’est la liberté de dire que deux et deux font quatre. Lorsque cela est accordé, tout le reste suit” <a href="http://evene.lefigaro.fr/citation/liberte-liberte-dire-deux-deux-font-quatre-accorde-reste-suit-39731.php">George Orwell, 1984</a>.</p>
+</blockquote>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>Et voilà.</p>
+<p><img width="200" src="images/1_braveheart224.png"></p>
+<p>Les opérations mathématiques sont effectuées telles que l’on devrait s’attendre.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="fl">67.1</span> <span class="op">-</span><span class="st"> </span><span class="fl">43.3</span></a></code></pre></div>
+<pre><code>## [1] 23.8</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span></a></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] 0.5</code></pre>
+<p>L’exposant peut être noté <strong><code>^</code></strong>, comme c’est le cas dans <strong>Excel</strong>, ou <code>**</code> comme c’est le cas en Python.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="dv">2</span><span class="op">^</span><span class="dv">4</span></a></code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="dv">2</span><span class="op">**</span><span class="dv">4</span></a></code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span> <span class="co"># utilisez des espaces de part et d&#39;autre des opérateurs (sauf pour l&#39;exposant) pour éclaircir le code.</span></a></code></pre></div>
+<pre><code>## [1] 0.5</code></pre>
+<p><strong>R</strong> ne lit pas ce qui suit le caractère <strong><code>#</code></strong>. Cela vous laisse l’opportunité de commenter un code comprenant une séquence de plusieurs lignes.</p>
+<p>Remarquez également que la dernière opération comporte des espaces entre les nombres et l’opérateur <strong><code>/</code></strong>. Dans ce cas (<em>ce n’est pas toujours le cas</em>), les espaces ne signifient rien : ils aident seulement à éclaircir le code.</p>
+<p>Il existe des guides pour l’écriture de code en <strong>R</strong>. Je recommande le guide de style de <a href="http://adv-r.had.co.nz/Style.html"><strong>Hadley Wickahm</strong></a>.</p>
+<p>Assigner des <strong>objets</strong> à des <strong>variables</strong> est fondamental en programmation. En <strong>R</strong>, on assigne traditionnellement avec la flèche <strong><code>&lt;-</code></strong>, mais vous verrez parfois le <strong><code>=</code></strong>, qui est davantage utilisé comme standard dans d’autres langages de programmation.</p>
+<p>Par exemple.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">a &lt;-<span class="st"> </span><span class="dv">3</span></a></code></pre></div>
+<p>Techniquement, <strong><code>a</code></strong> pointe vers le nombre entier <strong>3</strong>. Conséquemment, on peut effectuer des opérations sur <strong><code>a</code></strong>.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">a <span class="op">*</span><span class="st"> </span><span class="dv">6</span></a></code></pre></div>
+<pre><code>## [1] 18</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co">#A + 2</span></a></code></pre></div>
+<p>Le message d’erreur nous dit que <strong><code>A</code></strong> n’est pas défini. Sa version minuscule, <strong><code>a</code></strong>, l’est pourtant. La raison est que <strong>R</strong> considère la <strong>case</strong> dans la définition des objets. Utiliser la mauvaise case mène donc à des erreurs.</p>
+<p><strong>Note</strong>. Les messages d’erreur ne sont pas toujours clairs, mais vous apprendrez à les comprendre. Dans tous les cas, ils sont faits pour vous aider. <strong>Lisez-les attentivement !</strong></p>
+<p>En général, le nom d’une variable doit toujours commencer par une lettre, et ne doit pas contenir de caractères réservés (espaces, <code>+</code>, <code>*</code>, accent). Dans la définition des variables, certains utilisent le point (<strong><code>.</code></strong>) pour délimiter les mots, mais la barre de soulignement (<strong><code>_</code></strong>) est à préférer. En effet, dans d’autres langages de programmation comme Python, le point <strong><code>.</code></strong> a une autre signification. Son utilisation est à éviter autant que possible.</p>
+<p><strong>Note</strong>. À ce stade, vous serez probablement plus à l’aise de copier-coller ces commandes dans votre terminal.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">rendement_arbre &lt;-<span class="st"> </span><span class="dv">50</span> <span class="co"># pomme/arbre</span></a>
+<a class="sourceLine" id="cb19-2" title="2">nombre_arbre &lt;-<span class="st"> </span><span class="dv">300</span> <span class="co"># arbre</span></a>
+<a class="sourceLine" id="cb19-3" title="3">nombre_pomme &lt;-<span class="st"> </span>rendement_arbre <span class="op">*</span><span class="st"> </span>nombre_arbre</a>
+<a class="sourceLine" id="cb19-4" title="4">nombre_pomme</a></code></pre></div>
+<pre><code>## [1] 15000</code></pre>
+<p>Comme pour la plupart des langages de programmation, <strong>R</strong> respecte les conventions des <a href="https://fr.wikipedia.org/wiki/Ordre_des_op%C3%A9rations"><strong>priorités des opérations mathéatiques</strong></a>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="dv">10</span> <span class="op">-</span><span class="st"> </span><span class="dv">9</span><span class="op">^</span><span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div id="types-de-données" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Types de données</h3>
+<p>Jusqu’à maintenant, nous n’avons utilisé que :</p>
+<ul>
+<li>des <strong>nombres entiers</strong> (<em>integer</em> ou <strong><code>int</code></strong>)</li>
+<li>et des <strong>nombres réels</strong> (<em>numeric</em> ou <strong><code>float64</code></strong>).</li>
+</ul>
+<p><strong>R</strong> inclut d’autres types. La <strong>chaîne de caractère</strong> (<em>string</em> ou <em>character</em>) contient un ou plusieurs symboles. Elle est définie entre des doubles guillemets <code>" "</code> ou des apostrophes <strong><code>' '</code></strong>. Il n’existe pas de standard sur l’utilisation de l’un ou de l’autre, mais en règle générale, on utilise les apostrophes pour les expressions courtes, contenant un simple mot ou séquence de lettres, et les guillemets pour les phrases. Une raison pour cela : les guillemets sont utiles pour insérer des apostrophes dans une chaîne de caractère.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">a &lt;-<span class="st"> &quot;L&#39;ours&quot;</span></a>
+<a class="sourceLine" id="cb23-2" title="2">b &lt;-<span class="st"> &quot;polaire&quot;</span></a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="kw">paste</span>(a, b)</a></code></pre></div>
+<pre><code>## [1] &quot;L&#39;ours polaire&quot;</code></pre>
+<p>On <strong>colle</strong> <strong><code>a</code></strong> et <strong><code>b</code></strong> avec la fonction <strong><code>paste()</code></strong>. Notez que l’objet <strong><code>a</code></strong> a été défini précédemment. Il est possible en <strong>R</strong> de réassigner une variable, mais cela peut porter à confusion, jusqu’à générer des erreurs de calcul si une variable n’est pas assignée à l’objet auquel on voulait référer.</p>
+<p>Combien de caractères contient la chaîne <strong><code>"L'ours polaire"</code></strong> ? <strong>R</strong> sait compter. Demandons-lui.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">c &lt;-<span class="st"> </span><span class="kw">paste</span>(a, b)</a>
+<a class="sourceLine" id="cb25-2" title="2"><span class="kw">nchar</span>(c)</a></code></pre></div>
+<pre><code>## [1] 14</code></pre>
+<p>Quatorze, c’est bien cela (comptez “L’ours polaire”, en incluant l’espace). Comme <strong><code>paste</code></strong>, <code>nchar</code> est une fonction incluse par défaut dans l’environnement de travail de <strong>R</strong> : plus précisément, ces fonctions sont incluses dans le module <strong><code>base</code></strong>, inclut par défaut lorsque <strong>R</strong> est lancé. La fonction est appelée en écrivant <strong><code>nchar()</code></strong>. Mais une fonction de quoi ? Des <strong>arguments</strong>, qui se trouvent entre les parenthèses. Dans ce cas, il y a un seul argument: <strong><code>c</code></strong>.</p>
+<p>En calcul scientifique, il est courant de lancer des requêtes pour savoir si un résultat est vrai (<strong><code>TRUE, True</code></strong>) ou faux (<strong><code>FALSE, False</code></strong>).</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="co"># Postulat</span></a>
+<a class="sourceLine" id="cb27-2" title="2">a &lt;-<span class="st"> </span><span class="dv">17</span></a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># Ceci pour vérifier si a est inférieur à 10.</span></a>
+<a class="sourceLine" id="cb28-2" title="2">a <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span></a></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># Ceci pour vérifier si a est supérieur à 10.</span></a>
+<a class="sourceLine" id="cb30-2" title="2">a <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co"># Ceci pour vérifier si a égal à 10.</span></a>
+<a class="sourceLine" id="cb32-2" title="2">a <span class="op">==</span><span class="st"> </span><span class="dv">10</span></a></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co"># Ceci pour vérifier si a est différent de 10.</span></a>
+<a class="sourceLine" id="cb34-2" title="2">a <span class="op">!=</span><span class="st"> </span><span class="dv">10</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="co"># Ceci pour vérifier si a est égal à 17.</span></a>
+<a class="sourceLine" id="cb36-2" title="2">a <span class="op">==</span><span class="st"> </span><span class="dv">17</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co"># Ceci pour vérifier si a est différent de 17.</span></a>
+<a class="sourceLine" id="cb38-2" title="2"><span class="op">!</span>(a <span class="op">==</span><span class="st"> </span><span class="dv">17</span>)</a></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>Je viens d’introduire un nouveau type de données : les <strong>données booléennes</strong> (en anglais <em>boolean</em>, ou <strong><code>logical</code></strong>), qui ne peuvent prendre que deux états - <strong><code>TRUE</code></strong> ou <strong><code>FALSE</code></strong>.</p>
+<p>Puis, on a vu plus haut que le symbole <strong><code>=</code></strong> est réservé pour assigner des objets : pour les tests d’égalité, on utilise le double égal, <strong><code>==</code></strong>, ou <strong><code>!=</code></strong> pour la non-égalité.
+Enfin, pour inverser une donnée de type booléenne, on utilise le point d’exclamation <strong><code>!</code></strong>.</p>
+</div>
+<div id="les-collections-de-données" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Les collections de données</h3>
+<p>Les exercices précédents ont permis de présenter les types de données offerts par défaut sur <strong>R</strong> qui sont les plus importants pour le calcul scientifique :</p>
+<ul>
+<li><strong><code>int</code></strong> (<em>integer</em>, ou nombre entier),</li>
+<li><strong><code>numeric</code></strong> (nombre réel),</li>
+<li><strong><code>character</code></strong> (<em>string</em>, ou chaîne de caractère)</li>
+<li>et <strong><code>logical</code></strong> (booléen).</li>
+</ul>
+<p>D’autres s’ajouteront tout au long du cours, comme les catégories (<strong><code>factor</code></strong>) et les unités de temps (date-heure).</p>
+<p>Lorsque l’on procède à des opérations de calcul en science, on utilise rarement des valeurs uniques. L’on préfère les organiser et les traiter en collections. Par défaut, <strong>R</strong> offre quatre types importants de collections :</p>
+<ul>
+<li>les <strong>vecteurs</strong>,</li>
+<li>les <strong>matrices</strong>,</li>
+<li>les <strong>listes</strong></li>
+<li>et les <strong>tableaux</strong>.</li>
+</ul>
+<div id="les-vecteurs" class="section level4">
+<h4><span class="header-section-number">2.3.2.1</span> Les Vecteurs</h4>
+<p>D’abord, les <strong>vecteurs</strong> sont une <em>série de variables de même type</em>. Un vecteur est délimité par la fonction <strong><code>c()</code></strong> (<strong><code>c</code></strong> pour <strong>c</strong>oncaténation). Les éléments de la liste sont séparés par des virgules.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">espece &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Petromyzon marinus&#39;</span>, <span class="st">&#39;Lepisosteus osseus&#39;</span>, <span class="st">&#39;Amia calva&#39;</span>, <span class="st">&#39;Hiodon tergisus&#39;</span>)</a>
+<a class="sourceLine" id="cb40-2" title="2">espece</a></code></pre></div>
+<pre><code>## [1] &quot;Petromyzon marinus&quot; &quot;Lepisosteus osseus&quot; &quot;Amia calva&quot;        
+## [4] &quot;Hiodon tergisus&quot;</code></pre>
+<p>Pour accéder aux éléments d’une liste, appellez la liste suivie de la position de l’objet désiré entre crochets.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">espece[<span class="dv">1</span>] <span class="co"># l&#39;espèce à la position 1</span></a></code></pre></div>
+<pre><code>## [1] &quot;Petromyzon marinus&quot;</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">espece[<span class="dv">2</span>]  <span class="co"># l&#39;espèce à la position 2</span></a></code></pre></div>
+<pre><code>## [1] &quot;Lepisosteus osseus&quot;</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">espece[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]  <span class="co"># les espèce des positions 1 à 3</span></a></code></pre></div>
+<pre><code>## [1] &quot;Petromyzon marinus&quot; &quot;Lepisosteus osseus&quot; &quot;Amia calva&quot;</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">espece[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]  <span class="co"># les espèces aux positions 1 et 3</span></a></code></pre></div>
+<pre><code>## [1] &quot;Petromyzon marinus&quot; &quot;Amia calva&quot;</code></pre>
+<p>On peut noter que le premier élément de la liste est noté <strong><code>1</code></strong>, et non <strong><code>0</code></strong> comme c’est le cas de la plupart des autres langages. Le raccourcis <strong><code>1:3</code></strong> crée une liste de nombres entiers de <strong><code>1</code></strong> à <strong><code>3</code></strong> inclusivement, c’est-à-dire l’équivalent de <strong><code>c(1, 2, 3)</code></strong>. En effet, on crée une liste d’indices pour soutirer des éléments d’une liste. On peut utiliser le symbole de soustraction pour retirer un ou plusieurs éléments d’un vecteur.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1">espece[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)] <span class="co"># le vecteur espece sans les éléments aux positions 1 et 3</span></a></code></pre></div>
+<pre><code>## [1] &quot;Lepisosteus osseus&quot; &quot;Hiodon tergisus&quot;</code></pre>
+<p>Pour ajouter un élément à notre liste, on peut utiliser également la fonction <strong><code>c( )</code></strong>.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">espece &lt;-<span class="st"> </span><span class="kw">c</span>(espece, <span class="st">&quot;Cyprinus carpio&quot;</span>) <span class="co"># ajoute l&#39;espèce Cyprinus carpio au vecteur</span></a>
+<a class="sourceLine" id="cb52-2" title="2">espece</a></code></pre></div>
+<pre><code>## [1] &quot;Petromyzon marinus&quot; &quot;Lepisosteus osseus&quot; &quot;Amia calva&quot;        
+## [4] &quot;Hiodon tergisus&quot;    &quot;Cyprinus carpio&quot;</code></pre>
+<p>Notez que l’on efface l’objet <strong><code>espece</code></strong> par une concaténation de l’objet <strong><code>espece</code></strong>, précédemment définie, et d’un autre élément.</p>
+<p>En lançant <strong><code>espece[3] &lt;- "Lepomis gibbosus"</code></strong>, il est possible de changer un élément de la liste.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">espece[<span class="dv">3</span>] &lt;-<span class="st"> &quot;Lepomis gibbosus&quot;</span></a>
+<a class="sourceLine" id="cb54-2" title="2">espece</a></code></pre></div>
+<pre><code>## [1] &quot;Petromyzon marinus&quot; &quot;Lepisosteus osseus&quot; &quot;Lepomis gibbosus&quot;  
+## [4] &quot;Hiodon tergisus&quot;    &quot;Cyprinus carpio&quot;</code></pre>
+</div>
+<div id="les-matrices" class="section level4">
+<h4><span class="header-section-number">2.3.2.2</span> Les Matrices</h4>
+<p>Une <strong>matrice</strong> est un vecteur de dimension plus élevée que 1. En écologie, on dépasse rarement la deuxième dimension, quoi que les matrices en <strong><code>N</code></strong> dimensions soient courantes en modélisation mathématique. Je ne considérerai pour le moment que des matrices <strong><code>2D</code></strong>.</p>
+<p>Comme c’est la cas des vecteurs, <strong>les matrices contiennent des valeurs de même type</strong>. En <strong>R</strong>, on peut attribuer aux matrices <code>2D</code> des noms de ligne et de colonne.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>), <span class="dt">ncol=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb56-2" title="2">mat</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="kw">colnames</span>(mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>)</a>
+<a class="sourceLine" id="cb58-2" title="2"><span class="kw">rownames</span>(mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;site_1&#39;</span>, <span class="st">&#39;site_2&#39;</span>, <span class="st">&#39;site_3&#39;</span>, <span class="st">&#39;site_4&#39;</span>)</a>
+<a class="sourceLine" id="cb58-3" title="3">mat</a></code></pre></div>
+<pre><code>##        A B  C
+## site_1 1 5  9
+## site_2 2 6 10
+## site_3 3 7 11
+## site_4 4 8 12</code></pre>
+<p>On peut soutirer les noms de colonne et les noms de ligne. Le résultat est un vecteur.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="kw">colnames</span>(mat)</a></code></pre></div>
+<pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot;</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="kw">rownames</span>(mat)</a></code></pre></div>
+<pre><code>## [1] &quot;site_1&quot; &quot;site_2&quot; &quot;site_3&quot; &quot;site_4&quot;</code></pre>
+</div>
+<div id="les-listes" class="section level4">
+<h4><span class="header-section-number">2.3.2.3</span> Les Listes</h4>
+<p>Les <strong>listes</strong> sont des collections hétérogènes dans lesquelles on peut placer les objets désirés, sans distinction. Elles peuvent même inclure d’autres listes. Chacun des éléments de la liste peut être identifié par une clé. Pour les créer on utilise la fonction <code>list()</code>.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1">ma_liste &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">especes =</span> <span class="kw">c</span>(<span class="st">&#39;Petromyzon marinus&#39;</span>, <span class="st">&#39;Lepisosteus osseus&#39;</span>,</a>
+<a class="sourceLine" id="cb64-2" title="2">                             <span class="st">&#39;Amia calva&#39;</span>, <span class="st">&#39;Hiodon tergisus&#39;</span>),</a>
+<a class="sourceLine" id="cb64-3" title="3">                <span class="dt">site =</span> <span class="st">&#39;A101&#39;</span>,</a>
+<a class="sourceLine" id="cb64-4" title="4">                <span class="dt">stations_meteos =</span> <span class="kw">c</span>(<span class="st">&#39;746583&#39;</span>, <span class="st">&#39;783786&#39;</span>, <span class="st">&#39;856363&#39;</span>))</a>
+<a class="sourceLine" id="cb64-5" title="5">ma_liste</a></code></pre></div>
+<pre><code>## $especes
+## [1] &quot;Petromyzon marinus&quot; &quot;Lepisosteus osseus&quot; &quot;Amia calva&quot;        
+## [4] &quot;Hiodon tergisus&quot;   
+## 
+## $site
+## [1] &quot;A101&quot;
+## 
+## $stations_meteos
+## [1] &quot;746583&quot; &quot;783786&quot; &quot;856363&quot;</code></pre>
+<p>Les éléments de la liste peuvent être soutirés par le nom de la clé ou par l’indice, de cette manière.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">ma_liste<span class="op">$</span>especes</a></code></pre></div>
+<pre><code>## [1] &quot;Petromyzon marinus&quot; &quot;Lepisosteus osseus&quot; &quot;Amia calva&quot;        
+## [4] &quot;Hiodon tergisus&quot;</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1">ma_liste[[<span class="dv">1</span>]] <span class="co"># notez qu&#39;il y a double crochets ici !</span></a></code></pre></div>
+<pre><code>## [1] &quot;Petromyzon marinus&quot; &quot;Lepisosteus osseus&quot; &quot;Amia calva&quot;        
+## [4] &quot;Hiodon tergisus&quot;</code></pre>
+<p><strong>Exercice</strong>. Accéder au deuxième élément du vecteur d’espèces dans la liste <strong><code>ma_liste</code></strong>.</p>
+</div>
+<div id="les-tableaux" class="section level4">
+<h4><span class="header-section-number">2.3.2.4</span> Les Tableaux</h4>
+<p>Enfin, le type de collection de données le plus important est le tableau, ou <strong><code>data.frame</code></strong>. Techniquement, <strong>il s’agit d’une liste composée de vecteurs de même longueur</strong>. Chaque colonne peut ainsi prendre un type de donnée indépendamment des autres colonnes.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1">tableau &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">espece =</span> <span class="kw">c</span>(<span class="st">&#39;Petromyzon marinus&#39;</span>, <span class="st">&#39;Lepisosteus osseus&#39;</span>,</a>
+<a class="sourceLine" id="cb70-2" title="2">                                <span class="st">&#39;Amia calva&#39;</span>, <span class="st">&#39;Hiodon tergisus&#39;</span>),</a>
+<a class="sourceLine" id="cb70-3" title="3">                     <span class="dt">poids =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">13</span>, <span class="dv">21</span>, <span class="dv">4</span>),</a>
+<a class="sourceLine" id="cb70-4" title="4">                     <span class="dt">longueur =</span> <span class="kw">c</span>(<span class="dv">35</span>, <span class="dv">44</span>, <span class="dv">50</span>, <span class="dv">8</span>))</a>
+<a class="sourceLine" id="cb70-5" title="5">tableau</a></code></pre></div>
+<pre><code>##               espece poids longueur
+## 1 Petromyzon marinus    10       35
+## 2 Lepisosteus osseus    13       44
+## 3         Amia calva    21       50
+## 4    Hiodon tergisus     4        8</code></pre>
+<p>En programmation classique en <strong>R</strong> (nous verrons plus loin la méthode <strong><code>tidyverse</code></strong>), les éléments d’un tableau se manipulent comme ceux d’une matrice et les colonnes peuvent être appelés comme les éléments d’une liste.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1">tableau[, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>] <span class="co"># tirer un sous tableau avec seulement les colonnes 2 et 3 (2 à 3)</span></a></code></pre></div>
+<pre><code>##   poids longueur
+## 1    10       35
+## 2    13       44
+## 3    21       50
+## 4     4        8</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1">tableau<span class="op">$</span>poids  <span class="co"># seulement les valeurs de la colonne &quot;poids&quot;</span></a></code></pre></div>
+<pre><code>## [1] 10 13 21  4</code></pre>
+<p>Vous verrez aussi, quoi que rarement, ce format, qui à la différence du format <strong><code>$</code></strong>, génère un tableau :</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1">tableau[<span class="st">&#39;poids&#39;</span>]</a></code></pre></div>
+<pre><code>##   poids
+## 1    10
+## 2    13
+## 3    21
+## 4     4</code></pre>
+<p>Le tableau est le format de collection à privilégier pour manipuler des données. Récemment, le format de tableau <strong><code>tibble</code></strong> a été créé par l’équipe de <strong>RStudio</strong> pour offrir un format plus moderne.</p>
+</div>
+</div>
+<div id="les-fonctions" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Les fonctions</h3>
+<p>Lorsque vous écrivez une commande suivit de parenthèses, comme <strong><code>data.frame(especes = ...)</code></strong>, vous demandez à <strong>R</strong> de passer à l’action en appelant une fonction.</p>
+<p>De manière très générale, une fonction transforme quelque chose en quelque chose d’autre.</p>
+<p><img src="images/1_fonctions.png" /></p>
+<p>Par exemple, la fonction <strong><code>mean()</code></strong> prend une collection de nombre comme entrée, puis en sort … vous devinez quoi ?.</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="kw">mean</span>(tableau<span class="op">$</span>poids)</a></code></pre></div>
+<pre><code>## [1] 12</code></pre>
+<p>Les entrées sont appelés les <strong>arguments</strong> de la fonction. Leur définition est toujours disponible dans la documentation.</p>
+<p><strong>Exercice</strong> :</p>
+<p>Familiarisez-vous avec la documentation de <strong>R</strong> en lançant <strong><code>?mean</code></strong>.</p>
+<p>Truc : si vous avez pris de l’avance et que vous travaillez déjà en <strong>RStudio</strong>, mettez le terme en surbrillance, puis appuyez sur <strong>F1</strong>.</p>
+<p>Vous verrez dans la documentation que la fonction <code>mean()</code> demande trois arguments, <code>x</code>, <strong><code>trim</code></strong> et <strong><code>na.rm</code></strong>. Or nous avons seulement placé un vecteur, sans spécifier d’argument !</p>
+<p>En effet. En l’absence d’une définition des arguments, <strong>R</strong> supposera que les arguments dans la parenthèse, séparés par une virgule, sont présentés dans le même ordre que celui spécifié dans la définition de la fonction (celle qui est présentée dans le fichier d’aide).</p>
+<blockquote>
+<p>Dans le cas qui nous intéresse, <strong><code>mean(tableau$poids)</code></strong> est équivalent à <strong><code>mean(x = tableau$poids)</code></strong>.</p>
+</blockquote>
+<p>Maintenant, selon la fiche d’aide, l’argument <strong><code>na.rm</code></strong> est une valeur logique spécifiant si oui (<strong><code>TRUE</code></strong>) ou non (<strong><code>FALSE</code></strong>) les valeurs manquantes doivent être considérées.</p>
+<blockquote>
+<p>Une moyenne d’un vecteur comprenant au moins un <strong><code>NA</code></strong> sera <strong><code>NA</code></strong>.</p>
+</blockquote>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1"><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="ot">NA</span>, <span class="dv">1</span>))</a></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<p>En ne spécifiant rien, <strong>R</strong> prend la valeur par défaut, telle que spécifiée dans la documentation.</p>
+<p>Il en va de même pour l’argument <strong><code>trim</code></strong>, qui permet d’élaguer des valeurs extrêmes. Dans la fiche d’aide, <strong><code>mean(x, trim = 0, na.rm = FALSE, ...)</code></strong> signifie que par défaut, l’argument <strong><code>x</code></strong> est vide (il doit donc être spécifié), l’argument <strong><code>trim</code></strong> est de <strong><code>0</code></strong> et l’argument <strong><code>na.rm</code></strong> est <strong><code>FALSE</code></strong>.</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" title="1"><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="ot">NA</span>, <span class="dv">1</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] 4.666667</code></pre>
+<p><strong>Vous n’êtes pas emprisonné par les fonctions offertes par R</strong>. Vous pouvez installer des modules qui complètent les fonctions de base de <strong>R</strong>. On le verra un peu plus loin dans ce chapitre. Mais pour l’instant, voyons comment vous pouvez créer vos propres fonctions.</p>
+<p>Disons que vous voulez créer une fonction qui calcule la sortie de <span class="math inline">\(x^3-2y+a\)</span>. Pour obtenir la réponse on a besoin des arguments <strong><code>x</code></strong>, <strong><code>y</code></strong> et <strong><code>a</code></strong>. La sortie de la fonction est ici triviale (évidente) : la réponse de l’équation. L’opération <strong><code>function()</code></strong> permet de prendre ça en charge.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1">operation_f &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, <span class="dt">a =</span> <span class="dv">10</span>) {</a>
+<a class="sourceLine" id="cb84-2" title="2">    <span class="kw">return</span>(x<span class="op">^</span><span class="dv">3</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>y <span class="op">+</span><span class="st"> </span>a)</a>
+<a class="sourceLine" id="cb84-3" title="3">}</a></code></pre></div>
+<p>Notez que <strong><code>a</code></strong> (la constante) a une valeur par défaut.</p>
+<p>La sortie de la fonction est ce qui se trouve entre les parenthèses de <strong><code>return()</code></strong>. Vous pouvez maintenant utiliser la fonction <strong><code>operation_f</code></strong> au besoin.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1"><span class="kw">operation_f</span>(<span class="dt">x =</span> <span class="dv">2</span>, <span class="dt">y =</span> <span class="dv">3</span>, <span class="dt">a =</span> <span class="dv">1</span>)</a></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>Une telle fonction est peu utile. Mais l’utilisation de fonctions personnalisées vous permettra d’éviter de répéter la même opération plusieurs fois dans un flux de travail, en évitant de générer trop de code, donc aussi de potentielles erreurs. Personnellement, j’utilise les fonctions surtout pour générer des graphiques personnalisés.</p>
+<p><strong>Exercice</strong> :</p>
+<p>Afin d’acquérir de l’autonomie, vous devrez être en mesure de trouver le nom des commandes dont vous avez besoin pour effectuer la tâche que vous désirer effectuer. Cela peut causer des frustrations, mais vous vous sentirez toujours plus à l’aise avec <strong>R</strong> jour après jour.</p>
+<p>L’exercice ici est de trouver par vous-même la commande qui vous permettra de mesurer la longueur d’un vecteur.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1">vec1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb87-2" title="2"><span class="kw">length</span>(vec1)  <span class="co"># donne 3, car vec contient 3 éléments</span></a></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1">vec2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>)</a>
+<a class="sourceLine" id="cb89-2" title="2"><span class="kw">length</span>(vec2) <span class="co"># donne 5, car vec2 contient 5 éléments </span></a></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+</div>
+<div id="les-boucles" class="section level3">
+<h3><span class="header-section-number">2.3.4</span> Les boucles</h3>
+<div id="boucles-for" class="section level4">
+<h4><span class="header-section-number">2.3.4.1</span> Boucles for</h4>
+<p>Les boucles permettent d’effectuer une même suite d’opérations sur plusieurs objets. Pour faire suite à notre exemple, nous désirons obtenir le résultat de l’opération <em>f</em> pour des paramètres que nous enregistrons dans ce tableau.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1">params &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>),</a>
+<a class="sourceLine" id="cb91-2" title="2">                     <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">1</span>, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb91-3" title="3">                     <span class="dt">a =</span> <span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb91-4" title="4">params</a></code></pre></div>
+<pre><code>##   x y a
+## 1 2 3 6
+## 2 4 4 1
+## 3 1 8 8
+## 4 5 1 2
+## 5 6 0 5</code></pre>
+<p>Nous créons un vecteur vide, puis nous itérons ligne par ligne en remplissant le vecteur.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1">operation_res &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb93-2" title="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(params)) {</a>
+<a class="sourceLine" id="cb93-3" title="3">    operation_res[i] &lt;-<span class="st"> </span><span class="kw">operation_f</span>(<span class="dt">x =</span> params[i, <span class="dv">1</span>], <span class="dt">y =</span> params[i, <span class="dv">2</span>], <span class="dt">a =</span> params[i, <span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb93-4" title="4">}</a>
+<a class="sourceLine" id="cb93-5" title="5">operation_res</a></code></pre></div>
+<pre><code>## [1]   8  57  -7 125 221</code></pre>
+<p>En faisant varier <code>i</code> sur des valeurs du vecteur donné par la séquence de nombre entiers de 1 au nombre de ligne du tableau de paramètres, nous demandons à <strong>R</strong> d’effectuer la suite d’opération entre les accolades <strong><code>{}</code></strong>. À chaque boucle, <strong><code>i</code></strong> prend une valeur de la séquence. <strong><code>i</code></strong> est utilisé ici comme indice de la ligne à soutirer du tableau <strong><code>params</code></strong>, qui correspond à l’indice dans le vecteur <strong><code>operation_res</code></strong>.</p>
+<p>Ainsi, chaque résultat est calculé dans l’ordre des lignes du tableau de paramètres <strong><code>params</code></strong> et l’on pourra très bien y coller nos résultats :</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1">params<span class="op">$</span>resultats &lt;-<span class="st"> </span>operation_res</a>
+<a class="sourceLine" id="cb95-2" title="2">params</a></code></pre></div>
+<pre><code>##   x y a resultats
+## 1 2 3 6         8
+## 2 4 4 1        57
+## 3 1 8 8        -7
+## 4 5 1 2       125
+## 5 6 0 5       221</code></pre>
+<p>Notez que puisque la colonne <strong><code>resultat</code></strong> n’existe pas dans le tableau <strong><code>params</code></strong>, R crée automatiquement une nouvelle colonne.</p>
+<p>Les boucles <strong><code>for</code></strong> vous permettront par exemple de générer en peu de temps 10, 100, 1000 graphiques (<em>autant que vous voulez</em>), chacun issu de simulations obtenues à partir de conditions initiales différentes, et de les enregistrer dans un répertoire sur votre ordinateur.</p>
+<p>Notez qu’un travail qui pourrait prendre des semaines sur <strong>Excel</strong> peut être effectué en <strong>R</strong> en quelques secondes.</p>
+</div>
+<div id="boucles-while" class="section level4">
+<h4><span class="header-section-number">2.3.4.2</span> Boucles while</h4>
+<p>Un second outil est disponible pour les itérations : les boucles <strong><code>while</code></strong>. Elles effectuent une opération tant qu’un critère n’est pas atteint. Elles sont utiles pour les opérations où l’on cherche une convergence. Je les couvre rapidement puisqu’elles sont rarement utilisées dans les flux de travail courants.</p>
+<p>En voici un petit exemple.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1">x &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb97-2" title="2"><span class="cf">while</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.1</span>) {</a>
+<a class="sourceLine" id="cb97-3" title="3">    x &lt;-<span class="st"> </span><span class="kw">sqrt</span>(x)</a>
+<a class="sourceLine" id="cb97-4" title="4">    <span class="kw">print</span>(x)</a>
+<a class="sourceLine" id="cb97-5" title="5">}</a></code></pre></div>
+<pre><code>## [1] 10
+## [1] 3.162278
+## [1] 1.778279
+## [1] 1.333521
+## [1] 1.154782
+## [1] 1.074608</code></pre>
+<p>Voici comment ceci s’interprète :</p>
+<ul>
+<li>Nous avons initié (ou initialisé) <strong><code>x</code></strong> à une valeur de <strong><code>100</code></strong>.</li>
+<li>Puis, tant que (<strong><code>while</code></strong>) le test <strong><code>x &gt; 1.1</code></strong> est vrai, on demande d’attribuer à <strong><code>x</code></strong> une nouvelle valeur calculée en extrayant la racine de la valeur précédente de <strong><code>x</code></strong>.</li>
+<li>Enfin, indiquer la valeur avec <strong><code>print()</code></strong>.</li>
+</ul>
+</div>
+</div>
+<div id="conditions-if-else-if-else" class="section level3">
+<h3><span class="header-section-number">2.3.5</span> Conditions : if, else if, else</h3>
+<blockquote>
+<p>Si la condition <strong><code>1</code></strong> est remplie, effectuer une suite d’instruction <strong><code>1</code></strong>. Si la condition <strong><code>1</code></strong> n’est pas remplie, et si la condition <strong><code>2</code></strong> est remplie, effectuer la suite d’instruction <strong><code>2</code></strong>. Sinon, effectuer la suite d’instruction <strong><code>3</code></strong>.</p>
+</blockquote>
+<p>Voilà comment on exprime une suite de conditions. Elles peuvent être aussi longues selon le problème à traiter. Prenons l’exemple simple d’une discrétisation d’une valeur continue.</p>
+<ul>
+<li>Si <span class="math inline">\(x&lt;10\)</span>, il est classé comme faible.</li>
+<li>Si <span class="math inline">\(10 \leq x &lt;20\)</span>, il est classé comme moyen.</li>
+<li>Si <span class="math inline">\(x \geq 20\)</span>, il est classé comme élevé.</li>
+</ul>
+<p>Plaçons cette classification dans une fonction.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1">classification &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">lim1=</span><span class="dv">10</span>, <span class="dt">lim2=</span><span class="dv">20</span>)  {</a>
+<a class="sourceLine" id="cb99-2" title="2">    <span class="cf">if</span> (x <span class="op">&lt;</span><span class="st"> </span>lim1) {</a>
+<a class="sourceLine" id="cb99-3" title="3">        categorie &lt;-<span class="st"> &quot;faible&quot;</span></a>
+<a class="sourceLine" id="cb99-4" title="4">    } <span class="cf">else</span> <span class="cf">if</span> (x <span class="op">&lt;</span><span class="st"> </span>lim2) {</a>
+<a class="sourceLine" id="cb99-5" title="5">        categorie &lt;-<span class="st"> &quot;moyen&quot;</span></a>
+<a class="sourceLine" id="cb99-6" title="6">    } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb99-7" title="7">        categorie &lt;-<span class="st"> &quot;élevé&quot;</span></a>
+<a class="sourceLine" id="cb99-8" title="8">    }</a>
+<a class="sourceLine" id="cb99-9" title="9">    <span class="kw">return</span>(categorie)</a>
+<a class="sourceLine" id="cb99-10" title="10">}</a>
+<a class="sourceLine" id="cb99-11" title="11"><span class="kw">classification</span>(<span class="op">-</span><span class="dv">10</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;faible&quot;</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" title="1"><span class="kw">classification</span>(<span class="fl">15.4</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;moyen&quot;</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1"><span class="kw">classification</span>(<span class="dv">1000</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;élevé&quot;</code></pre>
+<p>Une condition est définie avec le <strong><code>if</code></strong>, suivi du test à vrai ou faux entre parenthèses. Si le test retourne un <strong>vrai</strong> (<strong><code>TRUE</code></strong>), l’instruction entre accolades est exécutée. Si elle est fausse, on passe au suivant.</p>
+<p><strong>Exercice</strong></p>
+<p>Explorer les commandes <strong><code>ifelse</code></strong> et <strong><code>cut</code></strong> et réfléchissez à la manière qu’elles pourraient être utilisées pour effectuer une discrétisation plus efficacement qu’avec les <strong><code>if</code></strong> et les <strong><code>else</code></strong>.</p>
+<p>La commande <strong><code>ifelse</code></strong> est une version simplifiée des combinaisons des <strong><code>if</code></strong> et des <strong><code>else</code></strong> pour une catégorisation en deux classes.</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1"><span class="co">#ifelse(logical_expression, a , b)</span></a></code></pre></div>
+<p>1.l’<strong>expression logique</strong> indique un vecteur d’entrée, qui à son tour renverra un vecteur de même taille à la sortie.
+2. <strong>a</strong> est retourné lorsque l’expression logique est vraie.
+3. <strong>b</strong> est retourné lorsque l’expression logique est fausse.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1">class_ifese &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">lim1=</span><span class="dv">10</span>)  {</a>
+<a class="sourceLine" id="cb106-2" title="2">    <span class="kw">ifelse</span> (x <span class="op">&lt;</span><span class="st"> </span>lim1, <span class="st">&quot;faible&quot;</span>, <span class="st">&quot;élevé&quot;</span>) </a>
+<a class="sourceLine" id="cb106-3" title="3">}</a>
+<a class="sourceLine" id="cb106-4" title="4"></a>
+<a class="sourceLine" id="cb106-5" title="5"><span class="kw">class_ifese</span>(<span class="op">-</span><span class="dv">10</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;faible&quot;</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1"><span class="kw">class_ifese</span>(<span class="fl">15.4</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;élevé&quot;</code></pre>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1"><span class="kw">class_ifese</span>(<span class="dv">1000</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;élevé&quot;</code></pre>
+<p>La commande ou fonction <strong><code>cut()</code></strong> utilise en entrée un vecteur de plus de <strong>1D</strong>. Il faut une série de nombres.</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1">vec2 &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">40</span>, <span class="dv">100</span>, <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb112-2" title="2"><span class="kw">cut</span>(vec2, <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">43</span>, <span class="dv">48</span>, <span class="dv">52</span>,<span class="dv">58</span>, <span class="dv">60</span>))</a></code></pre></div>
+<pre><code>##  [1] (43,48] (48,52] (48,52] &lt;NA&gt;    (43,48] (43,48] (48,52] (43,48] (43,48]
+## [10] (43,48] (43,48] (52,58] (48,52] &lt;NA&gt;    (43,48] (52,58] (52,58] (48,52]
+## [19] (43,48] (48,52] (43,48] &lt;NA&gt;    (43,48] (48,52] (48,52] (43,48] (43,48]
+## [28] (48,52] (52,58] (52,58] (43,48] (48,52] &lt;NA&gt;    (52,58] (52,58] (48,52]
+## [37] (48,52] (48,52] (43,48] (43,48]
+## Levels: (43,48] (48,52] (52,58] (58,60]</code></pre>
+<ul>
+<li><strong><code>breaks</code></strong> specifie les points de coupe</li>
+<li><strong><code>labels</code></strong> les nouvelles catégories ou classes.</li>
+</ul>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1">data =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1200</span>, <span class="dv">34567</span>, <span class="dv">3456</span>, <span class="dv">12</span>, <span class="dv">3456</span>, <span class="dv">0985</span>, <span class="dv">1211</span>)</a>
+<a class="sourceLine" id="cb114-2" title="2">cut_res =<span class="st"> </span><span class="kw">cut</span>(data, <span class="dv">3</span>,<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;XXS&#39;</span>, <span class="st">&#39;XS&#39;</span>, <span class="st">&#39;S&#39;</span>))</a>
+<a class="sourceLine" id="cb114-3" title="3">cut_res</a></code></pre></div>
+<pre><code>## [1] XXS S   XXS XXS XXS XXS XXS
+## Levels: XXS XS S</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1"><span class="kw">table</span>(cut_res)</a></code></pre></div>
+<pre><code>## cut_res
+## XXS  XS   S 
+##   6   0   1</code></pre>
+</div>
+<div id="installer-et-charger-un-module" class="section level3">
+<h3><span class="header-section-number">2.3.6</span> Installer et charger un module</h3>
+<p>La plupart des opérations d’ordre général comme :</p>
+<ul>
+<li>les racines carrées,</li>
+<li>les tests statistiques,</li>
+<li>la gestion de matrices et de tableau,</li>
+<li>les graphiques, etc.</li>
+</ul>
+<p>sont accessibles grâce aux modules de base de R, qui sont installés et chargés par défaut lors du démarrage de R.</p>
+<p>Des équipes de travail ont néanmoins développé plusieurs modules pour répondre à leurs besoins spécialisés, et les ont laissées disponibles au grand public dans des modules que vous pouvez installer d’un dépôt <strong>CRAN</strong> (le AppStore de <strong>R</strong>), d’un dépôt <strong>Anaconda</strong> (le AppStore de <strong>Anaconda</strong>, si vous utilisez cette plate-forme), d’un dépôt <strong>Github</strong> (dépôts décentralisés), etc.</p>
+<p><strong>RStudio</strong> possède un bouton pratique <strong>Install</strong> qui vous permet d’y inscrire une liste de modules. Le navigateur anaconda offre aussi une interface d’installation. La commande <strong>R</strong> pour installer un module est <strong><code>install.packages("ggplot2")</code></strong>, si par exemple vous désirez installer <strong><code>ggplot2</code></strong>, le module graphique par excellence en <strong>R</strong>. C’est la commande que RStudio lancera tout seul si vous lui demandez d’installer <strong><code>ggplot2</code></strong>.</p>
+<p>Les modules sont l’équivalent des applications spécialisées que vous installez sur un téléphone mobile. Pour les utiliser, il faut les ouvrir.</p>
+<p>Généralement, j’ouvre toutes les applications nécessaires à mon flux de travail au tout début de ma feuille de calcul (la prochaine cellule retournera un message d’erreur si les packages ne sont pas installés).</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>) <span class="co"># méta-package qui charge entre autres dplyr et ggplot2</span></a>
+<a class="sourceLine" id="cb118-2" title="2"><span class="kw">library</span>(<span class="st">&quot;vegan&quot;</span>)</a>
+<a class="sourceLine" id="cb118-3" title="3"><span class="kw">library</span>(<span class="st">&quot;nlme&quot;</span>)</a></code></pre></div>
+<p>Les modules sont installés sur votre ordinateur à un endroit que vous pourrez retrouver avec la commande <strong><code>.libPaths()</code></strong>.</p>
+<p><strong>Exercice</strong> :</p>
+<p>À partir d’ici jusqu’à la fin du cours, nous utiliserons <strong>RStudio</strong>. Ouvrez-le et familiarisez-vous avec l’interface! Quelques petits trucs :</p>
+<ul>
+<li><p>pour lancer une ligne, placez votre curseur sur la ligne, puis appuyez sur <strong><code>Ctrl + Enter</code></strong></p></li>
+<li><p>pour lancer une partie de code précise, mettez la en surbrillance, puis <strong><code>Ctrl + Enter</code></strong></p></li>
+<li><p>utilisez toujours le gestionnaire de projets, en haut à droite !</p></li>
+<li><p>installez le module <strong><code>tidyverse</code></strong></p></li>
+<li><p>lancez data(iris) pour obtenir un tableau d’exercice, puis cliquez sur l’objet dans la fenêtre environnement</p></li>
+<li><p>essayer R notebook</p></li>
+</ul>
+</div>
+</div>
+<div id="enfin" class="section level2">
+<h2><span class="header-section-number">2.4</span> Enfin…</h2>
+<p>Comme une langue, on apprend à s’exprimer en un langage informatique qu’en se mettant à l’épreuve, ce que vous ferez tout au long de ce cours. Pour vous encourager, voici quelques trucs pour apprendre à coder en <strong>R</strong>.</p>
+<ul>
+<li><p><strong>R n’aime pas l’ambiguïté</strong>. Une simple virgule mal placée et il ne sait plus quoi faire. Cela peut être frustrant au début, mais cette rigidité est nécessaire pour effectuer du calcul scientifique.</p></li>
+<li><p><strong>Le copier-coller est votre ami</strong>. En gardant à l’esprit que vous être responsable de votre code et que vous respectez les droits d’auteur, n’ayez pas peur de copier-coller des lignes de code et de personnaliser par la suite.</p></li>
+<li><p><strong>L’erreur que vous obtenez: d’autres l’ont obtenue avant vous</strong>. Le site de question-réponse <a href="https://stackoverflow.com/questions/tagged/r">stackoverflow</a> est une ressource inestimable où des gens ayant posté des questions ont reçu des réponses d’experts (les meilleures réponses et les meilleures questions apparaissent en premier). Apprenez à chercher intelligemment des réponses en formulant précisément vos questions !</p></li>
+<li><p><strong>Étudiez et pratiquez</strong>. Les messages d’erreur en <strong>R</strong> sont courants, même chez les personnes expérimentées. La meilleure manière d’apprendre une langue est de la parler, d’étudier ses susceptibilités, de les tester dans une conversation, etc.</p></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapitre-tableaux.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["biostatistiques.pdf", "biostatistiques.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
