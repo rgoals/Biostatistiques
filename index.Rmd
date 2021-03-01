@@ -26,7 +26,7 @@ Enfin, la **communication des résultats** consiste à présenter les connaissan
 
 [Grolemund et Wickham (2018)](http://r4ds.had.co.nz/introduction.html) proposent la structure d'analyse suivante, avec de légères modifications de ma part.
 
-![](images/0_science-des-donnees-flow.png)
+<center>![](images/0_science-des-donnees-flow.png)</center>
 
 Le grand cadre spécifie **Programmer**. Oui, vous aurez besoin d'écrire du code. Mais ceci n'est pas un cours de programmation et je préférerai les approches intuitives.
 

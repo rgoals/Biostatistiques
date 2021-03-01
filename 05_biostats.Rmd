@@ -10,67 +10,109 @@ output: github_document
  ***
 ️\ **Objectifs spécifiques**:
 
-À la fin de ce chapitre, vous
+À la fin de ce chapitre,
 
-- serez en mesure de définir les concepts de base en statistique: population, échantillon, variable, probabilité et distribution
-- serez en mesure de calculer des statistiques descriptives de base: moyenne et écart-type, quartiles, maximum et minimum
-- comprendrez les notions de test d'hypothèse, d'effet et de p-value, ainsi qu'éviter les erreurs communes dans leur interprétation
-- saurez effectuer une modélisation statistique linéaire simple, multiple et mixte, entre autre sur des catégories
-- saurez effectuer une modélisation statistique non linéaire simple, multiple et mixte
+- vous serez en mesure de définir les concepts de base en statistique : population, échantillon, variable, probabilité et distribution
+- vous serez en mesure de calculer des statistiques descriptives de base : moyenne et écart-type, quartiles, maximum et minimum
+- vous comprendrez les notions de test d'hypothèse, d'effet et de p-value, ainsi qu'éviter les erreurs communes dans leur interprétation
+- vous saurez effectuer une modélisation statistique linéaire simple, multiple et mixte, entre autre sur des catégories
+- vous saurez effectuer une modélisation statistique non linéaire simple, multiple et mixte
 
  ***
 
+Aux chapitres précédents, nous avons vu comment organiser, manipuler et visualiser des tableaux de données. 
 
-Aux chapitres précédents, nous avons vu comment visualiser, organiser et manipuler des tableaux de données. La statistique est une collection de disciplines liées à la collecte, l’organisation, l'analyse, l'interprétation et la présentation de données. Les biostatistiques est l'application de ces disciplines à la biosphère.
+La **statistique** est une collection de disciplines liées à la collecte, l’organisation, l'analyse, l'interprétation et la présentation de données. Les **biostatistiques** sont l'application de ces disciplines à la [*biosphère*](https://fr.wikipedia.org/wiki/Biosph%C3%A8re).
 
-Dans [*Principles and procedures of statistics: A biometrical approach*](https://www.amazon.com/Principles-Procedures-Statistics-Biometrical-Approach/dp/0070610282), Steel, Torie et Dickey (1997) définissent les statistiques ainsi:
+Dans [*Principles and procedures of statistics: A biometrical approach*](https://www.amazon.com/Principles-Procedures-Statistics-Biometrical-Approach/dp/0070610282), **Steel**, **Torie** et **Dickey (1997)** définissent les statistiques ainsi :
 
-> Les statistiques forment la science, pure et appliquée, de la création, du développement, et de l'application de techniques par lesquelles l'incertitude de l'induction inférentielle peut être évaluée. (ma traduction)
+> Les **statistiques** forment la science pure et appliquée, de la création, du développement, et de l'application de techniques par lesquelles l'incertitude de l'**induction inférentielle** peut être évaluée. (ma traduction)
 
-Alors que l'inférence consiste à généraliser des observations sur des échantillons à l'ensemble d'une population, l'induction est un type de raisonnement qui permet de généraliser des observations en théories. Les statistiques permettent d'évaluer l'incertitude découlant du processus qui permet d'abord de passer de l'échantillon à la population représentée par cet échantillon, puis de passer de cette représentation d'une population en lois générales la concernant.
+Alors que l'**inférence** consiste à généraliser des observations sur des échantillons, à l'ensemble d'une population, l'**induction** est un type de raisonnement qui permet de généraliser des observations en théories. 
 
-La définition de Whitlock et Schuluter (2015), dans [The Analysis of Biological Data](http://whitlockschluter.zoology.ubc.ca/), est plus simple, insistant sur l'inférence:
+> _**Les statistiques** permettent d'évaluer l'incertitude découlant du processus qui permet d'abord de passer de l'échantillon à la population représentée par cet échantillon, puis de passer de cette représentation d'une population en lois générales la concernant_.
 
-> La statistique est l’étude des méthodes pour mesurer des aspects de populations à partir d’échantillons et pour quantifier l'incertitude des mesures. (ma traduction)
+La définition de **Whitlock et Schuluter (2015)**, dans [The Analysis of Biological Data](http://whitlockschluter.zoology.ubc.ca/), est plus simple, insistant sur l'**inférence** :
 
-Les statistiques consistent à *faire du sens* (anglicisme assumé) avec des observations dans l'objectif de répondre à une question que vous aurez formulée clairement, préalablement à votre expérience.
+> **La statistique** est l’étude des méthodes pour mesurer des aspects de populations à partir d’échantillons et pour quantifier l'incertitude des mesures. (ma traduction)
+
+**Les statistiques** consistent à *faire du sens* (anglicisme assumé) avec des observations dans l'objectif de répondre à une question que vous aurez formulée clairement, préalablement à votre expérience.
 
 <blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr">The more time I spend as The Statistician in the room, the more I think the best skill you can cultivate is the ability to remain calm and repeatedly ask &quot;What question are you trying to answer?&quot;</p>&mdash; Bryan Howie (@bryan_howie) <a href="https://twitter.com/bryan_howie/status/1073054519808876544?ref_src=twsrc%5Etfw">13 décembre 2018</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Le flux de travail conventionnel consiste à collecter des échantillons, transformer les données, effectuer des tests, analyser les résultats, les interpréter et les visualiser. Bien que ces tâches soient complexes, en particulier en ce qui a trait aux tests statistiques, la plupart des opérations statistiques peuvent être effectuées sans l'assistance de statisticien.ne.s... à condition de comprendre suffisamment les concepts utilisés. Ce chapitre à lui seul est trop court pour permettre d'intégrer toutes les connaissances nécessaires à une utilisation raisonnée des statistiques, mais fourni les bases pour aller plus loin. Notez que les erreurs d'interprétation statistiques sont courantes et la consultation de spécialistes n'est souvent pas un luxe.
+Le flux de travail conventionnel consiste à :
 
-Dans ce chapitre, nous verrons comment répondre correctement à une question valide et adéquate avec l'aide d'outils de calcul scientifique. Nous couvrirons les notions de bases des distributions et des variables aléatoires qui nous permettront d'effectuer des tests statistiques communs avec R. Nous couvrirons aussi les erreurs communément commises en recherche académique et les moyens simples de les éviter.
+1. collecter des échantillons, 
+1. transformer les données, 
+1. effectuer des tests, 
+1. analyser les résultats, les interpréter et les visualiser. 
 
-Ce chapitre est une introduction aux statistiques avec R, et ne remplacera pas un bon cours de stats.
+Bien que ces tâches soient complexes, en particulier en ce qui a trait aux **tests statistiques**, la plupart des opérations statistiques peuvent être effectuées sans l'assistance de statisticien.ne.s à condition de comprendre suffisamment les concepts utilisés.
 
-En plus des modules de base de R nous utiliserons
+Ce chapitre à lui seul est trop court pour permettre d'intégrer toutes les connaissances nécessaires à une utilisation raisonnée des statistiques, mais fourni les bases pour aller plus loin. Notez que les erreurs d'interprétation statistiques sont courantes et la consultation de spécialistes n'est souvent pas un luxe.
+
+Dans ce chapitre, 
+
+- nous verrons comment répondre correctement à une question valide et adéquate avec l'aide d'outils de calcul scientifique. 
+- nous couvrirons les notions de bases des distributions et des variables aléatoires qui nous permettront d'effectuer des tests statistiques communs avec **R**
+- nous couvrirons aussi les erreurs communément commises en recherche académique et les moyens simples de les éviter.
+
+Ce chapitre est une introduction aux statistiques avec **R**, et ne remplacera pas un bon cours de stats.
+
+En plus des modules de base de **R** nous utiliserons :
 
 * les modules de la **`tidyverse`**,
 * le module de données agricoles **`agridat`**, ainsi que 
 * le module **`nlme`** spécialisé pour la modélisation mixte. 
 
-Avant de survoler les applications statistiques avec R, je vais d'abord et rapidement présenter quelques notions importantes en statistiques : populations et échantillons, variables, probabilités et distributions. Nous allons effectuer des tests d'hypothèse univariés (notamment les tests de *t* et les analyses de variance) et détailler la notion de p-value. Mais avant tout, je vais m'attarder plus longuement aux modèles linéaires généralisés, incluant en particulier des effets fixes et aléatoires (modèles mixtes), qui fournissent une trousse d'analyse polyvalente en analyse multivariée. Je terminerai avec les perspectives multivariées que sont les matrices de covariance et de corrélation.
+Avant de survoler les applications statistiques avec **R**, je vais d'abord et rapidement présenter quelques notions importantes en statistiques : 
+
+- populations et échantillons, 
+- variables, 
+- probabilités et distributions. 
+
+Nous allons effectuer :
+
+- des tests d'hypothèse univariés 
+  - notamment les tests de *t* 
+  - et les analyses de variance
+
+- et détailler la notion de p-value. 
+
+Mais avant tout, je vais m'attarder plus longuement aux **modèles linéaires généralisés**, incluant en particulier des effets fixes et aléatoires (_modèles mixtes_), qui fournissent une trousse d'analyse polyvalente en analyse multivariée. Je terminerai avec les perspectives multivariées que sont les __matrices de covariance__ et __de corrélation__.
 
 ## Populations et échantillons
 
-Le principe d'inférence consiste à généraliser des conclusions à l'échelle d'une population à partir d'échantillons issus de cette population. Alors qu'une **population** contient tous les éléments étudiés, un **échantillon** d'une population est une observation unique. Une expérience bien conçue fera en sorte que les échantillons sont représentatifs de la population qui, la plupart du temps, ne peut être observée entièrement pour des raisons pratiques.
+Le __principe d'inférence__ consiste à généraliser des conclusions à l'échelle d'une population à partir d'échantillons issus de cette population. Alors qu'une **population** contient tous les éléments étudiés, un **échantillon** d'une population est une observation unique. 
 
-Les principes d'expérimentation servant de base à la conception d'une bonne méthodologie sont présentés dans le cours [*Dispositifs expérimentaux (BVG-7002)*](https://www.ulaval.ca/les-etudes/cours/repertoire/detailsCours/bvg-7002-dispositifs-experimentaux.html). Également, je recommande le livre *Principes d'expérimentation: planification des expériences et analyse de leurs résultats* de Pierre Dagnelie (2012), [disponible en ligne en format PDF](http://www.dagnelie.be/docpdf/ex2012.pdf). Un bon aperçu des dispositifs expérimentaux est aussi présenté dans [*Introductory Statistics with R*](https://www.springer.com/us/book/9780387790534), de Peter Dalgaard (2008).
+Une expérience bien conçue fera en sorte que les échantillons soient représentatifs de la population qui, la plupart du temps, ne peut être observée entièrement pour des raisons pratiques.
 
-Une population est échantillonnée pour induire des **paramètres**: un rendement typique dans des conditions météorologiques, édaphiques et managériales données, la masse typique des faucons pèlerins, mâles et femelles, le microbiome typique d'un sol agricole ou forestier, etc. Une **statistique** est une estimation d'un paramètre calculée à partir des données, par exemple une moyenne et un écart-type.
+Les principes d'expérimentation servant de base à la conception d'une bonne méthodologie sont présentés dans le cours **Dispositifs expérimentaux ou Expérimentation agricole**. Également, je recommande le livre *Principes d'expérimentation: planification des expériences et analyse de leurs résultats* de **Pierre Dagnelie (2012)**, [disponible en ligne en format PDF](http://www.dagnelie.be/docpdf/ex2012.pdf). Un bon aperçu des dispositifs expérimentaux est aussi présenté dans [*Introductory Statistics with R*](https://www.springer.com/us/book/9780387790534), de **Peter Dalgaard (2008)**.
+
+Une population est _échantillonnée_ pour induire des **paramètres** : 
+- un rendement typique dans des conditions météorologiques, édaphiques et managériales données,
+- la masse typique des faucons pèlerins, mâles et femelles, 
+- le microbiome typique d'un sol agricole ou forestier, 
+- etc.
+
+Une **statistique** est une estimation d'un paramètre calculée à partir des données, par exemple une moyenne et un écart-type.
 
 Par exemple, la moyenne ($\mu$) et l'écart-type ($\sigma$) d'une population sont estimés par les moyennes ($\bar{x}$) et écarts-types ($s$) calculés sur les données issues de l'échantillonnage.
 
-Chaque paramètre est liée à une perspective que l'on désire connaître chez une population. Ces angles d'observations sont les **variables**.
+Chaque __paramètre__ est lié à une perspective que l'on désire connaître chez une population. Ces angles d'observations sont les **variables**.
 
 ## Les variables
 
-Nous avons abordé au chapitre 4 la notion de *variable* par l'intermédiaire d'une donnée. Une variable est l'observation d'une caractéristique décrivant un échantillon et qui est susceptible de varier d'un échantillon à un autre. Si les observations varient en effet d'un échantillon à un autre, on parlera de variable aléatoire. Même le hasard est régi par certaines lois: ce qui est aléatoire dans une variable peut être décrit par des **lois de probabilité**, que nous verrons plus bas.
+Nous avons abordé au chapitre \@ref(chapitre-visualisation) la notion de **variable** par l'intermédiaire d'une donnée. 
 
-Mais restons aux variables pour l'instant. Par convention, on peut attribuer aux variables un symbole mathématique. Par exemple, on peut donner à la masse volumique d'un sol (qui est le résultat d'une méthodologie précise) le symbole $\rho$. Lorsque l'on attribue une valeur à $\rho$, on parle d'une donnée. Chaque donnée d'une observation a un indice qui lui est propre, que l'on désigne souvent par $i$, que l'on place en indice $\rho_i$. Pour la première donnée, on a $i=1$, donc $\rho_1$. Pour un nombre $n$ d'échantillons, on aura $\rho_1$, $\rho_2$, $\rho_3$, ..., $\rho_n$, formant le vecteur $\rho = \left[\rho_1, \rho_2, \rho_3, ..., \rho_n \right]$.
+> Une __variable__ est l'observation d'une caractéristique décrivant un échantillon et qui est susceptible de varier d'un échantillon à un autre. 
 
-En R, une variable est associée à un vecteur ou une colonne d'un tableau.
+Si les observations varient en effet d'un échantillon à un autre, on parlera de __variable aléatoire__. Même le hasard est régi par certaines lois : _ce qui est aléatoire dans une variable peut être décrit par des **lois de probabilité**, que nous verrons plus bas_.
+
+Mais restons aux __variables__ pour l'instant. Par convention, on peut attribuer aux variables un symbole mathématique. Par exemple, on peut donner à la masse volumique d'un sol (_qui est le résultat d'une méthodologie précise_) le symbole $\rho$. Lorsque l'on attribue une valeur à $\rho$, on parle d'une donnée. Chaque donnée d'une observation a un indice qui lui est propre, que l'on désigne souvent par $i$, que l'on place en indice $\rho_i$. Pour la première donnée, on a $i=1$, donc $\rho_1$. Pour un nombre $n$ d'échantillons, on aura $\rho_1$, $\rho_2$, $\rho_3$, ..., $\rho_n$, formant le vecteur $\rho = \left[\rho_1, \rho_2, \rho_3, ..., \rho_n \right]$.
+
+En __R__, une variable est associée à un vecteur ou une colonne d'un tableau.
 
 ```{r}
 rho <- c(1.34, 1.52, 1.26, 1.43, 1.39) # matrice 1D
@@ -78,57 +120,97 @@ data <- data.frame(rho = rho) # tableau
 data
 ```
 
-Il existe plusieurs types de variables, qui se regroupe en deux grandes catégories: les **variables quantitatives** et les **variables qualitatives**.
+Il existe plusieurs types de variables, qui se regroupent en deux grandes catégories : les **variables quantitatives** et les **variables qualitatives**.
 
 ### Variables quantitatives
 
-Ces variables peuvent être continues dans un espace échantillonnal réel ou discrètes dans un espace échantillonnal ne considérant que des valeurs fixes. Notons que la notion de nombre réel est toujours une approximation en sciences expérimentales comme en calcul numérique, étant donnée que l'on est limité par la précision des appareils comme par le nombre d'octets à utiliser. Bien que les valeurs fixes des distributions discrètes ne soient pas toujours des valeurs entières, c'est bien souvent le cas en biostatistiques comme en démographie, où les décomptes d'individus sont souvent présents (et où la notion de fraction d'individus n'est pas acceptée).
+Ces variables peuvent être :
+
+- __continues__ dans un espace échantillonnal réel
+- ou __discrètes__ dans un espace échantillonnal ne considérant que des valeurs fixes. 
+
+Notons que la notion de __nombre réel__ est toujours une approximation en sciences expérimentales comme en calcul numérique, étant donnée que l'on est limité par la précision des appareils comme par le nombre d'octets à utiliser. Bien que les valeurs fixes des distributions discrètes ne soient pas toujours des valeurs entières, c'est bien souvent le cas en biostatistiques comme en démographie, où les décomptes d'individus sont souvent présents (_et où la notion de fraction d'individus n'est pas acceptée_).
 
 ### Variables qualitatives
 
-On exprime parfois qu'une variable qualitative est une variable impossible à mesurer numériquement: une couleur, l'appartenance à espèce ou à une série de sol. Pourtant, dans bien des cas, les variables qualitatives peut être encodées en variables quantitatives. Par exemple, on peut accoler des pourcentages de sable, limon et argile à un loam sableux, qui autrement est décrit par la classe texturale d'un sol. Pour une couleur, on peut lui associer des pourcentages de rouge, vert et bleu, ainsi qu'un ton. En ce qui a trait aux variables ordonnées, il est possible de supposer un étalement. Par exemple, une variable d'intensité faible-moyenne-forte peut être transformée linéairement en valeurs quantitatives -1, 0 et 1. Attention toutefois, l'étalement peut parfois être quadratique ou logarithmique. Les séries de sol peuvent être encodées par la proportion de gleyfication ([Parent et al., 2017](https://www.frontiersin.org/articles/10.3389/fenvs.2017.00081/full#B4)). Quant aux catégories difficilement transformables en quantités, on pourra passer par l'**encodage catégoriel**, souvent appelé *dummyfication*, qui nous verrons plus loin.
+On exprime parfois qu'une __variable qualitative__ est une variable impossible à mesurer numériquement : une couleur, l'appartenance à une espèce ou à une série de sol. Pourtant, dans bien des cas, les _variables qualitatives_ peuvent être encodées en variables quantitatives. 
+
+> Par exemple, 
+>
+> on peut accoler des pourcentages de sable, limon et argile à un loam sableux, qui autrement est décrit par la classe texturale d'un sol. 
+> 
+> Pour une couleur, on peut lui associer des pourcentages de rouge, vert et bleu, ainsi qu'un ton. 
+>
+> En ce qui a trait aux variables ordonnées, il est possible de supposer un étalement. Par exemple, une variable d'intensité faible-moyenne-forte peut être transformée linéairement en valeurs quantitatives -1, 0 et 1. Attention toutefois, l'étalement peut parfois être quadratique ou logarithmique. 
+>
+> Les séries de sol peuvent être encodées par la proportion de gleyfication ([Parent et al., 2017](https://www.frontiersin.org/articles/10.3389/fenvs.2017.00081/full#B4)).
+>
+> Quant aux catégories difficilement transformables en quantités, on pourra passer par l'**encodage catégoriel**, souvent appelé *dummyfication*, qui nous verrons plus loin.
 
 ## Les probabilités
 
-> « Nous sommes si éloignés de connaître tous les agens de la nature, et leurs divers modes d'action ; qu'il ne serait pas philosophique de nier les phénomènes, uniquement parce qu'ils sont inexplicables dans l'état actuel de nos connaissances. Seulement, nous devons les examiner avec une attention d'autant plus scrupuleuse, qu'il paraît plus difficile de les admettre ; et c'est ici que le calcul des probabilités devient indispensable, pour déterminer jusqu'à quel point il faut multiplier les observations ou les expériences, afin d'obtenir en faveur des agens qu'elles indiquent, une probabilité supérieure aux raisons que l'on peut avoir d'ailleurs, de ne pas les admettre. » — Pierre-Simon de Laplace
+> « Nous sommes si éloignés de connaître tous les agens de la nature et leurs divers modes d'action, qu'il ne serait pas philosophique de nier les phénomènes, uniquement parce qu'ils sont inexplicables dans l'état actuel de nos connaissances. Seulement, nous devons les examiner avec une attention d'autant plus scrupuleuse, qu'il paraît plus difficile de les admettre ; et c'est ici que le calcul des probabilités devient indispensable, pour déterminer jusqu'à quel point il faut multiplier les observations ou les expériences, afin d'obtenir en faveur des agens qu'elles indiquent, une probabilité supérieure aux raisons que l'on peut avoir d'ailleurs, de ne pas les admettre. » — __Pierre-Simon de Laplace__.
 
-Une probabilité est la vraisemblance qu'un évènement se réalise chez un échantillon. Les probabilités forment le cadre des systèmes stochastiques, c'est-à-dire des systèmes trop complexes pour en connaître exactement les aboutissants, auxquels on attribue une part de hasard. Ces systèmes sont prédominants dans les processus vivants.
+__Une probabilité__ est la vraisemblance qu'un évènement se réalise chez un échantillon. 
 
-On peut dégager deux perspectives sur les probabilités: l'une passe par une interprétation fréquentielle, l'autre bayésienne. L'interprétation **fréquentielle** représente la fréquence des occurrences après un nombre infini d’évènements. Par exemple, si vous jouez à pile ou face un grand nombre de fois, le nombre de pile sera égal à la moitié du nombre de lancés. Il s'agit de l'interprétation communément utilisée.
+Les __probabilités__ forment le cadre des __systèmes stochastiques__, c'est-à-dire des systèmes trop complexes pour en connaître exactement les aboutissants, auxquels on attribue une part de hasard. Ces systèmes sont prédominants dans les processus vivants.
 
-L'interprétation **bayésienne** vise à quantifier l'incertitude des phénomènes. Dans cette perspective, plus l'information s'accumule, plus l'incertitude diminue. Cette approche gagne en notoriété notamment parce qu'elle permet de décrire des phénomènes qui, intrinsèquement, ne peuvent être répétés infiniment (absence d'asymptote), comme celles qui sont bien définis dans le temps ou sur des populations limités.
+On peut dégager deux perspectives sur les probabilités : l'une passe par une interprétation _fréquentielle_, l'autre _bayésienne_. 
 
-L'approche fréquentielle teste si les données concordent avec un modèle du réel, tandis que l'approche bayésienne évalue la probabilité que le modèle soit réel. Une erreur courante consiste à aborder des statistiques fréquentielles comme des statistiques bayésiennes. Par exemple, si l'on désire évaluer la probabilité de l’existence de vie sur Mars, on devra passer par le bayésien, car avec les stats fréquentielles, l'on devra plutôt conclure si les données sont conformes ou non avec l'hypothèse de la vie sur Mars (exemple tirée du blogue [Dynamic Ecology](https://dynamicecology.wordpress.com/2011/10/11/frequentist-vs-bayesian-statistics-resources-to-help-you-choose/)).
+> L'interprétation **fréquentielle** représente la fréquence des occurrences après un nombre infini d’évènements. 
+>
+> Par exemple, si vous jouez à pile ou face un grand nombre de fois, le nombre de pile sera égal à la moitié du nombre de lancés. Il s'agit de l'interprétation communément utilisée.
 
-Des rivalités factices s'installent enter les tenants des différentes approches, dont chacune, en réalité, répond à des questions différentes dont il convient réfléchir sur les limitations. Bien que les statistiques bayésiennes soient de plus en plus utilisées, nous ne couvrirons dans ce chapitre que l'approche fréquentielle. L'approche bayésienne est néanmoins traitée dans le chapitre \@ref(chapitre-biostats-bayes).
+> L'interprétation **bayésienne** vise à quantifier l'incertitude des phénomènes. Dans cette perspective, plus l'information s'accumule, plus l'incertitude diminue. 
+>
+> Cette approche gagne en notoriété notamment parce qu'elle permet de décrire des phénomènes qui, intrinsèquement, ne peuvent être répétés infiniment (_absence d'asymptote_), comme celles qui sont bien définies dans le temps ou sur des populations limitées.
+
+L'__approche fréquentielle__ teste si les données concordent avec un modèle du réel, tandis que l'__approche bayésienne__ évalue la probabilité que le modèle soit réel. 
+
+Une erreur courante consiste à aborder des __statistiques fréquentielles__ comme des __statistiques bayésiennes__. 
+> Par exemple, si l'on désire évaluer la probabilité de l’existence de vie sur Mars, on devra passer par le bayésien, car avec les stats fréquentielles, l'on devra plutôt conclure si les données sont conformes ou non avec l'hypothèse de la vie sur Mars (exemple tirée du blogue [Dynamic Ecology](https://dynamicecology.wordpress.com/2011/10/11/frequentist-vs-bayesian-statistics-resources-to-help-you-choose/)).
+
+Des rivalités factices s'installent enter les tenants des différentes approches, chacune, en réalité, répondant à des questions différentes dont il convient de réfléchir sur les limitations. Bien que les statistiques bayésiennes soient de plus en plus utilisées, nous ne couvrirons dans ce chapitre que l'approche fréquentielle. L'approche bayésienne est néanmoins traitée dans le chapitre \@ref(chapitre-biostats-bayes).
 
 ## Les distributions
 
-Une variable aléatoire peut prendre des valeurs selon des modèles de distribution des probabilités. Une distribution est une fonction mathématique décrivant la probabilité d'observer une série d'évènements. Ces évènements peuvent être des valeurs continues, des nombres entiers, des catégories, des valeurs booléennes (Vrai/Faux), etc. Dépendemment du type de valeur et des observations obtenues, on peut associer des variables à différentes lois de probabilité. Toujours, l'aire sous la courbe d'une distribution de probabilité est égale à 1.
+Une variable aléatoire peut prendre des valeurs selon des __modèles de distribution des probabilités__. 
+> _Une __distribution__ est une fonction mathématique décrivant la probabilité d'observer une série d'évènements._
 
-En statistiques inférentielles, les distributions sont les modèles, comprenant certains paramètres comme la moyenne et la variance pour les distributions normales, à partir desquelles les données sont générées.
+Ces évènements peuvent être des valeurs continues, des nombres entiers, des catégories, des valeurs booléennes (Vrai/Faux), etc. Dépendemment du type de valeur et des observations obtenues, on peut associer des variables à différentes lois de probabilité. Toujours, l'aire sous la courbe d'une distribution de probabilité est égale à 1.
 
-Il existe deux grandes familles de distribution: **discrètes** et **continues**. Les distributions discrètes sont contraintes à des valeurs prédéfinies (finies ou infinies), alors que les distributions continues prennent nécessairement un nombre infini de valeur, dont la probabilité ne peut pas être évaluée ponctuellement, mais sur un intervalle.
+En __statistiques inférentielles__, les distributions sont les modèles, comprenant certains paramètres comme la moyenne et la variance pour les distributions normales, à partir desquelles les données sont générées.
 
-L'**espérance** mathématique est une fonction de tendance centrale, souvent décrite par un paramètre. Il s'agit de la moyenne d'une population pour une distribution normale. La **variance**, quant à elle, décrit la variabilité d'une population, i.e. son étalement autour de l'espérance. Pour une distribution normale, la variance d'une population est aussi appelée variance, souvent présentée par l'écart-type.
+Il existe deux grandes familles de distributions : **discrètes** et **continues**. 
+> Les __distributions discrètes__ sont contraintes à des valeurs prédéfinies (finies ou infinies), 
+>alors que 
+> les __distributions continues__ prennent nécessairement un nombre infini de valeurs, dont la probabilité ne peut pas être évaluée ponctuellement, mais sur un intervalle.
 
-### Distribution binomiale
+L'**espérance mathématique** est une _fonction de tendance centrale_, souvent décrite par un paramètre. Il s'agit de la moyenne d'une population pour une distribution normale. 
 
-En tant que scénario à deux issues possibles, des tirages à pile ou face suivent une loi binomiale, comme toute variable booléenne prenant une valeur vraie ou fausse. En biostatistiques, les cas communs sont la présence/absence d'une espèce, d'une maladie, d'un trait phylogénétique, ainsi que les catégories encodées. Lorsque l'opération ne comprend qu'un seul échantillon (i.e. un seul tirage à pile ou face), il s'agit d'un cas particulier d'une loi binomiale que l'on nomme une loi de *Bernouilli*.
+La **variance**, quant à elle, décrit la variabilité d'une population, i.e. son étalement autour de l'espérance. Pour une distribution normale, la variance d'une population est aussi appelée variance, souvent présentée par l'écart-type.
 
-Pour 25 tirages à pile ou face indépendants (i.e. dont l'ordre des tirages ne compte pas), on peut dessiner une courbe de distribution dont la somme des probabilités est de 1. La fonction `dbinom` est une fonction de distribution de probabilités. Les fonctions de distribution de probabilités discrètes sont appelées des fonctions de masse.
+### La distribution binomiale
+
+En tant que __scénario à deux issues possibles__, des tirages à pile ou face suivent une loi binomiale, comme toute variable booléenne prenant une valeur vraie ou fausse. En biostatistiques, les cas communs sont la présence/absence d'une espèce, d'une maladie, d'un trait phylogénétique, ainsi que les catégories encodées. 
+> Lorsque l'opération ne comprend qu'un seul échantillon (_i.e. un seul tirage à pile ou face_), il s'agit d'un cas particulier d'une loi binomiale que l'on nomme une __loi de Bernouilli__.
+
+Pour 25 tirages à pile ou face indépendants (_i.e. dont l'ordre des tirages ne compte pas_), on peut dessiner une courbe de distribution dont la somme des probabilités est de 1. La fonction `dbinom()` est la fonction de distribution de probabilités binomiale. Les fonctions de distribution de probabilités discrètes sont appelées des __fonctions de masse__.
 
 ```{r}
 library("tidyverse")
 x <- 0:25
 y <- dbinom(x = x, size = 25, prob = 0.5)
 print(paste('La somme des probabilités est de', sum(y)))
+```
+
+```{r}
 ggplot(data = tibble(x, y), mapping = aes(x, y)) +
   geom_segment(aes(x = x, xend = x, y = 0, yend = y), color = "grey50") +
   geom_point()
 ```
 
-### Distribution de Poisson
+### La distribution de Poisson
 
 La loi de Poisson (avec un P majuscule, introduite par le mathématicien français Siméon Denis Poisson et non pas l'animal) décrit des distributions discrètes de probabilité d'un nombre d’évènements se produisant dans l'espace ou dans le temps. Les distributions de Poisson décrive ce qui tient du décompte. Il peut s'agir du nombre de grenouilles traversant une rue quotidiennement, du nombre de plants d'asclépiades se trouvant sur une terre cultivée, ou du nombre d’évènements de précipitation au mois de juin, etc. La distribution de Poisson n'a qu'un seul paramètre, $\lambda$, qui décrit tant la moyenne des décomptes.
 

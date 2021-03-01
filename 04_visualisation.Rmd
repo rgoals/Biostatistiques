@@ -74,9 +74,9 @@ Il s'agit de susciter un *eurêka*, dans le sens qu'**elle génère une idée, e
 
 > 5- **Elle est instructive**, parce que si l'on saisit et accepte les évidences scientifiques qu'elle décrit, cela changera notre perception pour le mieux.
 
-En présentant cette qualité, Alberto Cairo voulait insister ses lecteurs.trices à choisir des sujets de discussion visuelle de manière à participer à un monde meilleur. En ce qui nous concerne, il s'agit de bien **sélectionner l'information que l'on désire transmettre**. Imaginez que vous avez travaillé quelques jours pour créer un graphique, dont vous êtes fier, mais vous (ou un collègue hiérarchiquement favorisé) vous rendez compte que le graphique soutient peu ou pas le propos ou l'objectif de votre thèse/mémoire/rapport/article. Si c'est bien le cas, vous feriez mieux de laisser tomber votre oeuvre et considérer votre démarche comme une occasion d'apprentissage.
+En présentant cette qualité, **Alberto Cairo** voulait insister ses lecteurs.trices à choisir des sujets de discussion visuelle de manière à participer à un monde meilleur. En ce qui nous concerne, il s'agit de bien **sélectionner l'information que l'on désire transmettre**. Imaginez que vous avez travaillé quelques jours pour créer un graphique, dont vous êtes fier, mais vous (ou un collègue hiérarchiquement favorisé) vous rendez compte que le graphique soutient peu ou pas le propos ou l'objectif de votre thèse/mémoire/rapport/article. Si c'est bien le cas, vous feriez mieux de laisser tomber votre oeuvre et considérer votre démarche comme une occasion d'apprentissage.
 
-Alberto Cairo résume son livre *The Truthful Art* dans [une entrevue avec le National Geographic](http://news.nationalgeographic.com/2015/10/151016-data-points-alberto-cairo-interview/).
+**Alberto Cairo** résume son livre *The Truthful Art* dans [une entrevue avec le National Geographic](http://news.nationalgeographic.com/2015/10/151016-data-points-alberto-cairo-interview/).
 
 ## Choisir le type de graphique le plus approprié
 
@@ -90,19 +90,19 @@ Le [Financial Times](https://ft.com/vocabulary) offre également ce guide visuel
 
 **Cairo (2016)** propose de procéder avec ces étapes :
 
-0. Réfléchissez au message que vous désirez transmettre : 
+1. Réfléchissez au message que vous désirez transmettre : 
 
 - comparer les catégories $A$ et $B$, 
 - visualiser une transition ou un changement de $A$ vers $B$, 
 - présenter une relation entre $A$ et $B$ ou la distribution de $A$ et $B$ sur une carte.
 
-0. Essayez différentes représentations : 
+2. Essayez différentes représentations : 
 
 si le message que vous désirez transmettre a plusieurs volets, il se pourrait que vous ayez besoin de plus d'un graphique.
 
-0. Mettez de l'ordre dans vos données. C'était le sujet du chapitre \@ref(chapitre-tableaux).
+3. Mettez de l'ordre dans vos données. C'était le sujet du chapitre \@ref(chapitre-tableaux).
 
-0. Testez le résultat. "Hé, qu'est-ce que tu comprends de cela ?" Si la personne hausse les épaules, il va falloir réévaluer votre stratégie.
+4. Testez le résultat. "Hé, qu'est-ce que tu comprends de cela ?" Si la personne hausse les épaules, il va falloir réévaluer votre stratégie.
 
 ## Choisir son outils de visualisation
 
@@ -110,7 +110,7 @@ Les modules et logiciels de visualisation sont basés sur des approches que l'on
 
 ### Approche impérative
 
-Selon cette approche, vous indiquez comment placer l'information dans un espace graphique. Vous indiquer les symboles, les couleurs, les types de ligne, etc. Peu de choses sont automatisées, ce qui laisse une grande flexibilité, mais demande de vouer beaucoup d'énergie à la manière de coder pour obtenir le graphique désiré. Le module graphique de **Excel**, ainsi que le module graphique de base de **`R`**, utilisent des approches impératives.
+Selon cette approche, vous indiquez comment placer l'information dans un espace graphique. Vous indiquer les symboles, les couleurs, les types de ligne, etc. Peu de choses sont automatisées, ce qui laisse une grande flexibilité, mais demande de vouer beaucoup d'énergie à la manière de coder pour obtenir le graphique désiré. Le module graphique de **Excel**, ainsi que le module graphique de base de **R**, utilisent des approches impératives.
 
 ### Approche déclarative
 
@@ -153,7 +153,9 @@ Par défaut, le premier argument est le vecteur définissant l'axe des $x$ et le
 
 <img src="images/3_plot-iris.png" width=400>
 
-**Exercice**. Utilisez ces arguments dans la cellule de code de la figure `plot(iris$Sepal.Length, iris$Petal.Length)`.
+**Exercice**. 
+
+Utilisez ces arguments dans la cellule de code de la figure `plot(iris$Sepal.Length, iris$Petal.Length)`.
 
 Remarquez que la fonction a décidé toute seule de créer un nuage de point. La fonction `plot()` est conçue pour créer le graphique approprié selon le type des données spécifiées : lignes, boxplot, etc. Si l'on spécifiait les espèces comme argument `x`...
 
@@ -201,7 +203,9 @@ La fonction `hist()` permet quant à elle de créer des histogrammes. Parmi ses 
 hist(iris$Petal.Length, breaks = 60)
 ```
 
-**Exercice**. Ajustez le titre de l'axe des x, ainsi que les limites de l'axe des x. Êtes-vous en mesure de colorer l'intérieur des barres en bleu ?
+**Exercice**. 
+
+Ajustez le titre de l'axe des $x$, ainsi que les limites de l'axe des $x$. Êtes-vous en mesure de colorer l'intérieur des barres en bleu ?
 
 La fonction `plot()` peut être suivie de plusieurs autres couches comme des lignes (`lines()` ou `abline()`), des points (`points()`), du texte (`text()`), des polygones (`polygon()`, des légendes (`legend()`)), etc. On peut aussi personnaliser les couleurs, les types de points, les types de lignes, etc. L'exemple suivant ajoute une ligne au graphique. Ne prêtez pas trop attention aux fonctions `predict()` et `lm()` pour l'instant : nous les verrons au chapitre \@ref(chapitre-biostats).
 
@@ -210,7 +214,7 @@ plot(time, height)
 lines(time, predict(lm(height ~ time)))
 ```
 
-Pour exporter un graphique, vous pouvez passer par le menu Export de RStudio. Mais pour des graphiques destinés à être publiés, je vous suggère d'exporter vos graphiques avec une haute résolution à la suite de la commande `png()` (ou `jpg()` ou `svg()`).
+Pour exporter un graphique, vous pouvez passer par le menu *Export* de **RStudio**. Mais pour des graphiques destinés à être publiés, je vous suggère d'exporter vos graphiques avec une haute résolution à la suite de la commande `png()` (ou `jpg()` ou `svg()`).
 
 ```{r}
 png(filename = 'images/3_mon-graphique.png', width = 3000, height=2000, res=300)
@@ -233,12 +237,16 @@ Le module de base de **R** comprend une panoplie d'autres particularités que je
 Brièvement, une grammaire graphique permet de schématiser (ma traduction de *to map*) des données sur des attributs esthétiques avec des géométries.Cette approche permet de dégager 5 composantes.
 
 1. **Les données**. Votre tableau est bien sûr un argument nécessaire pour générer le graphique.
+
 1. **Les marqueurs**. Un terme abstrait pour désigner les points, les lignes, les polygones, les barres, les flèches, etc.
+
 1. **Les attributs encodés**. La position, la dimension, la couleur ou la forme que prendront les géométries. En ggplot2, on les nomme les *aesthetics*.
-1. **Les attributs globaux**. Les attributs sont globaux lorsqu'ils sont constant (ils ne dépendent pas d'une variable). Les valeurs par défaut conviennent généralement, mais certains attributs peuvent être spécifiés: par exemple la forme ou la couleur des points, le type de ligne.
+
+1. **Les attributs globaux**. Les attributs sont globaux lorsqu'ils sont constant (ils ne dépendent pas d'une variable). Les valeurs par défaut conviennent généralement, mais certains attributs peuvent être spécifiés : par exemple la forme ou la couleur des points, le type de ligne.
+
 1. **Les thèmes**. Le thème du graphique peut être spécifié dans son ensemble, c'est-à-dire en utilisant un thème prédéfini, mais l'on peut modifier certains détails.
 
-Le flux de travail pour créer un graphique à partir d'une grammaire ressemble donc à ceci:
+Le flux de travail pour créer un graphique à partir d'une grammaire ressemble donc à ceci :
 
 ```
 Avec mon tableau,
@@ -250,17 +258,19 @@ forme globale = 1)
 Avec un thème noir et blanc
 ```
 
-Le module tidyverse installera des modules utilisés de manière récurrente dans ce cours, comme ggplot2, dplyr, tidyr et readr. Je recommande de le charger au début de vos sessions de travail.
+Le module `tidyverse` installera des modules utilisés de manière récurrente dans ce cours, comme `ggplot2`, `dplyr`, `tidyr` et `readr`. Je recommande de le charger au début de vos sessions de travail.
 
 ```{r}
 library("tidyverse")
 ```
 
-L'approche tidyverse est une grammaire des données. Le module ggplot2, qui en fait partie, est une *grammaire graphique* (d'où le *gg* de *ggplot*).
+L'approche `tidyverse` est une grammaire des données. Le module `ggplot2`, qui en fait partie, est une *grammaire graphique* (d'où le *gg* de *ggplot*).
 
 ## Mon premier ggplot
 
-Pour notre premier exercice, je vais charger un tableau depuis le fichier de données [`abalone.data`](https://github.com/ajschumacher/gadsdc1/blob/master/dataset_research/clara_abalone.md) depuis un dépôt sur internet. Je n'irai pas dans les détails sur les tableaux de données, puisque c'est le sujet du chapitre \@ref(chapitre-tableaux). Le fichier de données porte sur un escargot de mer et comprend le sexe (M: mâle, F: femelle et I: enfant), des poids et dimensions des individus observés, et le nombre d'anneaux comptés dans la coquille.
+Pour notre premier exercice, je vais charger un tableau depuis le fichier de données [`abalone.data`](https://github.com/ajschumacher/gadsdc1/blob/master/dataset_research/clara_abalone.md) depuis un dépôt sur internet. Je n'irai pas dans les détails sur les tableaux de données, puisque c'est le sujet du chapitre \@ref(chapitre-tableaux). 
+
+Le fichier de données porte sur un escargot de mer et comprend le sexe (M: mâle, F: femelle et I: enfant), des poids et dimensions des individus observés, et le nombre d'anneaux comptés dans la coquille.
 
 ```{r}
 abalone <- read_csv("data/abalone.csv")
@@ -272,53 +282,54 @@ Inspectons l'entête du tableau avec la fonction `head()`.
 head(abalone)
 ```
 
-Suivant la grammaire graphique ggplot2, on pourra créer ce graphique de points comprenant les attributs suivants suivants.
+Suivant la grammaire graphique `ggplot2`, on pourra créer ce graphique de points comprenant les attributs suivants.
 
-0. `data = abalone`, le fichier de données.
-0. `mapping = aes(...)`, spécifié comme attribut de la fonction `ggplot()`, cet encodage (ou `aes`thetic) reste l'encodage par défaut pour tous les marqueurs du graphique. Toutefois, l'encodage `mapping = aes()` peut aussi être spécifié dans la fonction du marqueur (par exemple `geom_point()`). Dans l'encodage global du graphique, on place en x la longueur de la coquille (`x = LongestShell`) et on place en y le poids de la coquille (`y = ShellWeight`).
-0. Pour ajouter un marqueur, on utilise le `+`. Généralement, on change aussi de ligne.
-0. Le marqueur ajouté est un point, `geom_point()`, dans lequel on spécifie un encodage de couleur sur la variable Type (`colour = Type`) et un encodage de dimension du point sur la variable rings (`size = Rings`). L'attribut `alpha = 0.5` se situe hors du mapping et de la fonction `aes()`: c'est un attribut identique pour tous les points.
+1. `data = abalone`, le fichier de données.
+
+1. `mapping = aes(...)`, spécifié comme attribut de la fonction `ggplot()`, cet encodage (ou `aes`thetic) reste l'encodage par défaut pour tous les marqueurs du graphique. Toutefois, l'encodage `mapping = aes()` peut aussi être spécifié dans la fonction du marqueur (par exemple `geom_point()`). Dans l'encodage global du graphique, on place en $x$ la longueur de la coquille (`x = LongestShell`) et on place en $y$ le poids de la coquille (`y = ShellWeight`).
+
+1. Pour ajouter un marqueur, on utilise le `+`. Généralement, on change aussi de ligne.
+
+1. Le marqueur ajouté est un point, `geom_point()`, dans lequel on spécifie un encodage de couleur sur la variable Type (`colour = Type`) et un encodage de dimension du point sur la variable rings (`size = Rings`). L'attribut `alpha = 0.5` se situe hors du mapping et de la fonction `aes()`: c'est un attribut identique pour tous les points.
 
 ```{r}
 ggplot(data = abalone, mapping = aes(x = LongestShell, y = ShellWeight)) +
   geom_point(mapping = aes(colour = Type, size = Rings), alpha = 0.5)
 ```
 
-Il existe plusieurs types de marqueurs:
+Il existe plusieurs types de **marqueurs** :
 
-- `geom_point` pour les points
-- `geom_line` pour les lignes
-- `geom_bar` pour les diagrammes en barre en décompte, `geom_col` en terme de grandeur  et `geom_histogram` pour les histogrammes
-- `geom_boxplot` pour les boxplots
-- `geom_errorbar`, `geom_pointrange` ou `geom_crossbar` pour les marges d'erreur
-- `geom_map` pour les cartes
+- `geom_point()` pour les points,
+- `geom_line()` pour les lignes,
+- `geom_bar()` pour les diagrammes en barre en décompte, `geom_col()` en terme de grandeur  et `geom_histogram()` pour les histogrammes,
+- `geom_boxplot()` pour les boxplots,
+- `geom_errorbar()`, `geom_pointrange()` ou `geom_crossbar()` pour les marges d'erreur,
+- `geom_map()` pour les cartes,
 - etc.
 
-Il existe plusieurs attributs d'encodage:
+Il existe plusieurs attributs d'**encodage** :
 
-- la position `x`, `y` et `z` (`z` pertinent notamment pour le marqueur `geom_tile()`)
-- la taille `size`
-- la forme des points `shape`
+- la position `x`, `y` et `z` (`z` pertinent notamment pour le marqueur `geom_tile()`),
+- la taille `size`,
+- la forme des points `shape`,
 - la couleur, qui peut être discrète ou continue :
   - `colour`, pour la couleur des contours
   - `fill`, pour la couleur de remplissage
 - le type de ligne `linetype`
 - la transparence `alpha`
-- et d'autres types spécialisés que vous retrouverez dans la documentation des marqueurs
+- et d'autres types spécialisés que vous retrouverez dans la documentation des marqueurs.
 
-Les types de marqueurs et leurs encodages sont décrits dans la [documentation de ggplot2](https://ggplot2.tidyverse.org/), qui fournit des  feuilles aide-mémoire qu'il est commode d'imprimer et d'afficher près de soi.
+Les types de marqueurs et leurs encodages sont décrits dans la [documentation de ggplot2](https://ggplot2.tidyverse.org/), qui fournit des  feuilles [aide-mémoire de ggplot2](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) qu'il est commode d'imprimer et d'afficher près de soi (source: https://www.rstudio.com/resources/cheatsheets/)
 
-[![](https://www.rstudio.com/wp-content/uploads/2015/01/ggplot2-cheatsheet-2.1-600x464.png)](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
-Aide-mémoire de ggplot2, source: https://www.rstudio.com/resources/cheatsheets/
+### Les facettes
 
-#### Les facettes
-
-Dans ggplot2, les `facet`ttes sont un type spécial d'encodage utilisés pour définir des grilles de graphique. Elles prennent deux formes:
+Dans `ggplot2`, les `facet`ttes sont un type spécial d'encodage utilisés pour définir des grilles de graphique. Elles prennent deux formes :
 
 - Le collage, `facet_wrap()`. Une variable catégorielle est utilisée pour segmenter les graphiques en plusieurs graphiques, qui sont placés l'un à la suite de l'autre dans un arrangement spécifié par un nombre de colonne ou un nombre de ligne.
+
 - La grille, `facet_grid()`. Une ou deux variables segmentent les graphiques selon les colonnes et les lignes.
 
-Les facettes peuvent être spécifiées n'importe où dans la chaîne de commande de ggplot2, mais conventionnellement, on les place tout de suite après la fonction `ggplot()`.
+Les facettes peuvent être spécifiées n'importe où dans la chaîne de commande de `ggplot2`, mais conventionnellement, on les place tout de suite après la fonction `ggplot()`.
 
 ```{r}
 ggplot(data = abalone, mapping = aes(x = LongestShell, y = ShellWeight)) +
@@ -326,7 +337,7 @@ ggplot(data = abalone, mapping = aes(x = LongestShell, y = ShellWeight)) +
   geom_point(mapping = aes(colour = Type, size = Rings), alpha = 0.5)
 ```
 
-La fonction `cut()` permet de discrétiser des variables continues en catégories ordonnées - les fonctions peuvent être utilisées à l'intérieur de la fonction ggplot.
+La fonction `cut()` permet de discrétiser des variables continues en catégories ordonnées - les fonctions peuvent être utilisées à l'intérieur de la fonction `ggplot()`.
 
 ```{r}
 ggplot(data = abalone, mapping = aes(x = LongestShell, y = ShellWeight)) +
@@ -353,11 +364,14 @@ ggplot(data = abalone, mapping = aes(x = LongestShell, y = ShellWeight)) +
 
 ### Exporter avec style
 
-Le fond gris est une marque distinctive de ggplot2. Il n'est toutefois pas apprécié de tout le monde. D'autres thèmes dits *complets* peuvent être utilisés ([liste des thèmes complets](https://ggplot2.tidyverse.org/reference/ggtheme.html)). Les thèmes complets sont appelés avant la fonction `theme()`, qui permet d'effectuer des ajustements précis dont la liste exhaustive se trouve [dans la documentation de ggplot2](https://ggplot2.tidyverse.org/reference/theme.html).
+Le fond gris est une marque distinctive de `ggplot2`. Il n'est toutefois pas apprécié de tout le monde. D'autres thèmes dits *complets* peuvent être utilisés ([liste des thèmes complets](https://ggplot2.tidyverse.org/reference/ggtheme.html)). Les thèmes complets sont appelés avant la fonction `theme()`, qui permet d'effectuer des ajustements précis dont la liste exhaustive se trouve [dans la documentation de ggplot2](https://ggplot2.tidyverse.org/reference/theme.html).
 
-Vous pouvez aussi personnaliser le titre des axes (`xlab()` et `ylab()`), leur limites (`xlim()` et `ylim()`) ou spécifier un titre global (`ggtitle()`).
+Vous pouvez aussi 
+- personnaliser le titre des axes (`xlab()` et `ylab()`), 
+- personnaliser leur limites (`xlim()` et `ylim()`),
+- ou spécifier un titre global (`ggtitle()`).
 
-Pour exporter un ggplot, on pourra utiliser les commandes de R `png()`, `svg()` ou `pdf()`, ou les outils de RStudio. Toutefois, ggplot2 offre la fonction `ggsave()`, que l'on place en remorque du graphique, en spécifiant les dimensions (`width` et `height`) ainsi que la résolution (`dpi`). La résolution d'un graphique destiné à la publication est typiquement de plus de 300 dpi.
+Pour exporter un ggplot, on pourra utiliser les commandes de R `png()`, `svg()` ou `pdf()`, ou les outils de **RStudio**. Toutefois, **ggplot2** offre la fonction `ggsave()`, que l'on place en remorque du graphique, en spécifiant les dimensions (`width` et `height`) ainsi que la résolution (`dpi`). La résolution d'un graphique destiné à la publication est typiquement de plus de 300 dpi.
 
 ```{r}
 ggplot(data = abalone, mapping = aes(x = LongestShell, y = ShellWeight)) +
@@ -371,33 +385,33 @@ ggplot(data = abalone, mapping = aes(x = LongestShell, y = ShellWeight)) +
         axis.text = element_text(size=20),
         axis.text.y = element_text(size=20, angle=90, hjust=0.5),
         legend.box = "horizontal")
-ggsave("images/abalone.png", width = 8, height = 8, dpi = 300)
+ggsave("images/3_abalone.png", width = 8, height = 8, dpi = 300)
 ```
 
 Nous allons maintenant couvrir différents types de graphiques, accessibles selon différents marqueurs:
 
-- les nuages de points
-- les diagrammes en ligne
-- les boxplots
-- les histogrammes
-- les diagrammes en barres
+- les nuages de points,
+- les diagrammes en ligne,
+- les boxplots,
+- les histogrammes,
+- les diagrammes en barres.
 
 ### Nuages de points
 
 L'exemple précédent est un nuage de points, que nous avons généré avec le marqueur `geom_point()`, qui a déjà été passablement introduit. L'exploration de ces données a permis de détecter une croissance exponentielle du poids de la coquille en fonction de sa longueur. Il est clair que les abalones juvéniles (Type I) sont plus petits et moins lourds, mais nous devrons probablement procéder à des tests statistiques pour vérifier s'il y a des différences entre mâles et femelles.
 
-Le graphique étant très chargé, nous avons utilisé des stratégies pour l'alléger en utilisant de la transparence et des facettes. Le marqueur `geom_jitter()` peut permettre de mieux apprécier la dispersion des points en ajoutant une dispersion randomisée en x ou en y.
+Le graphique étant très chargé, nous avons utilisé des stratégies pour l'alléger en utilisant de la transparence et des facettes. Le marqueur `geom_jitter()` peut permettre de mieux apprécier la dispersion des points en ajoutant une dispersion randomisée en $x$ ou en $y$.
 
 ```{r}
 ggplot(data = abalone, mapping = aes(x = LongestShell, y = ShellWeight)) +
-  geom_jitter(mapping = aes(colour = Type, size = Rings), alpha = 0.5, width = 0.05, height=0.1)
+  geom_jitter(mapping = aes(colour = Type, size = Rings), alpha = 0.5, width = 0.05, height = 0.1)
 ```
 
 Dans ce cas-ci, ça ne change pas beaucoup, mais retenons-le pour la suite.
 
 ### Diagrammes en lignes
 
-Les lignes sont utilisées pour exprimer des liens entre une suite d'information. Dans la plupart des cas, il s'agit d'une suite d'information dans le temps que l'on appelle les séries temporelles. En l’occurrence, les lignes devraient être évitées si la séquence entre les variables n'est pas évidente. Nous allons utiliser un tableau de données de R portant sur la croissance des orangers.
+Les lignes sont utilisées pour exprimer des liens entre une suite d'information. Dans la plupart des cas, il s'agit d'une suite d'information dans le temps que l'on appelle les séries temporelles. En l’occurrence, les lignes devraient être évitées si la séquence entre les variables n'est pas évidente. Nous allons utiliser un tableau de données de **R** portant sur la croissance des orangers.
 
 ```{r}
 data(Orange)
@@ -421,9 +435,9 @@ En effet, la colonne `Tree` est un facteur ordinal dont les niveaux sont dans le
 
 ### Les histogrammes
 
-Nous avons vu les histogrammes dans la brève section sur les fonctions graphiques de base dans R: il s'agit de segmenter l'axe des x en incréments, puis de présenter sur l'axe de y le nombre de données que l'on retrouve dans cet incrément. Le marqueur à utiliser est `geom_histogram()`.
+Nous avons vu les histogrammes dans la brève section sur les fonctions graphiques de base dans **R** : il s'agit de segmenter l'axe des $x$ en incréments, puis de présenter sur l'axe des $y$ le nombre de données que l'on retrouve dans cet incrément. Le marqueur à utiliser est `geom_histogram()`.
 
-Revenons à nos escargots. Comment présenteriez-vous la longueur de la coquille selon la variable `Type`? Selon des couleurs ou des facettes? La couleur, dans le cas des histogrammes, est celle du pourtour des barres. Pour colorer l'intérieur des barres, l'argument à utiliser est `fill`.
+Revenons à nos escargots. Comment présenteriez-vous la longueur de la coquille selon la variable `Type` ? Selon des couleurs ou des facettes ? La couleur, dans le cas des histogrammes, est celle du pourtour des barres. Pour colorer l'intérieur des barres, l'argument à utiliser est `fill`.
 
 ```{r}
 ggplot(data = abalone, mapping = aes(x = LongestShell)) +
@@ -446,14 +460,18 @@ ggplot(data = abalone, mapping = aes(x = LongestShell)) +
   geom_histogram(bins=60, colour = 'white')
 ```
 
-Le nombre d'incréments est un paramètre qu'il ne faut pas sous-estimer. À preuve, ce tweet de [@NicholasStrayer](https://twitter.com/NicholasStrayer):
+Le nombre d'incréments est un paramètre qu'il ne faut pas sous-estimer. À preuve, ce tweet de [@NicholasStrayer](https://twitter.com/NicholasStrayer) :
 
-<blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr">Histograms are fantastic, but make sure your bin-width/number is chosen well. This is the _exact_ same data, plotted with different bin-widths. Notice that the pattern doesn&#39;t necessarily get clearer as bin num increases. <a href="https://twitter.com/hashtag/dataviz?src=hash&amp;ref_src=twsrc%5Etfw">#dataviz</a> <a href="https://t.co/3MhSFwTVPH">pic.twitter.com/3MhSFwTVPH</a></p>&mdash; Nick Strayer (@NicholasStrayer) <a href="https://twitter.com/NicholasStrayer/status/1026893778404225024?ref_src=twsrc%5Etfw">7 août 2018</a></blockquote>
+<blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr">Histograms are fantastic, but make sure your bin-width/number is chosen well. This is the _exact_ same data, plotted with different bin-widths. Notice that the pattern doesn't necessarily get clearer as bin num increases. <a href="https://twitter.com/hashtag/dataviz?src=hash&amp;ref_src=twsrc%5Etfw">#dataviz</a> <a href="https://t.co/3MhSFwTVPH">pic.twitter.com/3MhSFwTVPH</a></p>&mdash; Nick Strayer (@NicholasStrayer) <a href="https://twitter.com/NicholasStrayer/status/1026893778404225024?ref_src=twsrc%5Etfw">7 août 2018</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ### Boxplots
 
-Les boxplots sont une autre manière de visualiser des distributions. L'astuce est de créer une boîte qui s'étant du premier quartile (valeur où l'on retrouve 25% de données dont la valeur est inférieure) au troisième quartile  (valeur où l'on retrouve 75% de données dont la valeur est inférieure). Une barre à l'intérieur de cette boîte est placée à la médiane (qui est en fait le second quartile). De part et d'autre de la boîte, on retrouve des lignes spécifiant l'étendue hors quartile. Cette étendue peut être déterminée de plusieurs manières, mais dans le cas de ggplot2, il s'agit de 1.5 fois l'étendue de la boîte (l'*écart interquartile*). Au-delà de ces lignes, on retrouve les points représentant les valeurs extrêmes. Le marqueur à utiliser est `geom_boxplot()`. L'encodage x est la variable catégorielle et l'encodage y est la variable continue.
+Les boxplots sont une autre manière de visualiser des distributions. 
+
+L'astuce est de créer une boîte qui s'étant du premier quartile (valeur où l'on retrouve 25% de données dont la valeur est inférieure) au troisième quartile  (valeur où l'on retrouve 75% de données dont la valeur est inférieure). 
+
+Une barre à l'intérieur de cette boîte est placée à la médiane (qui est en fait le second quartile). De part et d'autre de la boîte, on retrouve des lignes spécifiant l'étendue hors quartile. Cette étendue peut être déterminée de plusieurs manières, mais dans le cas de **ggplot2**, il s'agit de 1.5 fois l'étendue de la boîte (l'*écart interquartile*). Au-delà de ces lignes, on retrouve les points représentant les valeurs extrêmes. Le marqueur à utiliser est `geom_boxplot()`. L'encodage $x$ est la variable catégorielle et l'encodage $y$ est la variable continue.
 
 ```{r}
 ggplot(data = abalone, mapping = aes(x = Type, y = LongestShell)) +
@@ -464,14 +482,13 @@ ggplot(data = abalone, mapping = aes(x = Type, y = LongestShell)) +
 
 ### Les diagrammes en barre
 
-Les diagrammes en barre représente une variable continue associée à une catégorie. Les barres sont généralement horizontales et ordonnées. Nous y reviendrons à la fin de ce chapitre, mais retenez pour l'instant que dans tous les cas, les diagrammes en barre doivent inclure le zéro pour éviter les mauvaises interprétations.
+Les diagrammes en barre représentent une variable continue associée à une catégorie. Les barres sont généralement horizontales et ordonnées. Nous y reviendrons à la fin de ce chapitre, mais retenez pour l'instant que dans tous les cas, les diagrammes en barre doivent inclure le zéro pour éviter les mauvaises interprétations.
 
 Pour les diagrammes en barre, nous allons utiliser les données de l'union internationale pour la conservation de la nature [distribuées par l'OCDE](https://stats.oecd.org/Index.aspx?DataSetCode=WILD_LIFE).
 
 ```{r}
 # Certaines  colonnes de caractère sont considérées comme booléennes
-# mieux vaut définir leur type pour s'assurer que le bon type
-# soit attribué
+# mieux vaut définir leur type pour s'assurer que le bon type soit attribué
 especes_menacees <- read_csv('data/WILD_LIFE_09012019174644084.csv',
                              col_types = list("c", "c", "c", "c",
                                               "c", "c", "c", "c",
@@ -480,9 +497,9 @@ especes_menacees <- read_csv('data/WILD_LIFE_09012019174644084.csv',
 head(especes_menacees)
 ```
 
-L'exercice consiste à créer un diagramme en barres horizontales du nombre d'espèces menacées de manière critique pour les 10 pays qui en contiennent le plus. Je vais effectuer quelques opérations sur ce tableau afin d'en arriver avec un tableau que nous pourrons convenablement mettre en graphique: n'y portez pas trop attention pour l'instant: ces opérations sont un avant-goût du prochain chapitre.
+L'exercice consiste à créer un diagramme en barres horizontales du nombre d'espèces menacées de manière critique pour les 10 pays qui en contiennent le plus. Je vais effectuer quelques opérations sur ce tableau afin d'en arriver avec un tableau que nous pourrons convenablement mettre en graphique.N'y portez pas trop attention pour l'instant: ces opérations sont un avant-goût du prochain chapitre.
 
-Nous allons filtrer le tableau pour obtenir les espèces critiquement menacées, sélectionner seulement le pays et le nombre d'espèces, les grouper par pays, additionner toutes les espèces pour chaque pays, les placer en ordre descendant et enfin sélectionner les 10 premiers. Comme vous le voyez, la création de graphique est liée de près avec la manipulation des tableaux!
+Nous allons filtrer le tableau pour obtenir les espèces critiquement menacées, sélectionner seulement le pays et le nombre d'espèces, les grouper par pays, additionner toutes les espèces pour chaque pays, les placer en ordre descendant et enfin sélectionner les 10 premiers. Comme vous le voyez, la création de graphique est liée de près avec la manipulation des tableaux !
 
 ```{r}
 especes_crit <- especes_menacees %>%
@@ -502,7 +519,7 @@ ggplot(data = especes_crit, mapping = aes(x = Country, y = n_critical_species)) 
   geom_col()
 ```
 
-Ce graphique est perfectible. Les barres sont verticales et non ordonnées. Souvenons-nous que ggplot2 ordonne par ordre alphabétique si aucun autre ordre est spécifié. Nous pouvons changer l'ordre en changeant l'ordre des niveaux de la variable `Country` selon le nombre d'espèces grâce à la fonction `fct_reorder`.
+Ce graphique est perfectible. Les barres sont verticales et non ordonnées. Souvenons-nous que `ggplot2` ordonne par ordre alphabétique si aucun autre ordre n'est spécifié. Nous pouvons changer l'ordre en changeant l'ordre des niveaux de la variable `Country` selon le nombre d'espèces grâce à la fonction `fct_reorder`.
 
 ```{r}
 especes_crit <- especes_crit %>% 
@@ -517,7 +534,7 @@ ggplot(data = especes_crit, mapping = aes(x = Country, y = n_critical_species)) 
   coord_flip()
 ```
 
-Une autre méthode, `geom_bar()`, est un raccourcis permettant de compter le nombre d’occurrence d'une variable unique. Par exemple, dans le tableau abalone, le nombre de fois que chaque niveau de la variable Type
+Une autre méthode, `geom_bar()`, est un raccourcis permettant de compter le nombre d’occurrence d'une variable unique. Par exemple, dans le tableau abalone, le nombre de fois que chaque niveau de la variable **Type** apparait :
 
 ```{r}
 ggplot(data = abalone, mapping = aes(x = Type)) +
@@ -525,12 +542,12 @@ ggplot(data = abalone, mapping = aes(x = Type)) +
   coord_flip()
 ```
 
-Personnellement, je préfère passer par un diagramme en lignes avec le marqueur `geom_segment()`. Cela me donne la flexibilité pour définir un largeur de trait et éventuellement d'ajouter un point au bout pour en faire un [diagramme en suçon](https://www.r-graph-gallery.com/lollipop-plot/).
+Personnellement, je préfère passer par un diagramme en lignes avec le marqueur `geom_segment()`. Cela me donne la flexibilité pour définir une largeur de trait et éventuellement d'ajouter un point au bout pour en faire un [diagramme en suçon](https://www.r-graph-gallery.com/lollipop-plot/).
 
 ```{r}
 ggplot(data = especes_crit, mapping = aes(x = Country, y = n_critical_species)) +
-  geom_segment(mapping = aes(xend=Country, yend = 0), lwd = 2) +
-  geom_point(size=6, colour = "black") +
+  geom_segment(mapping = aes(xend = Country, yend = 0), lwd = 2) +
+  geom_point(size = 6, colour = "black") +
   coord_flip() +
   theme_bw()
 ```
@@ -554,7 +571,7 @@ Pour placer les barres les unes à côté des autres, nous spécifions `position
 
 ```{r}
 ggplot(data = especes_pays_iucn, mapping = aes(x = Country, y = n_species)) +
-  geom_col(aes(fill=IUCN), position = "dodge") +
+  geom_col(aes(fill = IUCN), position = "dodge") +
   coord_flip()
 ```
 
@@ -569,16 +586,15 @@ ggplot(data = especes_pays_iucn, mapping = aes(x = Country, y = n_species)) +
 
 ### Exporter un graphique
 
-Plus besoin d'utiliser la fonction `png()` en mode ggplot2. Utilisons plutôt `ggsave()`.
+Plus besoin d'utiliser la fonction `png()` en mode **ggplot2**. Utilisons plutôt `ggsave()`.
 
 ```{r}
 ggplot(data = especes_pays_iucn, mapping = aes(x = Country, y = n_species)) +
   facet_grid(IUCN ~ .) +
-  geom_col(aes(fill=IUCN)) +
+  geom_col(aes(fill = IUCN)) +
   coord_flip()
-ggsave("images/especes_pays_iucn.png", width = 6, height = 8, dpi = 300)
+ggsave("images/3_especes_pays_iucn.png", width = 6, height = 8, dpi = 300)
 ```
-
 
 ## Les graphiques comme outil d'exploration des données
 
@@ -589,7 +605,7 @@ datasaurus <- read_tsv('data/DatasaurusDozen.tsv')
 head(datasaurus)
 ```
 
-Projetons d'abord les coordonnées x et y sur un graphique. J'utilise FacetGrid ici, sachant que ce sera utile pour l'exploration.
+Projetons d'abord les coordonnées $x$ et $y$ sur un graphique. J'utilise `FacetGrid` ici, sachant que ce sera utile pour l'exploration.
 
 ```{r}
 ggplot(data = datasaurus, mapping = aes(x = x, y = y)) +
@@ -603,41 +619,41 @@ ggplot(data = datasaurus, mapping = aes(x = x, y = y)) +
   geom_point(mapping = aes(colour = dataset))
 ```
 
-Ce n'est pas vraiment plus clair. Il y a toutefois des formes qui se dégage, comme des ellipse et des lignes. Et si je regarde bien, j'y vois une étoile. La catégorisation pourrait-elle être mieux utilisée si on segmentait par facettes au lieu de des couleurs?
+Ce n'est pas vraiment plus clair. Il y a toutefois des formes qui se dégage, comme des ellipse et des lignes. Et si je regarde bien, j'y vois une étoile. La catégorisation pourrait-elle être mieux utilisée si on segmentait par facettes au lieu de des couleurs ?
 
 ```{r}
 ggplot(data = datasaurus, mapping = aes(x = x, y = y)) +
-  facet_wrap(~dataset, nrow=2) +
+  facet_wrap(~dataset, nrow = 2) +
   geom_point(size = 0.5) +
   coord_equal()
 ```
 
 Voilà! Fait intéressant, ni les statistiques, ni les algorithmes de regroupement ne nous auraient été utiles pour différencier les groupes!
 
-### Des graphiques interactifs!
+### Des graphiques interactifs !
 
-Les graphiques sont traditionnellement des images statiques. Toutefois, les graphiques n'étant pas dépendants de supports papiers peuvent être utilisés de manière différente, en ajoutant une couche d’interaction. Conçue à Montréal, plotly est un module graphique interactif en soi. Il peut être utilisé grâce à son outil web, tout comme il peut être interfacé avec R, Python, javascript, etc. Mais ce qui retient notre attention ici est son interface avec ggplot2.
+Les graphiques sont traditionnellement des images statiques. Toutefois, les graphiques n'étant pas dépendants de supports papiers peuvent être utilisés de manière différente, en ajoutant une couche d’interaction. Conçue à Montréal, `plotly` est un module graphique interactif en soi. Il peut être utilisé grâce à son outil web, tout comme il peut être interfacé avec **R**, **Python**, **javascript**, etc. Mais ce qui retient notre attention ici est son interface avec **ggplot2**.
 
-Les graphiques ggplot2 peuvent être enregistrés en tant qu'objets. Il peuvent conséquemment être manipulés par des fonctions. La fonction ggplotly permet de rendre votre ggplot interactif.
+Les graphiques **ggplot2** peuvent être enregistrés en tant qu'objets. Il peuvent conséquemment être manipulés par des fonctions. La fonction `ggplotly()` permet de rendre votre **ggplot** interactif.
 
 ```{r}
 library("plotly")
 especes_crit_bar <- ggplot(data = especes_crit, mapping = aes(x = Country, y = n_critical_species)) +
-  geom_segment(mapping = aes(xend=Country, yend = 0), lwd = 2) +
-  geom_point(size=6) +
+  geom_segment(mapping = aes(xend = Country, yend = 0), lwd = 2) +
+  geom_point(size = 6) +
   coord_flip()
-# ggplotly(especes_crit_bar) # erreur en Rmd
+ggplotly(especes_crit_bar) # erreur en Rmd
 ```
 
 ### Des extensions de ggplot2
 
-ggplot2 est un module graphique élégant et polyvalent. Il a pourtant bien des limitations. Justement, le module est conçu pour être implémenté avec des extensions. Vous en trouverez plusieurs sur [ggplot2-exts.org](http://www.ggplot2-exts.org/gallery/), mais en trouverez de nombreuses autres en cherchant avec le terme ggplot2 sur [github.com](https://github.com/search?q=ggplot2), probablement la plate-forme (voire un réseau social) de développement de logiciels la plus utilisée dans le monde. En voici quelques unes.
+**ggplot2** est un module graphique élégant et polyvalent. Il a pourtant bien des limitations. Justement, le module est conçu pour être implémenté avec des extensions. Vous en trouverez plusieurs sur [ggplot2-exts.org](http://www.ggplot2-exts.org/gallery/), mais vous en trouverez de nombreuses autres en cherchant avec le terme **ggplot2** sur [github.com](https://github.com/search?q=ggplot2), probablement la plate-forme (voire un réseau social) de développement de logiciels la plus utilisée dans le monde. En voici quelques unes.
 
-- [ggthemr](https://github.com/cttobin/ggthemr): spécifier un thème graphique une seule fois dans votre session, et tout le reste suit.
+- [ggthemr](https://github.com/cttobin/ggthemr) pour spécifier un thème graphique une seule fois dans votre session, et tout le reste suit.
 - [cowplot](https://github.com/wilkelab/cowplot) permet de créer des graphiques prêts pour la publication, par exemple en créant des grilles de plusieurs ggplots, en les numérotant, etc.
 - Si les thèmes de base ne vous conviennent pas, vous en trouverez d'autres en installant [ggthemes](https://github.com/jrnold/ggthemes).
 - [ggmap](https://github.com/dkahle/ggmap) et [ggspatial](https://github.com/paleolimbot/ggspatial) sont deux extensions pour créer des cartes. Un chapitre sur les données spatiales est en développement.
-- [ggtern](http://www.ggtern.com/) permet de créer des diagrammes ternaires, qui sont utiles pour la visualisation de proportions incluant trois composantes. Ce sujet est couvert au chapitre 6, en développement.
+- [ggtern](http://www.ggtern.com/) permet de créer des diagrammes ternaires, qui sont utiles pour la visualisation de proportions incluant trois composantes. Ce sujet est couvert au chapitre ..., en développement.
 
 ### Aller plus loin avec ggplot2
 
@@ -648,15 +664,19 @@ ggplot2 est un module graphique élégant et polyvalent. Il a pourtant bien des 
 ## Choisir les bonnes couleurs
 
 *La couleur est une information*. Les couleurs devraient être sélectionnées d'abord pour être lisibles par les personnes ne percevant pas les couleurs, selon le support (apte à être photocopié, lisible à l'écran, lisible sur des documents imprimés en noir et blanc) et selon le type de données.
-- Données continues ou catégorielles ordinales: gradient (transition graduelle d'une couleur à l'autre), séquence (transition saccadée selon des groupes de données continues) ou divergentes (transition saccadée d'une couleur à l'autre vers des couleurs divergentes, par exemple orange vers blanc vers bleu).
-- Données catégorielles nominales: couleurs éloignées d'une catégorie à une autre (plus il y a de catégories, plus les couleurs sont susceptibles de se ressembler).
 
-<img src="images/03_colorbrewer2.png" width="200">
-Capture d'écran de [colorbrewer2.org](http://colorbrewer2.org), qui propose des palettes de couleurs pour créer des cartes, mais l'information est pertinente pour tout type de graphique.
+- Données continues ou catégorielles ordinales : gradient (transition graduelle d'une couleur à l'autre), séquence (transition saccadée selon des groupes de données continues) ou divergentes (transition saccadée d'une couleur à l'autre vers des couleurs divergentes, par exemple orange vers blanc vers bleu).
+
+- Données catégorielles nominales : couleurs éloignées d'une catégorie à une autre (plus il y a de catégories, plus les couleurs sont susceptibles de se ressembler).
+
+<center>
+<img src="images/3_colorbrewer2.png" width="200">
+
+Capture d'écran de [colorbrewer2.org](http://colorbrewer2.org), qui propose des palettes de couleurs pour créer des cartes, mais l'information est pertinente pour tout type de graphique.</center>
 
 ## Règles particulières
 
-> Les mauvais graphiques peuvent survenir à cause de l'ignorance, bien sûr, mais souvent ils existent pour la même raison que la boeuferie [*bullhist*] verbale ou écrite. Parfois, les gens ne se soucient pas de la façon dont ils présentent les données aussi longtemps que ça appuie leurs arguments et, parfois, ils ne se soucient pas que ça porte à confusion tant qu'ils ont l'air impressionnant. $-$ Carl Bergstorm et Jevin West, [Calling Bullshit Read-Along Week 6: Data Visualization](https://graphpaperdiaries.com/2017/04/09/calling-bs-read-along-week-6-data-visualization/)
+> Les mauvais graphiques peuvent survenir à cause de l'ignorance, bien sûr, mais souvent ils existent pour la même raison que la boeuferie [*bullshit*] verbale ou écrite. Parfois, les gens ne se soucient pas de la façon dont ils présentent les données aussi longtemps que ça appuie leurs arguments et, parfois, ils ne se soucient pas que ça porte à confusion tant qu'ils ont l'air impressionnant. $-$ **Carl Bergstorm** et **Jevin West**, [Calling Bullshit Read-Along Week 6: Data Visualization](https://graphpaperdiaries.com/2017/04/09/calling-bs-read-along-week-6-data-visualization/)
 
 Une représentation visuelle est un outil tranchant qui peut autant présenter un état véritable des données qu'une perspective trompeuse. Bien souvent, une ou plusieurs des 5 qualités ne sont pas respectées. Les occasions d'erreur ne manquent pas - j'en ferai mention dans la section *Choisir le bon type de graphique*. Pour l'instant, notons quelques règles particulières.
 
@@ -666,33 +686,43 @@ Tronquer l'axe vertical peut amener à porter de fausses conclusions.
 
 <center>
 <img src="https://i2.wp.com/flowingdata.com/wp-content/uploads/2015/08/bar-plots1.png?w=1800">
-Effets sur la perception d'utiliser différentes références. Source: Yau (2015), [Real Chart Rules to Follow](https://flowingdata.com/2015/08/11/real-chart-rules-to-follow/).
+
+Effets sur la perception d'utiliser différentes références. Source: **Yau (2015)**, [Real Chart Rules to Follow](https://flowingdata.com/2015/08/11/real-chart-rules-to-follow/).
 </center>
 
-La règle semble simple: les diagrammes en barre (utilisés pour représenter une grandeur) devraient toujours présenter le 0 et les diagrammes en ligne (utilisés pour présenter des tendances) ne requiert pas nécessairement le zéro ((Bergstrom et West, Calling bullshit: Misleading axes on graphs)[http://callingbullshit.org/tools/tools_misleading_axes.html]). Mais le zéro n'est pas toujours lié à une quantité particulière, par exemple, la température ou un log-ratio. De plus, avec un diagramme en ligne on pourra toujours magnifier des tendances en zoomant sur une variation somme toute mineure. On arrive donc moins à une règle qu'une qualité d'un bon graphique, en particulier la qualité no 1 de Cairo: offrir une représentation honnête des données. Par exemple, Nathan Yau, auteur du blogue Flowing Data, [propose](https://flowingdata.com/2015/08/31/bar-chart-baselines-start-at-zero/) de présenter des résultats de manière relative à la mesure initiale. C'est d'ailleurs ce qui a été fait pour générer le graphique de Michael Mann et al., ci-dessus, où le zéro correspond à la moyenne des températures enregistrées entre 1961 et 1990.
+**La règle semble simple :** les diagrammes en barre (_utilisés pour représenter une grandeur_) devraient toujours présenter le 0 et les diagrammes en ligne (_utilisés pour présenter des tendances_) ne requiert pas nécessairement le zéro ([Bergstrom et West, Calling bullshit: Misleading axes on graphs](http://callingbullshit.org/tools/tools_misleading_axes.html)). 
+
+Mais le zéro n'est pas toujours lié à une quantité particulière, par exemple, la température ou un log-ratio. De plus, avec un diagramme en ligne on pourra toujours magnifier des tendances en zoomant sur une variation somme toute mineure. On arrive donc moins à une règle qu'une qualité d'un bon graphique, en particulier la qualité n° 1 de **Cairo** : offrir une représentation honnête des données. Par exemple, **Nathan Yau**, auteur du blogue Flowing Data, [propose](https://flowingdata.com/2015/08/31/bar-chart-baselines-start-at-zero/) de présenter des résultats de manière relative à la mesure initiale. C'est d'ailleurs ce qui a été fait pour générer le graphique de **Michael Mann et al.**, ci-dessus, où le zéro correspond à la moyenne des températures enregistrées entre 1961 et 1990.
 
 Il peut être tentant de tronquer l'axe des $y$ lorsque l'on désire superposer deux axes verticaux. Souvent, l'utilisation de plusieurs axes verticaux amène une perception de causalité dans des situations de [fausses corrélations](http://www.tylervigen.com/spurious-correlations). On ne devrait pas utiliser plusieurs axes verticaux.
 
 ### Utilisez un encrage proportionnel
 
-Cette règle a été proposée par Edward Tufte dans [Visual Display of Quantitative Information](https://ariane25.bibl.ulaval.ca/ariane/wicket/detail?c=ariane&m=S&rq.ct=PE&rq.fa=false&rq.r.esc=false&rq.r.l[0].c=TI&rq.r.l[0].ex=false&rq.r.l[0].op=AND&rq.r.l[0].v=Visual+Display+of+Quantitative+Information&rq.r.la=*&rq.r.loc=*&rq.r.pft=false&rq.r.ta=*&rq.r.td=*&rq.rows=2&rq.st=1). Une des raisons pour lesquelles on évite de tronquer l'axe des $y$ en particulier pour les diagrammes en barre est que l'aire représentant une mesure (la quantité d'"encre" nécessaire pour la dessiner) devrait être proportionnelle à sa magnitude. Les diagrammes en barre sont particulièrement sensibles à cette règle, étant donnée que la largeur des barres peuvent amplifier l'aire occupée. Deux solutions dans ce cas: (1) utiliser des barres minces ou (2) préférer des "diagrammes de points" (*dot charts*, à ne pas confondre aux nuages de points).
+Cette règle a été proposée par **Edward Tufte** dans [Visual Display of Quantitative Information](https://ariane25.bibl.ulaval.ca/ariane/wicket/detail?c=ariane&m=S&rq.ct=PE&rq.fa=false&rq.r.esc=false&rq.r.l[0].c=TI&rq.r.l[0].ex=false&rq.r.l[0].op=AND&rq.r.l[0].v=Visual+Display+of+Quantitative+Information&rq.r.la=*&rq.r.loc=*&rq.r.pft=false&rq.r.ta=*&rq.r.td=*&rq.rows=2&rq.st=1). Une des raisons pour lesquelles on évite de tronquer l'axe des $y$ en particulier pour les diagrammes en barre est que l'aire représentant une mesure (la quantité d'"encre" nécessaire pour la dessiner) devrait être proportionnelle à sa magnitude. Les diagrammes en barre sont particulièrement sensibles à cette règle, étant donnée que la largeur des barres peuvent amplifier l'aire occupée. Deux solutions dans ce cas : 
 
-L'encrage a beau être proportionnel, la difficulté que les humains éprouvent à comparer la dimension des cercles, et *a fortiori* la dimension de parties de cercle, donne peu d'avantage à utiliser des diagrammes en pointe de tarte, souvent utilisés pour illustrer des proportions. Nathan Yau [suggère](https://flowingdata.com/2015/08/11/real-chart-rules-to-follow/) de les utiliser avec suspicions et d'explorer d'[autres options](https://flowingdata.com/2009/11/25/9-ways-to-visualize-proportions-a-guide/).
+1. utiliser des barres minces, ou
+1. préférer des "[diagrammes de points](https://fr.khanacademy.org/math/be-4eme-primaire2/x47d1c3c7068e67d2:traitement-de-donnees/x47d1c3c7068e67d2:introduction-aux-histogrammes-et-tableaux-a-double-entree-et-graphes/a/line-plots-review)" (*dot charts*, à ne pas confondre aux nuages de points).
+
+L'encrage a beau être proportionnel, la difficulté que les humains éprouvent à comparer la dimension des cercles, et *a fortiori* (à plus forte raison) la dimension de parties de cercle, donne peu d'avantage à utiliser des diagrammes en pointe de tarte, souvent utilisés pour illustrer des proportions. Nathan Yau [suggère](https://flowingdata.com/2015/08/11/real-chart-rules-to-follow/) de les utiliser avec suspicions et d'explorer d'[autres options](https://flowingdata.com/2009/11/25/9-ways-to-visualize-proportions-a-guide/).
 
 ![](https://i0.wp.com/flowingdata.com/wp-content/uploads/2015/08/pies.png?w=1800&ssl=1)
 
-Pour comparer deux proportions, une avenue intéressante est le diagramme en pente, suggéré notamment par [Ann K. Emery](http://annkemery.com/avoiding-diagonal-text/#).
+Pour comparer deux proportions, une avenue intéressante est le **diagramme en pente**, suggéré notamment par [Ann K. Emery](http://annkemery.com/avoiding-diagonal-text/#).
 
-![](images/03_ann-emery-slope-chart.png)
+![](images/3_ann-emery-slope-chart.png)
 
-Par extension, le diagramme en pente devient un diagramme en ligne lorsque plusieurs types de proportions sont comparées, ou lorsque des proportions évoluent selon des données continuent.
+Par extension, le **diagramme en pente** devient un diagramme en ligne lorsque plusieurs types de proportions sont comparées, ou lorsque des proportions évoluent selon des données continuent.
 
-De la même manière, les [diagrammes en bulles](https://datavizcatalogue.com/methods/bubble_chart.html) ne devraient pas être représentatifs de la quantité, mais plutôt de contextualiser des données. Justement, le graphique tiré des données de *Gap minder* présenté plus haut est une contextualisation: l'aire d'un cercle ne permet pas de saisir la population d'un pays, mais de comparer grossièrement la population d'un pays par rapport aux autres.
+De la même manière, les [diagrammes en bulles](https://datavizcatalogue.com/methods/bubble_chart.html) ne devraient pas être représentatifs de la quantité, mais plutôt de contextualiser des données. Justement, le graphique tiré des données de *Gap minder* présenté plus haut est une contextualisation : l'aire d'un cercle ne permet pas de saisir la population d'un pays, mais de comparer grossièrement la population d'un pays par rapport aux autres.
 
 ### Publiez vos données
 
-Vous avez peut-être déjà feuilleté un article et voulu avoir accès aux données incluses dans un graphique. Il existe des outils pour digitaliser des graphiques pour en extraire les données. Mais le processus est fastidieux, long, souvent peu précis. De plus en plus, les chercheurs sont encouragés à publier leurs données et leurs calculs. Matplotlib et Seaborn sont des outils graphiques classiques qui devraient être accompagnés des données et calculs ayant servi à les générer. Mais ce n'est pas idéal non plus. En revanche, les outils graphiques modernes comme Plotly et Altair peuvent être exportés en code javascipt, qui contient toutes les informations sur les données et la manière de les représenter graphiquement. Ce chapitre a pour objectif de vous familiariser avec les outils de base les plus communément utilisés en calcul scientifique avec Python, mais je vous encourage à explorer la nouvelle génération d'outils graphiques.
+Vous avez peut-être déjà feuilleté un article et voulu avoir accès aux données incluses dans un graphique. Il existe des outils pour digitaliser des graphiques pour en extraire les données.
 
-### Visitez www.junkcharts.typepad.com de temps à autre 
+Mais le processus est fastidieux, long, souvent peu précis. De plus en plus, les chercheurs sont encouragés à publier leurs données et leurs calculs. `Matplotlib` et `Seaborn` sont des outils graphiques classiques qui devraient être accompagnés des données et calculs ayant servi à les générer. Mais ce n'est pas idéal non plus. 
 
-Le statisticien et blogueur Kaiser Fung s'affaire quotidiennement à proposer des améliorations à de mauvais graphiques sur son blogue [Junk Charts](www.junkcharts.typepad.com).
+En revanche, les outils graphiques modernes comme `Plotly` et `Altair` peuvent être exportés en code `javascipt`, qui contient toutes les informations sur les données et la manière de les représenter graphiquement. Ce chapitre a pour objectif de vous familiariser avec les outils de base les plus communément utilisés en calcul scientifique avec **R**, mais je vous encourage à explorer la nouvelle génération d'outils graphiques.
+
+### Visitez `www.junkcharts.typepad.com/` de temps à autre 
+
+Le statisticien et blogueur **Kaiser Fung** s'affaire quotidiennement à proposer des améliorations à de mauvais graphiques sur son blogue [Junk Charts](www.junkcharts.typepad.com).

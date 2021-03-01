@@ -86,7 +86,11 @@ Pour les titres, les caractères gras, l'insertion d'image, les hyperliens, les 
 
 Pour une meilleure compréhension de la notion d'interpréteur ou interface de commande, si votre environnement de travail était un avion, **R** serait le moteur et **RStudio** serait le cockpit !
 
+<center>
+
 ![](https://media.giphy.com/media/GmaV9oet9MAmI/giphy.gif)
+
+</center>
 
 ## Premiers pas avec R
 
@@ -102,9 +106,12 @@ Pour l'instant, ouvrez seulement un interpréteur de commande, et lancez **R**. 
 2 + 2
 ```
 
+<center>
+
 Et voilà.
 
 <img width="200" src="images/1_braveheart224.png">
+</center>
 
 Les opérations mathématiques sont effectuées telles que l'on devrait s'attendre.
 
@@ -183,8 +190,8 @@ Comme pour la plupart des langages de programmation, **R** respecte les conventi
 
 Jusqu'à maintenant, nous n'avons utilisé que :
 
-- des **nombres entiers** (*integer* ou **`int`**) 
-- et des **nombres réels** (*numeric* ou **`float64`**). 
+- des **nombres entiers** (*integer* ou **`int`**), et
+- des **nombres réels** (*numeric* ou **`float64`**). 
 
 **R** inclut d'autres types. La **chaîne de caractère** (*string* ou *character*) contient un ou plusieurs symboles. Elle est définie entre des doubles guillemets `" "` ou des apostrophes **`' '`**. Il n'existe pas de standard sur l'utilisation de l'un ou de l'autre, mais en règle générale, on utilise les apostrophes pour les expressions courtes, contenant un simple mot ou séquence de lettres, et les guillemets pour les phrases. Une raison pour cela : les guillemets sont utiles pour insérer des apostrophes dans une chaîne de caractère.
 
@@ -395,7 +402,7 @@ Lorsque vous écrivez une commande suivit de parenthèses, comme **`data.frame(e
 
 De manière très générale, une fonction transforme quelque chose en quelque chose d'autre.
 
-![](images/1_fonctions.png)
+<center>![](images/1_fonctions.png)</center>
 
 Par exemple, la fonction **`mean()`** prend une collection de nombre comme entrée, puis en sort ... vous devinez quoi ?.
 
