@@ -1,0 +1,322 @@
+---
+title: "Biostatistiques"
+author: "Serge-Étienne Parent"
+date: "`r format(Sys.Date())`"
+output: github_document
+---
+
+# Statistiques descriptives {#chapitre-biostats2}
+
+ ***
+️\ **Objectifs spécifiques**:
+
+
+
+
+
+ ***
+
+## Sommaire des données
+
+Nous avons vu comment générer des statistiques sommaires en **R** avec la fonction `summary()`. Reprenons les données d'iris.
+
+```{r warning = FALSE, message = FALSE}
+library("tidyverse")
+data("iris")
+```
+
+```{r}
+head(iris)
+```
+
+```{r}
+summary(iris)
+```
+
+## Moyenne et écart-type
+
+Pour précisément effectuer **une moyenne** et **un écart-type** sur un vecteur, passons par les fonctions `mean()` et `sd()`.
+
+```{r}
+mean(iris$Sepal.Length)
+sd(iris$Sepal.Length)
+```
+
+Pour effectuer un sommaire de tableau piloté par une fonction, nous passons par la gamme de fonctions `summarise()`, de `dplyr`. Dans ce cas, avec `group_by()`, nous fragmentons le tableau par espèce pour effectuer un sommaire sur toutes les variables.
+
+```{r}
+iris %>%
+  group_by(Species) %>%
+  summarise_all(mean)
+```
+
+## Quartiles
+
+Vous pourriez être intéressé par **les quartiles** à 25%, 50% et 75%. Mais la fonction `summarise()` n'autorise que les fonctions dont la sortie est d'un seul objet, alors faisons de sorte que l'objet soit une liste - lorsque l'on imbrique une fonction `funs`, le tableau à insérer dans la fonction est indiqué par un **`.`**.
+
+```{r}
+iris %>%
+  group_by(Species) %>%
+  summarise_all(tibble::lst(mean, median))
+```
+
+En mode programmation classique de **R**, on pourra générer les quartiles à la pièce.
+
+```{r}
+quantile(iris$Sepal.Length[iris$Species == 'setosa'])
+```
+
+```{r}
+quantile(iris$Sepal.Length[iris$Species == 'versicolor'])
+```
+
+```{r}
+quantile(iris$Sepal.Length[iris$Species == 'virginica'])
+```
+
+## Décomptes et proportions
+
+La fonction `table()` permettra d'obtenir des **décomptes par catégorie**, ici par plages de longueurs de sépales.
+
+```{r}
+tableau_croise <- table(iris$Species, 
+                        cut(iris$Sepal.Length, breaks = quantile(iris$Sepal.Length)))
+tableau_croise
+```
+
+Pour obtenir **les proportions** du nombre total, il s'agit d'encapsuler le tableau croisé dans la fonction `prop.table()`.
+
+```{r}
+prop.table(tableau_croise)
+```
+
+## Tests d'hypothèses à 1 et 2 échantillons
+
+Un test d'hypothèse permet de décider si une hypothèse est confirmée ou rejetée à un seuil de probabilité prédéterminé.
+
+> En statistiques, un test d'hypothèses (ou test statistique) est une procédure de décision entre deux hypothèses. IC'est une démarche consistant à rejeter ou à ne pas rejeter une hypothèse statistique, appelée hypothèse nulle, en fonction d'un jeu de données.
+
+Cette section est inspirée du chapitre 5 de [Dalgaard, 2008](https://www.springer.com/us/book/9780387790534).
+
+---
+
+### L'hypothèse nulle
+
+Les tests d'hypothèse évalue des *effets* statistiques (qui ne sont pas nécessairement des effets de causalité). L'effet à évaluer peut être celui d'un traitement, d'indicateurs météorologiques (e.g. précipitations totales, degré-jour, etc.), de techniques de gestion des paysages, etc. Une recherche est menée pour évaluer l'hypothèse que l'on retrouve des différences entre des unités expérimentales. Par convention, l'**hypothèse nulle** (écrite $H_0$) est l'hypothèse qu'il n'y ait pas d'effet (c'est l'hypothèse de l'avocat du diable 😈) à l'échelle de la population (et non pas à l'échelle de l'échantillon). À l'inverse, l'**hypothèse alternative** (écrite $H_1$) est l'hypothèse qu'il y ait un effet à l'échelle de la population.
+
+----
+
+À titre d'exercice en stats, on débute souvent par en testant si deux vecteurs de valeurs continues proviennent de populations à moyennes différentes ou si un vecteur de valeurs a été généré à partir d'une population ayant une moyenne donner. Dans cette section, nous utiliserons la fonction `t.test()` pour les tests de t et la fonction `wilcox.test()` pour les tests de Wilcoxon (aussi appelé de Mann-Whitney).
+
+### Test de t à un seul échantillon
+
+Nous devons assumer, pour ce test, que l'échantillon est recueillit d'une population dont la distribution est normale, $\mathcal{N} \sim \left( \mu, \sigma^2 \right)$, et que chaque échantillon est indépendant l'un de l'autre. L'hypothèse nulle est souvent celle de l'avocat du diable, que la moyenne soit égale à une valeur donnée (donc la différence entre la moyenne de la population et une moyenne donnée est de zéro): ici, que $\mu = \bar{x}$. L'erreur standard sur la moyenne (ESM) de l'échantillon, $\bar{x}$ est calculée comme suit.
+
+$$ESM = \frac{s}{\sqrt{n}}$$
+
+où $s$ est l'écart-type de l'échantillon et $n$ est le nombre d'échantillons.
+
+### Intervalle de confiance
+
+Pour tester **l'intervalle de confiance** de l'échantillon, on multiplie l'ESM par l'aire sous la courbe de densité couvrant une certaine proportion de part et d'autre de l'échantillon. Pour un niveau de confiance de 95%, on retranche 2.5% de part et d'autre.
+
+```{r}
+set.seed(33746)
+x <- rnorm(20, 16, 4)
+
+level <-  0.95
+alpha <- 1-level
+
+x_bar <- mean(x)
+s <- sd(x)
+n <- length(x)
+
+error <- qnorm(1 - alpha/2) * s / sqrt(n)
+error
+```
+
+L'**intervalle de confiance** est l'erreur de par et d'autre de la moyenne.
+
+```{r}
+c(x_bar - error, x_bar + error)
+```
+
+Si la moyenne de la population est de 16, un nombre qui se situe dans l'intervalle de confiance on accepte l'hypothèse nulle au seuil 0.05. Si le nombre d'échantillon est réduit (généralement < 30), on passera plutôt par une distribution de t, avec $n-1$ degrés de liberté.
+
+```{r}
+error <- qt(1 - alpha/2, n-1) * s / sqrt(n)
+c(x_bar - error, x_bar + error)
+```
+
+Plus simplement, on pourra utiliser la fonction `t.test()` en spécifiant la moyenne de la population. Nous avons généré 20 données avec une moyenne de 16 et un écart-type de 4. Nous savons donc que la vraie moyenne de l'échantillon est de 16. Mais disons que nous testons l'hypothèse que ces données sont tirées d'une population dont la moyenne est 18 (et implicitement que sont écart-type est de 4).
+
+```{r}
+t.test(x, mu = 18)
+```
+
+La fonction retourne la valeur de t (*t-value*), le nombre de degrés de liberté ($n-1 = 19$), une description de l'hypothèse alternative (`alternative hypothesis: true mean is not equal to 18`), ainsi que l'intervalle de confiance au niveau de 95%. Le test contient aussi la *p-value*. Bien que la *p-value* soit largement utilisée en science
+
+----
+
+### La *p-value*
+
+La *p-value*, ou valeur-p ou p-valeur, est utilisée pour trancher si, oui ou non, un résultat est **significatif** (en langage scientifique, le mot significatif ne devrait être utilisé *que* lorsque l'on réfère à un test d'hypothèse statistique). Vous retrouverez des *p-value* partout en stats. Les *p-values* indiquent la confiance que l'hypothèse nulle soit vraie, selon les données et le modèle statistique utilisées.
+
+> La p-value est la probabilité que les données aient été générées pour obtenir un effet équivalent ou plus prononcé si l'hypothèse nulle est vraie.
+
+Une *p-value* élevée indique que le modèle appliqué à vos données concordent avec la conclusion que l'hypothèse nulle est vraie, et inversement si la *p-value* est faible. Le seuil arbitraire utilisée en écologie et en agriculture, comme dans plusieurs domaines, est 0.05.
+
+Les six principes de l'[American Statistical Association](https://phys.org/news/2016-03-american-statistical-association-statement-significance.html) guident l'interprétation des *p-values*. [ma traduction]
+
+0. Les *p-values* indique l'ampleur de l’incompatibilité des données avec le modèle statistique
+0. Les *p-values* ne mesurent pas la probabilité que l'hypothèse étudiée soit vraie, ni la probabilité que les données ont été générées uniquement par la chance.
+0. Les conclusions scientifiques et décisions d'affaire ou politiques ne devraient pas être basées sur si une *p-value* atteint un seuil spécifique.
+0. Une inférence appropriée demande un rapport complet et transparent.
+0. Une *p-value*, ou une signification statistique, ne mesure pas l'ampleur d'un effet ou l'importance d'un résultat.
+0. En tant que tel, une *p-value* n'offre pas une bonne mesure des évidences d'un modèle ou d'une hypothèse.
+
+Cet encadré est inspiré d'un [billet de blogue de Jim Frost](https://blog.minitab.com/blog/adventures-in-statistics-2/how-to-correctly-interpret-p-values) et d'un [rapport de l'American Statistical Association](https://phys.org/news/2016-03-american-statistical-association-statement-significance.html).
+
+----
+
+Dans le cas précédent, la *p-value* était de 0.01014. Pour aider notre interprétation, prenons l'hypothèse alternative: `true mean is not equal to 18`. L'hypothèse nulle était bien que *la vraie moyenne est égale à 18*. Insérons la *p-value* dans la définition: la probabilité que les données aient été générées pour obtenir un effet équivalent ou plus prononcé si l'hypothèse nulle est vraie est de 0.01014. Il est donc très peu probable que les données soient tirées d'un échantillon dont la moyenne est de 18. Au seuil de signification de 0.05, on rejette l'hypothèse nulle et l'on conclut qu'à ce seuil de confiance, l'échantillon ne provient pas d'une population ayant une moyenne de 18.
+
+----
+
+#### Attention aux mauvaises interprétations des *p-values*
+
+> "La p-value n'a jamais été conçue comme substitut au raisonnement scientifique" [Ron Wasserstein, directeur de l'American Statistical Association](https://phys.org/news/2016-03-american-statistical-association-statement-significance.html) [ma traduction]. 
+
+**Un résultat montrant une p-value plus élevée que 0.05 est-il pertinent?**
+
+Lors d'une conférence, Dr Evil ne présentent que les résultats significatifs de ses essais au seuil de 0.05. Certains essais ne sont pas significatifs, mais bon, ceux-ci ne sont pas importants... En écartant ces résultats, Dr Evil commet 3 erreurs:
+
+1. La *p-value* n'est pas un bon indicateur de l'importance d'un test statistique. L'importance d'une variable dans un modèle devrait être évaluée par la valeur de son coefficient. Son incertitude devrait être évaluée par sa variance. Une manière d'évaluer plus intuitive la variance est l'écart-type ou l'intervalle de confiance. À un certain seuil d'intervalle de confiance, la p-value traduira la probabilité qu'un coefficient soit réellement nul ait pu générer des données démontrant un coefficient égal ou supérieur.
+
+1. Il est tout aussi important de savoir que le traitement fonctionne que de savoir qu'il ne fonctionne pas. Les résultats démontrant des effets sont malheureusement davantage soumis aux journaux et davantage publiés que ceux ne démontrant pas d'effets ([Decullier et al., 2005]( https://doi.org/10.1136/bmj.38488.385995.8F )).
+
+1. Le seuil de 0.05 est arbitraire.
+
+----
+
+
+----
+
+#### Attention au *p-hacking*
+
+Le *p-hacking* (ou *data dredging*) consiste à manipuler les données et les modèles pour faire en sorte d'obtenir des *p-values* favorables à l'hypothèse testée et, éventuellement, aux conclusions recherchées. **À éviter dans tous les cas. Toujours. Toujours. Toujours.**
+
+Vidéo suggérée (en anglais).
+
+[![p-hacking](images/05_p-hacking.png)](https://youtu.be/0Rnq1NpHdmw)
+
+----
+
+### Test de Wilcoxon à un seul échantillon
+
+Le test de t suppose que la distribution des données est normale... ce qui est rarement le cas, surtout lorsque les échantillons sont peu nombreux. Le test de Wilcoxon ne demande aucune supposition sur la distribution: c'est un test non-paramétrique basé sur le tri des valeurs.
+
+```{r}
+wilcox.test(x, mu = 18)
+```
+
+Le `V` est la somme des rangs positifs. Dans ce cas, la *p-value* est semblable à celle du test de t, et les mêmes conclusions s'appliquent.
+
+### Tests de t à deux échantillons
+
+Les tests à un échantillon servent plutôt à s'exercer: rarement en aura-t-on besoin en recherche, où plus souvent, on voudra comparer les moyennes de deux unités expérimentales. L'expérience comprend donc deux séries de données continues, $x_1$ et $x_2$, issus de lois de distribution normale $\mathcal{N} \left( \mu_1, \sigma_1^2 \right)$ et $\mathcal{N} \left( \mu_2, \sigma_2^2 \right)$, et nous testons l'hypothèse nulle que $\mu_1 = \mu_2$. La statistique t est calculée comme suit.
+
+$$t = \frac{\bar{x_1} - \bar{x_2}}{ESDM}$$
+
+L'ESDM est l'erreur standard de la différence des moyennes:
+
+$$ESDM = \sqrt{ESM_1^2 + ESM_2^2}$$
+
+Si vous supposez que les variances sont identiques, l'erreur standard (s) est calculée pour les échantillons des deux groupes, puis insérée dans le calcul des ESM. La statistique t sera alors évaluée à $n_1 + n_2 - 2$ degrés de liberté. Si vous supposez que la variance est différente (*procédure de Welch*), vous calculez les ESM avec les erreurs standards respectives, et la statistique t devient une approximation de la distribution de t avec un nombre de degrés de liberté calculé à partir des erreurs standards et du nombre d'échantillon dans les groupes: cette procédure est considérée comme plus prudente ([Dalgaard, 2008](https://www.springer.com/us/book/9780387790534), page 101).
+
+Prenons les données d'iris pour l'exemple en excluant l'iris setosa étant donnée que les tests de t se restreignent à deux groupes. Nous allons tester la longueur des pétales.
+
+```{r}
+iris_pl <- iris %>% 
+    filter(Species != "setosa") %>%
+    select(Species, Petal.Length)
+sample_n(iris_pl, 5)
+```
+
+Dans la prochaine cellule, nous introduisons l'*interface-formule* de R, où l'on retrouve typiquement le `~`, entre les variables de sortie à gauche et les variables d'entrée à droite. Dans notre cas, la variable de sortie est la variable testée, `Petal.Length`, qui varie en fonction du groupe `Species`, qui est la variable d'entrée (variable explicative) - nous verrons les types de variables plus en détails dans la section [Les modèles statistiques](#Les-mod%C3%A8les-statistiques), plus bas.
+
+```{r}
+t.test(formula = Petal.Length ~ Species,
+       data = iris_pl, var.equal = FALSE)
+```
+
+Nous obtenons une sortie similaire aux précédentes. L'intervalle de confiance à 95% exclu le zéro, ce qui est cohérent avec la p-value très faible, qui nous indique le rejet de l'hypothèse nulle au seuil 0.05. Les groupes ont donc des moyennes de longueurs de pétale significativement différentes.
+
+----
+
+### Enregistrer les résultats d'un test
+
+Il est possible d'enregistrer un test dans un objet.
+
+```{r}
+tt_pl <- t.test(formula = Petal.Length ~ Species,
+                data = iris_pl, var.equal = FALSE)
+summary(tt_pl)
+str(tt_pl)
+```
+
+----
+
+### Comparaison des variances
+
+Pour comparer les variances, on a recours au test de F (F pour Fisher).
+
+```{r}
+var.test(formula = Petal.Length ~ Species,
+         data = iris_pl)
+```
+
+Il semble que l'on pourrait relancer le test de *t* sans la procédure Welch, avec `var.equal = TRUE`.
+
+### Tests de Wilcoxon à deux échantillons
+
+Cela ressemble au test de t!
+
+```{r}
+wilcox.test(formula = Petal.Length ~ Species,
+       data = iris_pl, var.equal = TRUE)
+```
+
+### Les tests pairés
+
+Les tests pairés sont utilisés lorsque deux échantillons proviennent d'une même unité expérimentale: il s'agit en fait de tests sur la différence entre deux observations.
+
+```{r}
+set.seed(2555)
+
+n <- 20
+avant <- rnorm(n, 16, 4)
+apres <- rnorm(n, 18, 3)
+```
+
+Il est important de spécifier que le test est pairé, la valeur par défaut de `paired` étant `FALSE`.
+
+```{r}
+t.test(avant, apres, paired = TRUE)
+```
+
+L'hypothèse nulle qu'il n'y ait pas de différence entre l'avant et l'après traitement est acceptée au seuil 0.05.
+
+**Exercice**. Effectuer un test de Wilcoxon pairé.
+
+## L'analyse de variance
+
+L'analyse de variance consiste à comparer des moyennes de plusieurs groupe distribués normalement et de même variance. Cette section sera élaborée prochainement plus en profondeur. Considérons-la pour le moment comme une régression sur une variable catégorielle.
+
+```{r}
+pl_aov <- aov(Petal.Length ~ Species, iris)
+summary(pl_aov)
+```
+
+La prochaine section, justement, est vouée aux modèles statistiques explicatifs, qui incluent la régression.
+

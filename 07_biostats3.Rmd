@@ -1,0 +1,618 @@
+---
+title: "Biostatistiques"
+author: "Serge-Étienne Parent"
+date: "`r format(Sys.Date())`"
+output: github_document
+---
+
+# Modèles statistiques {#chapitre-modelisation}
+
+ ***
+️\ **Objectifs spécifiques**:
+
+
+
+
+
+ ***
+
+
+La modélisation statistique consiste à lier de manière explicite des variables de sortie $y$ (ou variables-réponse ou variables dépendantes) à des variables explicatives $x$ (ou variables prédictives / indépendantes / covariables). Les variables-réponse sont modélisées par une fonction des variables explicatives ou prédictives.
+
+Pourquoi garder les termes *explicatives* et *prédictives*? Parce que les modèles statistiques (basés sur des données et non pas sur des mécanismes) sont de deux ordres. D'abord, les modèles **prédictifs** sont conçus pour prédire de manière fiable une ou plusieurs variables-réponse à partir des informations contenues dans les variables qui sont, dans ce cas, prédictives. Ces modèles sont couverts dans le chapitre 11 de ce manuel (en développement). Lorsque l'on désire tester des hypothèses pour évaluer quelles variables expliquent la réponse, on parlera de modélisation (et de variables) **explicatives**. En inférence statistique, on évaluera les *corrélations* entre les variables explicatives et les variables-réponse. Un lien de corrélation n'est pas un lien de causalité. L'inférence causale peut en revanche être évaluée par des [*modèles d'équations structurelles*](https://www.amazon.com/Cause-Correlation-Biology-Structural-Equations/dp/1107442591), sujet qui fera éventuellement partie de ce cours.
+
+Cette section couvre la modélisation explicative. Les variables qui contribuent à créer les modèles peuvent être de différentes natures et distribuées selon différentes lois de probabilité. Alors que les modèles linéaires simples (*lm*) impliquent une variable-réponse distribuée de manière continue, les modèles linéaires généralisés peuvent aussi expliquer des variables de sorties discrètes.
+
+Dans les deux cas, on distinguera les variables fixes et les variables aléatoires. Les **variables fixes** sont les variables testées lors de l'expérience: dose du traitement, espèce/cultivar, météo, etc. Les **variables aléatoires** sont les sources de variation qui génèrent du bruit dans le modèle: les unités expérimentales ou le temps lors de mesures répétées. Les modèles incluant des effets fixes seulement sont des modèles à effets fixes. Généralement, les modèles incluant des variables aléatoires incluent aussi des variables fixes: on parlera alors de modèles mixtes. Nous couvrirons ces deux types de modèle.
+
+## Modèles à effets fixes
+
+Les tests de t et de Wilcoxon, explorés précédemment, sont des modèles statistiques à une seule variable. Nous avons vu dans l'*interface-formule* qu'une variable-réponse peut être liée à une variable explicative avec le tilde `~`. En particulier, le test de t est régression linéaire univariée (à une seule variable explicative) dont la variable explicative comprend deux catégories. De même, l'anova est une régression linéaire univariée dont la variable explicative comprend plusieurs catégories. Or l'interface-formule peut être utilisé dans plusieurs circonstances, notamment pour ajouter plusieurs variables de différents types: on parlera de régression multivariée.
+
+La plupart des modèles statistiques peuvent être approximés comme une combinaison linéaire de variables: ce sont des modèles linéaires. Les modèles non-linéaires impliquent des stratégies computationnelles complexes qui rendent leur utilisation plus difficile à manœuvrer.
+
+Un modèle linéaire univarié prendra la forme $y = \beta_0 + \beta_1 x + \epsilon$, où $\beta_0$ est l'intercept et $\beta_1$ est la pente et $\epsilon$ est l'erreur.
+
+Vous verrez parfois la notation $\hat{y} = \beta_0 + \beta_1 x$. La notation avec le chapeau $\hat{y}$ exprime qu'il s'agit des valeurs générées par le modèle. En fait, $y = \hat{y} - \epsilon$.
+
+### Modèle linéaire univarié avec variable continue
+
+Prenons les données [`lasrosas.corn`](https://rdrr.io/cran/agridat/man/lasrosas.corn.html) incluses dans le module `agridat`, où l'on retrouve le rendement d'une production de maïs à dose d'azote variable, en Argentine.
+
+```{r}
+library("agridat")
+data("lasrosas.corn")
+sample_n(lasrosas.corn, 10)
+```
+
+Ces données comprennent plusieurs variables. Prenons le rendement (`yield`) comme variable de sortie et, pour le moment, ne retenons que la dose d'azote (`nitro`) comme variable explicative: il s'agit d'une régression univariée. Les deux variables sont continues. Explorons d'abord le nuage de points de l'une et l'autre.
+
+```{r}
+ggplot(data = lasrosas.corn, mapping = aes(x = nitro, y = yield)) +
+    geom_point()
+```
+
+L'hypothèse nulle est que la dose d'azote n'affecte pas le rendement, c'est à dire que le coefficient de pente et nul. Une autre hypothèse est que l'intercept est nul: donc qu'à dose de 0, rendement de 0. Un modèle linéaire à variable de sortie continue est créé avec la fonction `lm()`, pour *linear model*.
+
+```{r}
+modlin_1 <- lm(yield ~ nitro, data = lasrosas.corn)
+summary(modlin_1)
+```
+
+Le diagnostic du modèle comprend plusieurs informations. D'abord la formule utilisée, affichée pour la traçabilité. Viens ensuite un aperçu de la distribution des résidus. La médiane devrait s'approcher de la moyenne des résidus (qui est toujours de 0). Bien que le -3.079 peut sembler important, il faut prendre en considération de l'échelle de y, et ce -3.079 est exprimé en terme de rendement, ici en quintaux (i.e. 100 kg) par hectare. La distribution des résidus mérite d'être davantage investiguée. Nous verrons cela un peu plus tard.
+
+Les coefficients apparaissent ensuite. Les estimés sont les valeurs des effets. R fournit aussi l'erreur standard associée, la valeur de t ainsi que la p-value (la probabilité d'obtenir cet effet ou un effet plus extrême si en réalité il y avait absence d'effet). L'intercept est bien sûr plus élevé que 0 (à dose nulle, on obtient 65.8 quintaux par hectare en moyenne). La pente de la variable `nitro` est de ~0.06: pour chaque augmentation d'un kg/ha de dose, on a obtenu ~0.06 quintaux/ha de plus de maïs. Donc pour 100 kg/ha de N, on a obtenu un rendement moyen de 6 quintaux de plus que l'intercept. Soulignons que l'ampleur du coefficient est très important pour guider la fertilisation: ne rapporter que la p-value, ou ne rapporter que le fait qu'elle est inférieure à 0.05 (ce qui arrive souvent dans la littérature), serait très insuffisant pour l'interprétation des statistiques. La p-value nous indique néanmoins qu'il serait très improbable qu'une telle pente ait été générée alors que celle-ci est nulle en réalité. Les étoiles à côté des p-values indiquent l'ampleur selon l'échelle `Signif. codes` indiquée en-dessous du tableau des coefficients.
+
+Sous ce tableau, R offre d'autres statistiques. En outre, les R² et R² ajustés indiquent si la régression passe effectivement par les points. Le R² prend un maximum de 1 lorsque la droite passe exactement sur les points.
+
+Enfin, le test de F génère une p-value indiquant la probabilité que les coefficients de pente ait été générés si les vrais coefficients étaient nuls. Dans le cas d'une régression univariée, cela répète l'information sur l'unique coefficient.
+
+On pourra également obtenir les intervalles de confiance avec la fonction `confint()`.
+
+```{r}
+confint(modlin_1, level = 0.95)
+```
+
+Ou soutirer l'information de différentes manières, comme avec la fonction `coefficients()`.
+
+```{r}
+coefficients(modlin_1)
+```
+
+Également, on pourra exécuter le modèle sur les données qui ont servi à le générer:
+
+```{r}
+predict(modlin_1)[1:5]
+```
+
+Ou sur des données externes.
+
+```{r}
+nouvelles_donnees <- data.frame(nitro = seq(from = 0, to = 100, by = 5))
+predict(modlin_1, newdata = nouvelles_donnees)[1:5]
+```
+
+### Analyse des résidus
+
+Les résidus sont les erreurs du modèle. C'est le vecteur $\epsilon$, qui est un décalage entre les données et le modèle. Le R² est un indicateur de l'ampleur du décalage, mais une régression linéaire explicative en bonne et due forme devrait être accompagnée d'une analyse des résidus. On peut les calculer par $\epsilon = y - \hat{y}$, mais aussi bien utiliser la fonction `residuals()`.
+
+```{r}
+res_df <- data.frame(nitro = lasrosas.corn$nitro,
+                     residus_lm = residuals(modlin_1), 
+                     residus_calcul = lasrosas.corn$yield - predict(modlin_1))
+sample_n(res_df, 10)
+```
+
+Dans une bonne régression linéaire, on ne retrouvera pas de structure identifiable dans les résidus, c'est-à-dire que les résidus sont bien distribués de part et d'autre du modèle de régression.
+
+```{r}
+ggplot(res_df, aes(x = nitro, y = residus_lm)) +
+  geom_point() +
+  labs(x = "Dose N", y = "Résidus") +
+  geom_hline(yintercept = 0, col = "red", size = 1)
+```
+
+Bien que le jugement soit subjectif, on peut dire avec confiance qu'il n'y a pas structure particulière. En revanche, on pourrait générer un $y$ qui varie de manière quadratique avec $x$, un modèle linéaire montrera une structure évidente.
+
+```{r}
+set.seed(36164)
+x <- 0:100
+y <- 10 + x*1 + x^2 * 0.05 + rnorm(length(x), 0, 50)
+modlin_2 <- lm(y ~ x)
+ggplot(data.frame(x, residus = residuals(modlin_2)),
+       aes(x = x, y = residus)) +
+  geom_point() +
+  labs(x = "x", y = "Résidus") +
+  geom_hline(yintercept = 0, col = "red", size = 1)
+```
+
+De même, les résidus ne devraient pas croître avec $x$.
+
+```{r}
+set.seed(3984)
+x <- 0:100
+y <-  10 + x + x * rnorm(length(x), 0, 2)
+modlin_3 <- lm(y ~ x)
+ggplot(data.frame(x, residus = residuals(modlin_3)),
+       aes(x = x, y = residus)) +
+  geom_point() +
+  labs(x = "x", y = "Résidus") +
+  geom_hline(yintercept = 0, col = "red", size = 1)
+```
+
+On pourra aussi inspecter les résidus avec un graphique de leur distribution. Reprenons notre modèle de rendement du maïs.
+
+```{r}
+ggplot(res_df, aes(x = residus_lm)) +
+  geom_histogram(binwidth = 2, color = "white") +
+  labs(x = "Residual")
+```
+
+L'histogramme devrait présenter une distribution normale. Les tests de normalité comme le test de Shapiro-Wilk peuvent aider, mais ils sont généralement très sévères.
+
+```{r}
+shapiro.test(res_df$residus_lm)
+```
+
+L'hypothèse nulle que la distribution est normale est rejetée au seuil 0.05. Dans notre cas, il est évident que la sévérité du test n'est pas en cause, car les résidus semble générer trois ensembles. Ceci indique que les variables explicatives sont insuffisantes pour expliquer la variabilité de la variable-réponse.
+
+### Régression multiple
+
+Comme c'est le cas pour bien des phénomènes en écologie, le rendement d'une culture n'est certainement pas expliqué seulement par la dose d'azote.
+
+Lorsque l'on combine plusieurs variables explicatives, on crée un modèle de régression multivariée, ou une régression multiple. Bien que les tendances puissent sembler non-linéaires, l'ajout de variables et le calcul des coefficients associés reste un problème d'algèbre linéaire.
+
+On pourra en effet généraliser les modèles linéaires, univariés et multivariés, de la manière suivante.
+
+$$ y = X \beta + \epsilon $$
+
+où:
+
+$X$ est la matrice du modèle à $n$ observations et $p$ variables.
+
+$$ X = \left( \begin{matrix} 
+1 & x_{11} & \cdots & x_{1p}  \\ 
+1 & x_{21} & \cdots & x_{2p}  \\ 
+\vdots & \vdots & \ddots & \vdots  \\ 
+1 & x_{n1} & \cdots & x_{np}
+\end{matrix} \right) $$
+
+$\beta$ est la matrice des $p$ coefficients, $\beta_0$ étant l'intercept qui multiplie la première colonne de la matrice $X$.
+
+$$ \beta = \left( \begin{matrix} 
+\beta_0  \\ 
+\beta_1  \\ 
+\vdots \\ 
+\beta_p 
+\end{matrix} \right) $$
+
+$\epsilon$ est l'erreur de chaque observation.
+
+$$ \epsilon = \left( \begin{matrix} 
+\epsilon_0  \\ 
+\epsilon_1  \\ 
+\vdots \\ 
+\epsilon_n
+\end{matrix} \right) $$
+
+### Modèles linéaires univariés avec variable catégorielle **nominale**
+
+Une variable catégorielle nominale (non ordonnée) utilisée à elle seule dans un modèle comme variable explicative, est un cas particulier de régression multiple. En effet, l'**encodage catégoriel** (ou *dummyfication*) transforme une variable catégorielle nominale en une matrice de modèle comprenant une colonne désignant l'intercept (une série de 1) désignant la catégorie de référence, ainsi que des colonnes pour chacune des autres catégories désignant l'appartenance (1) ou la non appartenance (0) de la catégorie désignée par la colonne.
+
+#### L'encodage catégoriel
+
+Une variable à $C$ catégories pourra être déclinée en $C$ variables dont chaque colonne désigne par un 1 l'appartenance au groupe de la colonne et par un 0 la non-appartenance. Pour l'exemple, créons un vecteur désignant le cultivar de pomme de terre.
+
+```{r}
+data <- data.frame(cultivar = c('Superior', 'Superior', 'Superior', 'Russet', 'Kenebec', 'Russet'))
+model.matrix(~cultivar, data)
+```
+
+Nous avons trois catégories, encodées en trois colonnes. La première colonne est un intercept et les deux autres décrivent l'absence (0) ou la présence (1) des cultivars Russet et Superior. Le cultivar Kenebec est absent du tableau. En effet, en partant du principe que l'appartenance à une catégorie est mutuellement exclusive, c'est-à-dire qu'un échantillon ne peut être assigné qu'à une seule catégorie, on peut déduire une catégorie à partir de l'information sur toutes les autres. Par exemple, si `cultivar_Russet` et `cultivar_Superior` sont toutes deux égales à $0$, on conclura que `cultivar_Kenebec` est nécessairement égal à $1$. Et si l'un d'entre `cultivar_Russet` et `cultivar_Superior` est égal à $1$, `cultivar_Kenebec` est nécessairement égal à $0$. L'information contenue dans un nombre $C$ de catégorie peut être encodée dans un nombre $C-1$ de colonnes. C'est pourquoi, dans une analyse statistique, on désignera une catégorie comme une référence, que l'on détecte lorsque toutes les autres catégories sont encodées avec des $0$: cette référence sera incluse dans l'intercept. La catégorie de référence par défaut en R est celle la première catégorie dans l'ordre alphabétique. On pourra modifier cette référence avec la fonction `relevel()`.
+
+```{r}
+data$cultivar <- relevel(data$cultivar, ref = "Superior")
+model.matrix(~cultivar, data)
+```
+
+Pour certains modèles, vous devrez vous assurer vous-même de l'encodage catégoriel. Pour d'autre, en particulier avec l'*interface par formule* de R, ce sera fait automatiquement.
+
+#### Exemple d'application
+
+Prenons la topographie du terrain, qui peut prendre plusieurs niveaux.
+
+```{r}
+levels(lasrosas.corn$topo)
+```
+
+Explorons le rendement selon la topographie.
+
+```{r}
+ggplot(lasrosas.corn, aes(x = topo, y = yield)) +
+    geom_boxplot()
+```
+
+Les différences sont évidentes, et la modélisation devrait montrer des effets significatifs.
+
+L'encodage catégoriel peut être visualisé en générant la matrice de modèle avec la fonction `model.matrix()` et l'interface-formule - sans la variable-réponse.
+
+```{r}
+model.matrix(~ topo, data = lasrosas.corn) %>% 
+    tbl_df() %>% # tbl_df pour transformer la matrice en tableau
+    sample_n(10) 
+```
+
+Dans le cas d'un modèle avec une variable catégorielle nominale seule, l'intercept représente la catégorie de référence, ici `E`. Les autres colonnes spécifient l'appartenance (1) ou la non-appartenance (0) de la catégorie pour chaque observation.
+
+Cette matrice de modèle utilisée pour la régression donnera un intercept, qui indiquera l'effet de la catégorie de référence, puis les différences entre les catégories subséquentes et la catégorie de référence.
+
+```{r}
+modlin_4 <- lm(yield ~ topo, data = lasrosas.corn)
+summary(modlin_4)
+```
+
+Le modèle linéaire est équivalent à l'anova, mais les résultats de `lm` sont plus élaborés.
+
+```{r}
+summary(aov(yield ~ topo, data = lasrosas.corn))
+```
+
+L'analyse de résidus peut être effectuée de la même manière.
+
+### Modèles linéaires univariés avec variable catégorielle **ordinale**
+
+Bien que j'introduise la régression sur variable catégorielle ordinale à la suite de la section sur les variables nominales, nous revenons dans ce cas à une régression simple, univariée. Voyons un cas à 5 niveaux.
+
+```{r}
+statut <- c("Totalement en désaccord", 
+            "En désaccord",
+            "Ni en accord, ni en désaccord",
+            "En accord",
+            "Totalement en accord")
+statut_o <- factor(statut, levels = statut, ordered=TRUE)
+model.matrix(~statut_o) # ou bien, sans passer par model.matrix, contr.poly(5) où 5 est le nombre de niveaux
+```
+
+La matrice de modèle a 5 colonnes, soit le nombre de niveaux: un intercept, puis 4 autres désignant différentes valeurs que peuvent prendre les niveaux. Ces niveaux croient-ils linéairement? De manière quadratique, cubique ou plus loin dans des distributions polynomiales?
+
+```{r}
+modmat_tidy <- data.frame(statut, model.matrix(~statut_o)[, -1]) %>%
+    gather(variable, valeur, -statut)
+modmat_tidy$statut <- factor(modmat_tidy$statut, 
+                             levels = statut, 
+                             ordered=TRUE)
+ggplot(data = modmat_tidy, mapping = aes(x = statut, y = valeur)) +
+    facet_wrap(. ~ variable) +
+    geom_point() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+Règle générale, pour les variables ordinales, on préférera une distribution linéaire, et c'est l'option par défaut de la fonction `lm()`. L'utilisation d'une autre distribution peut être effectuée à la mitaine en utilisant dans le modèle la colonne désirée de la sortie de la fonction `model.matrix()`.
+
+### Régression multiple à plusieurs variables
+
+Reprenons le tableau de données du rendement de maïs.
+
+```{r}
+head(lasrosas.corn)
+```
+
+Pour ajouter des variables au modèle dans l'interface-formule, on additionne les noms de colonne. La variable `lat` désigne la latitude, la variable `long` désigne la latitude et la variable `bv` (*brightness value*) désigne la teneur en matière organique du sol (plus `bv` est élevée, plus faible est la teneur en matière organique).
+
+```{r}
+modlin_5 <- lm(yield ~ lat + long + nitro + topo + bv,
+               data = lasrosas.corn)
+summary(modlin_5)
+```
+
+L'ampleur des coefficients est relatif à l'échelle de la variable. En effet, un coefficient de 5541 sur la variable `lat` n'est pas comparable au coefficient de la variable `bv`, de -0.5089, étant donné que les variables ne sont pas exprimées avec la même échelle. Pour les comparer sur une même base, on peut centrer (soustraire la moyenne) et réduire (diviser par l'écart-type).
+
+```{r}
+scale_vec <- function(x) as.vector(scale(x)) # la fonction scale génère une matrice: nous désirons un vecteur
+
+lasrosas.corn_sc <- lasrosas.corn %>%
+    mutate_at(c("lat", "long", "nitro", "bv"), 
+                 scale_vec)
+
+modlin_5_sc <- lm(yield ~ lat + long + nitro + topo + bv,
+               data = lasrosas.corn_sc)
+summary(modlin_5_sc)
+```
+
+Typiquement, les variables catégorielles, qui ne sont pas mises à l'échelle, donneront des coefficients plus élevées, et devrons être évaluées entre elles et non comparativement aux variables mises à l'échelle. Une manière conviviale de représenter des coefficients consiste à créer un tableau (fonction `tibble()`) incluant les coefficients ainsi que leurs intervalles de confiance, puis à les porter graphiquement.
+
+```{r}
+intervals <- tibble(Estimate = coefficients(modlin_5_sc)[-1], # [-1] enlever l'intercept
+                    LL = confint(modlin_5_sc)[-1, 1], # [-1, ] enlever la première ligne, celle de l'intercept
+                    UL = confint(modlin_5_sc)[-1, 2],
+                    variable = names(coefficients(modlin_5_sc)[-1])) 
+intervals
+```
+
+```{r}
+ggplot(data = intervals, mapping = aes(x = Estimate, y = variable)) +
+    geom_vline(xintercept = 0, lty = 2) +
+    geom_segment(mapping = aes(x = LL, xend = UL, 
+                               y = variable, yend = variable)) +
+    geom_point() +
+    labs(x = "Coefficient standardisé", y = "")
+```
+
+On y voit qu'à l'exception de la variable `long`, tous les coefficients sont différents de 0. Le coefficient `bv` est négatif, indiquant que plus la valeur de `bv` est élevé (donc plus le sol est pauvre en matière organique), plus le rendement est faible. Plus la latitude est élevée (plus on se dirige vers le Nord de l'Argentine), plus le rendement est élevé. La dose d'azote a aussi un effet statistique positif sur le rendement.
+
+Quant aux catégories topographiques, elles sont toutes différentes de la catégorie `E`, ne croisant pas le zéro. De plus, les intervalles de confiance ne se chevauchant pas, on peut conclure en une différence significative d'une à l'autre. Bien sûr, tout cela au seuil de confiance de 0.05.
+
+On pourra retrouver des cas où l'effet combiné de plusieurs variables diffère de l'effet des deux variables prises séparément. Par exemple, on pourrait évaluer l'effet de l'azote et celui de la topographie dans un même modèle, puis y ajouter une interaction entre l'azote et la topographie, qui définira des effets supplémentaires de l'azote selon chaque catégorie topographique. C'est ce que l'on appelle une interaction.
+
+Dans l'interface-formule, l’interaction entre l'azote et la topographie est notée `nitro:topo`. Pour ajouter cette interaction, la formule deviendra `yield ~ nitro + topo + nitro:topo`. Une approche équivalente est d'utiliser le raccourci `yield ~ nitro*topo`.
+
+```{r}
+modlin_5_sc <- lm(yield ~ nitro*topo,
+               data = lasrosas.corn_sc)
+summary(modlin_5_sc)
+```
+
+Les résultats montre des effets de l'azote et des catégories topographiques, mais il y a davantage d'incertitude sur les interactions, indiquant que l'effet statistique de l'azote est sensiblement le même indépendamment des niveaux topographiques.
+
+----
+
+### Attention à ne pas surcharger le modèle
+
+Il est possible d'ajouter des interactions doubles, triples, quadruples, etc. Mais plus il y a d’interactions, plus votre modèle comprendra de variables et vos tests d'hypothèse perdront en puissance statistique.
+
+----
+
+### Les modèles linéaires généralisés
+
+Dans un modèle linéaire ordinaire, un changement constant dans les variables explicatives résulte en un changement constant de la variable-réponse. Cette supposition ne serait pas adéquate si la variable-réponse était un décompte, si elle est booléenne ou si, de manière générale, la variable-réponse ne suivait pas une distribution continue. Ou, de manière plus spécifique, il n'y a pas moyen de retrouver une distribution normale des résidus? On pourra bien sûr transformer les variables (sujet du chapitre 6, en développement). Mais il pourrait s'avérer impossible, ou tout simplement non souhaitable de transformer les variables. Le modèle linéaire généralisé (MLG, ou *generalized linear model* - GLM) est une généralisation du modèle linéaire ordinaire chez qui la variable-réponse peut être caractérisé par une distribution de Poisson, de Bernouilli, etc.
+
+Prenons d'abord cas d'un décompte de vers fil-de-fer (`worms`) retrouvés dans des parcelles sous différents traitements (`trt`). Les décomptes sont typiquement distribué selon une loi de Poisson.
+
+```{r}
+cochran.wireworms %>% ggplot(aes(x = worms)) + geom_histogram(bins = 10)
+```
+
+Explorons les décomptes selon les traitements.
+
+```{r}
+cochran.wireworms %>% ggplot(aes(x = trt, y = worms)) + geom_boxplot()
+```
+
+Les traitements semble à première vue avoir un effet comparativement au contrôle. Lançons un MLG avec la fonction `glm()`, et spécifions que la sortie est une distribution de Poisson. Bien que la fonction de lien (`link = "log"`) soit explictement imposée, le log est la valeur par défaut pour les distributions de Poisson. Ainsi, les coefficients du modèles devront être interprétés selon un modèle $log \left(worms \right) = intercept + pente \times coefficient$.
+
+```{r}
+modglm_1 <- glm(worms ~ trt, cochran.wireworms, family = stats::poisson(link="log"))
+summary(modglm_1)
+```
+
+L'interprétation spécifique des coefficients d'une régression de Poisson doit passer par la fonction de lien $log \left(worms \right) = intercept + pente \times coefficient$. Le traitement de référence (K), qui correspond à l'intercept, sera accompagné d'un nombre de vers de $exp \left(0.1823\right) = 1.20$ vers, et le traitement M, à $exp \left(1.6422\right) = 5.17$ vers. Cela correspond à ce que l'on observe sur les boxplots plus haut.
+
+Il est très probable (p-value de ~0.66) qu'un intercept (traitement K) de 0.18 ayant une erreur standard de 0.4082 ait été généré depuis une population dont l'intercept est nul. Quant aux autres traitements, leurs effets sont tous significatifs au seuil 0.05, mais peuvent-ils être considérés comme équivalents?
+
+```{r}
+intervals <- tibble(Estimate = coefficients(modglm_1), # [-1] enlever l'intercept
+                    LL = confint(modglm_1)[, 1], # [-1, ] enlever la première ligne, celle de l'intercept
+                    UL = confint(modglm_1)[, 2],
+                    variable = names(coefficients(modglm_1))) 
+intervals
+```
+
+```{r}
+ggplot(data = intervals, mapping = aes(x = Estimate, y = variable)) +
+    geom_vline(xintercept = 0, lty = 2) +
+    geom_segment(mapping = aes(x = LL, xend = UL, 
+                               y = variable, yend = variable)) +
+    geom_point() +
+    labs(x = "Coefficient", y = "")
+```
+
+Les intervalles de confiance se superposant, on ne peut pas conclure qu'un traitement est lié à une réduction plus importante de vers qu'un autre, au seuil 0.05.
+
+Maintenant, à défaut de trouver un tableau de données plus approprié, prenons le tableau `mtcars`, qui rassemble des données sur des modèles de voitures. La colonne `vs`, pour v-shaped, inscrit 0 si les pistons sont droit et 1 s'ils sont placés en V dans le moteur. Peut-on expliquer la forme des pistons selon le poids du véhicule (`wt`)?
+
+```{r}
+mtcars %>% sample_n(6)
+```
+
+```{r}
+mtcars %>% 
+    ggplot(aes(x = wt, y = vs)) + geom_point()
+```
+
+Il semble y avoir une tendance: les véhicules plus lourds ont plutôt des pistons droits (`vs = 0`). Vérifions cela.
+
+```{r}
+modglm_2 <- glm(vs ~ wt, data = mtcars, family = stats::binomial())
+summary(modglm_2)
+```
+
+**Exercice**. Analyser les résultats.
+
+### Les modèles non-linéaires
+
+La hauteur d'un arbre en fonction du temps n'est typiquement pas linéaire. Elle tend à croître de plus en plus lentement jusqu'à un plateau. De même, le rendement d'une culture traité avec des doses croissantes de fertilisants tend à atteindre un maximum, puis à se stabiliser.
+
+Ces phénomènes ne peuvent pas être approximés par des modèles linéaires. Examinons les données du tableau `engelstad.nitro`.
+
+```{r}
+engelstad.nitro %>% sample_n(10)
+```
+
+```{r}
+engelstad.nitro %>%
+    ggplot(aes(x = nitro, y = yield)) +
+        facet_grid(year ~ loc) +
+        geom_line() +
+        geom_point()
+```
+
+Le modèle de Mitscherlich pourrait être utilisé.
+
+$$ y = A \left( 1 - e^{-R \left( E + x \right)} \right) $$
+
+où $y$ est le rendement, $x$ est la dose, $A$ est l'asymptote vers laquelle la courbe converge à dose croissante, $E$ est l'équivalent de dose fourni par l'environnement et $R$ est le taux de réponse.
+
+Explorons la fonction.
+
+```{r}
+mitscherlich_f <- function(x, A, E, R) {
+    A * (1 - exp(-R*(E + x)))
+}
+
+x <- seq(0, 350, by = 5)
+y <- mitscherlich_f(x, A = 75, E = 30, R = 0.02)
+
+ggplot(tibble(x, y), aes(x, y)) +
+    geom_point(data = engelstad.nitro, aes(x = nitro, y = yield)) +
+    geom_line() + ylim(c(0, 100))
+```
+
+**Exercice**. Changez les paramètres pour visualiser comment la courbe réagit.
+
+Nous pouvons décrire le modèle grâce à l'interface formule dans la fonction `nls()`. Notez que les modèles non-linéaires demandent des stratégies de calcul différentes de celles des modèles linéaires. En tout temps, nous devons identifier des valeurs de départ raisonnables pour les paramètres dans l'argument `start`. Vous réussirez rarement à obtenir une convergence du premier coup avec vos paramètres de départ. Le défi est d'en trouver qui permettront au modèle de converger. Parfois, le modèle ne convergera jamais. D'autres fois, il convergera vers des solutions différentes selon les variables de départ choisies.
+<
+```{r}
+#modnl_1 <- nls(yield ~ A * (1 - exp(-R*(E + nitro))),
+#                data = engelstad.nitro, 
+#                start = list(A = 50, E = 10, R = 0.2))
+```
+
+Le modèle ne converge pas. Essayons les valeurs prises plus haut, lors de la création du graphique, qui semblent bien s'ajuster.
+
+```{r}
+modnl_1 <-  nls(yield ~ A * (1 - exp(-R*(E + nitro))),
+                data = engelstad.nitro,
+                start = list(A = 75, E = 30, R = 0.02))
+```
+
+Bingo! Voyons maintenant le sommaire.
+
+```{r}
+summary(modnl_1)
+```
+
+Les paramètres sont significativement différents de zéro au seuil 0.05, et donnent la courbe suivante.
+
+```{r}
+x <- seq(0, 350, by = 5)
+y <- mitscherlich_f(x,
+                    A = coefficients(modnl_1)[1],
+                    E = coefficients(modnl_1)[2],
+                    R = coefficients(modnl_1)[3])
+
+ggplot(tibble(x, y), aes(x, y)) +
+    geom_point(data = engelstad.nitro, aes(x = nitro, y = yield)) +
+    geom_line() + ylim(c(0, 100))
+```
+
+Et les résidus...
+
+```{r}
+tibble(res = residuals(modnl_1)) %>%
+    ggplot(aes(x = res)) + geom_histogram(bins = 20)
+```
+
+```{r}
+tibble(nitro = engelstad.nitro$nitro, res = residuals(modnl_1)) %>%
+    ggplot(aes(x = nitro, y = res)) + 
+        geom_point() +
+        geom_hline(yintercept = 0, colour = "red")
+```
+
+Les résidus ne sont pas distribués normalement, mais semble bien partagés de part et d'autre de la courbe.
+
+## Modèles à effets mixtes
+
+Lorsque l'on combine des variables fixes (testées lors de l'expérience) et des variables aléatoire (variation des unités expérimentales), on obtient un modèle mixte. Les modèles mixtes peuvent être univariés, multivariés, linéaires ordinaires ou généralisés ou non linéaires.
+
+À la différence d'un effet fixe, un effet aléatoire sera toujours distribué normalement avec une moyenne de 0 et une certaine variance. Dans un modèle linéaire où l'effet aléatoire est un décalage d'intercept, cet effet s'additionne aux effets fixes:
+
+$$ y = X \beta + Z b + \epsilon $$
+
+où:
+
+$Z$ est la matrice du modèle à $n$ observations et $p$ variables aléatoires. Les variables aléatoires sont souvent des variables nominales qui subissent un encodage catégoriel.
+
+$$ Z = \left( \begin{matrix} 
+z_{11} & \cdots & z_{1p}  \\ 
+z_{21} & \cdots & z_{2p}  \\ 
+\vdots & \ddots & \vdots  \\ 
+z_{n1} & \cdots & z_{np}
+\end{matrix} \right) $$
+
+$b$ est la matrice des $p$ coefficients aléatoires.
+
+$$ b = \left( \begin{matrix} 
+b_0  \\ 
+b_1  \\ 
+\vdots \\ 
+b_p 
+\end{matrix} \right) $$
+
+Le tableau `lasrosas.corn`, utilisé précédemment, contenait trois répétitions effectués au cours de deux années, 1999 et 2001. Étant donné que la répétition R1 de 1999 n'a rien à voir avec la répétition R1 de 2001, on dit qu'elle est **emboîtée** dans l'année.
+
+Le module `nlme` nous aidera à monter notre modèle mixte.
+
+```{r}
+library("nlme")
+
+mmodlin_1 <- lme(fixed = yield ~ lat + long + nitro + topo + bv,
+                 random = ~ 1|year/rep,
+                 data = lasrosas.corn)
+
+```
+
+À ce stade vous devriez commencer à être familier avec l'interface formule et vous deviez saisir l'argument `fixed`, qui désigne l'effet fixe. L'effet aléatoire, `random`, suit un tilde `~`. À gauche de la barre verticale `|`, on place les variables désignant les effets aléatoire sur la pente. Nous n'avons pas couvert cet aspect, alors nous le laissons à `1`. À droite, on retrouve un structure d'emboîtement désignant l'effet aléatoire: le premier niveau est l'année, dans laquelle est emboîtée la répétition.
+
+```{r}
+summary(mmodlin_1)
+```
+
+La sortie est semblable à celle de la fonction `lm()`.
+
+### Modèles mixtes non-linéaires
+
+Le modèle non linéaire créé plus haut liait le rendement à la dose d'azote. Toutefois, les unités expérimentales (le site `loc` et l'année `year`) n'étaient pas pris en considération. Nous allons maintenant les considérer. 
+
+Nous devons décider la structure de l'effet aléatoire, et sur quelles variables il doit être appliqué - la décision appartient à l'analyste. Il me semble plus convenable de supposer que le site et l'année affectera le rendement maximum plutôt que l'environnement et le taux: les effets aléatoires seront donc affectés à la variable `A`. Les effets aléatoires n'ont pas de structure d'emboîtement. L'effet de l'année sur A sera celui d'une pente et l'effet de site sera celui de l'intercept. La fonction que nous utiliserons est `nlme()`.
+
+```{r}
+mm <- nlme(yield ~ A * (1 - exp(-R*(E + nitro))),
+           data = engelstad.nitro, 
+           start = c(A = 75, E = 30, R = 0.02), 
+           fixed = list(A ~ 1, E ~ 1, R ~ 1), 
+           random = A ~ year | loc)
+summary(mm)
+```
+
+Et sur graphique:
+
+```{r}
+engelstad.nitro %>%
+  ggplot(aes(x = nitro, y = yield)) +
+  facet_grid(year ~ loc) +
+  geom_line(data = tibble(nitro = engelstad.nitro$nitro,
+                          yield = predict(mm, level = 0)),
+            colour = "grey35") +
+  geom_point() +
+  ylim(c(0, 95))
+```
+
+
+Les modèles mixtes non linéaires peuvent devenir très complexes lorsque les paramètres, par exemple A, E et R, sont eux-même affectés linéairement par des variables (par exemple `A ~ topo`). Pour aller plus loin, consultez [Parent et al. (2017) ](https://doi.org/10.3389/fenvs.2017.00081) ainsi que les [calculs associés à l'article](https://github.com/essicolo/site-specific-multilevel-modeling-of-potato-response-to-nitrogen-fertilization). Ou écrivez-moi un courriel pour en discuter!
+
+**Note**. L'interprétation de p-values sur les modèles mixtes est controversée. À ce sujet, Douglas Bates a écrit une longue lettre à la communauté de développement du module `lme4`, une alternative à `nlme`, qui remet en cause l'utilisation des p-values, [ici](https://stat.ethz.ch/pipermail/r-help/2006-May/094765.html). De plus en plus, pour les modèles mixtes, on se tourne vers les statistiques bayésiennes, couvertes dans le chapitre \@ref(chapitre-biostats-bayes) avec le module greta. Mais en ce qui a trait aux modèles mixtes, le module [`brms`](https://github.com/paul-buerkner/brms) automatise bien des aspects de l'approche bayésienne.
+
+## Aller plus loin
+
+### Statistiques générales
+
+- [The analysis of biological data](https://ariane25.bibl.ulaval.ca/ariane/wicket/detail?c=ariane&m=S&rq.ct=PE&rq.fa=false&rq.r.esc=false&rq.r.l%5B0%5D.c=TI&rq.r.l%5B0%5D.ex=false&rq.r.l%5B0%5D.op=AND&rq.r.l%5B0%5D.v=the+analysis+of+biological+data&rq.r.la=*&rq.r.loc=*&rq.r.pft=true&rq.r.ta=*&rq.r.td=*&rq.rows=5&rq.st=1)
+
+### Statistiques avec R
+
+- Disponibles en version électronique à la bibliothèque de l'Université Laval:
+    - Introduction aux statistiques avec R: [Introductory statistics with R](https://ariane25.bibl.ulaval.ca/ariane/wicket/detail?c=ariane&m=S&rq.ct=PE&rq.fa=false&rq.r.esc=false&rq.r.l%5B0%5D.c=TI&rq.r.l%5B0%5D.ex=false&rq.r.l%5B0%5D.op=AND&rq.r.l%5B0%5D.v=Introductory+statistics+with+R&rq.r.la=*&rq.r.loc=*&rq.r.pft=true&rq.r.ta=*&rq.r.td=*&rq.rows=1&rq.st=0)
+    - Approfondir les statistiques avec R: [The R Book, Second edition](https://ariane25.bibl.ulaval.ca/ariane/wicket/detail?c=ariane&m=S&rq.ct=PE&rq.fa=false&rq.r.esc=false&rq.r.l%5B0%5D.c=TI&rq.r.l%5B0%5D.ex=false&rq.r.l%5B0%5D.op=AND&rq.r.l%5B0%5D.v=the+r+book&rq.r.la=*&rq.r.loc=*&rq.r.pft=true&rq.r.ta=*&rq.r.td=*&rq.rows=15&rq.st=2)
+    - Approfondir les modèles à effets mixtes avec R: [Mixed Effects Models and Extensions in Ecology with R](https://ariane25.bibl.ulaval.ca/ariane/wicket/detail?c=ariane&m=S&rq.ct=PE&rq.fa=false&rq.r.esc=false&rq.r.l%5B0%5D.c=TI&rq.r.l%5B0%5D.ex=false&rq.r.l%5B0%5D.op=AND&rq.r.l%5B0%5D.v=Mixed+Effects+Models+and+Extensions+in+Ecology+with+R&rq.r.la=*&rq.r.loc=*&rq.r.pft=false&rq.r.ta=*&rq.r.td=*&rq.rows=2&rq.st=1)
+- [ModernDive](https://moderndive.com/index.html), un livre en ligne offrant une approche moderne avec le package `moderndive`.

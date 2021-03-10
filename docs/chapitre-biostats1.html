@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapitre 5 Biostatistiques, définitions | Biostatistiques</title>
+  <meta name="description" content="Notes de cours de Biostatistiques" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapitre 5 Biostatistiques, définitions | Biostatistiques" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notes de cours de Biostatistiques" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapitre 5 Biostatistiques, définitions | Biostatistiques" />
+  
+  <meta name="twitter:description" content="Notes de cours de Biostatistiques" />
+  
+
+<meta name="author" content="Z. Coulibali, Agronome, PhD." />
+
+
+<meta name="date" content="2021-03-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="chapitre-visualisation.html"/>
+<link rel="next" href="chapitre-biostats2.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#étapes-du-projet-en-science-des-données"><i class="fa fa-check"></i><b>1.1</b> Étapes du projet en science des données</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#statistiques-ou-science-des-données"><i class="fa fa-check"></i><b>1.2</b> Statistiques ou Science des données ?</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#table-des-matières"><i class="fa fa-check"></i><b>1.3</b> Table des matières</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html"><i class="fa fa-check"></i><b>2</b> La science des données avec R</a><ul>
+<li class="chapter" data-level="2.1" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#organiser-son-environnement-de-travail-en-r"><i class="fa fa-check"></i><b>2.1</b> Organiser son environnement de travail en R</a></li>
+<li class="chapter" data-level="2.2" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#préparer-son-flux-de-travail"><i class="fa fa-check"></i><b>2.2</b> Préparer son flux de travail</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#installation-classique-de-r"><i class="fa fa-check"></i><b>2.2.1</b> Installation classique de R</a></li>
+<li class="chapter" data-level="2.2.2" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#linterpréteur-de-commandes-rstudio"><i class="fa fa-check"></i><b>2.2.2</b> L’interpréteur de commandes RStudio</a></li>
+<li class="chapter" data-level="2.2.3" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#r-markdown"><i class="fa fa-check"></i><b>2.2.3</b> R markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#premiers-pas-avec-r"><i class="fa fa-check"></i><b>2.3</b> Premiers pas avec R</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#types-de-données"><i class="fa fa-check"></i><b>2.3.1</b> Types de données</a></li>
+<li class="chapter" data-level="2.3.2" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#les-collections-de-données"><i class="fa fa-check"></i><b>2.3.2</b> Les collections de données</a></li>
+<li class="chapter" data-level="2.3.3" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#les-fonctions"><i class="fa fa-check"></i><b>2.3.3</b> Les fonctions</a></li>
+<li class="chapter" data-level="2.3.4" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#les-boucles"><i class="fa fa-check"></i><b>2.3.4</b> Les boucles</a></li>
+<li class="chapter" data-level="2.3.5" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#conditions-if-else-if-else"><i class="fa fa-check"></i><b>2.3.5</b> Conditions : if, else if, else</a></li>
+<li class="chapter" data-level="2.3.6" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#installer-et-charger-un-module"><i class="fa fa-check"></i><b>2.3.6</b> Installer et charger un module</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#enfin"><i class="fa fa-check"></i><b>2.4</b> Enfin…</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html"><i class="fa fa-check"></i><b>3</b> Organisation des données et opérations sur les tableaux</a><ul>
+<li class="chapter" data-level="3.1" data-path="chapitre-intro-a-R.html"><a href="chapitre-intro-a-R.html#les-collections-de-données"><i class="fa fa-check"></i><b>3.1</b> Les collections de données</a></li>
+<li class="chapter" data-level="3.2" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#organiser-un-tableau-de-données"><i class="fa fa-check"></i><b>3.2</b> Organiser un tableau de données</a></li>
+<li class="chapter" data-level="3.3" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#formats-de-tableau"><i class="fa fa-check"></i><b>3.3</b> Formats de tableau</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#xls-ou-xlsx"><i class="fa fa-check"></i><b>3.3.1</b> <em>xls</em> ou <em>xlsx</em></a></li>
+<li class="chapter" data-level="3.3.2" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#csv"><i class="fa fa-check"></i><b>3.3.2</b> <em>csv</em></a></li>
+<li class="chapter" data-level="3.3.3" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#json"><i class="fa fa-check"></i><b>3.3.3</b> <em>json</em></a></li>
+<li class="chapter" data-level="3.3.4" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#sqlite"><i class="fa fa-check"></i><b>3.3.4</b> SQLite</a></li>
+<li class="chapter" data-level="3.3.5" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#suggestion"><i class="fa fa-check"></i><b>3.3.5</b> Suggestion</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#entreposer-ses-données"><i class="fa fa-check"></i><b>3.4</b> Entreposer ses données</a></li>
+<li class="chapter" data-level="3.5" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#manipuler-des-données-en-mode-tidyverse"><i class="fa fa-check"></i><b>3.5</b> Manipuler des données en mode tidyverse</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#importer-les-données-dans-la-session-de-travail"><i class="fa fa-check"></i><b>3.5.1</b> Importer les données dans la session de travail</a></li>
+<li class="chapter" data-level="3.5.2" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#comment-sélectionner-et-filtrer-des-données"><i class="fa fa-check"></i><b>3.5.2</b> Comment sélectionner et filtrer des données ?</a></li>
+<li class="chapter" data-level="3.5.3" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#le-format-long-et-le-format-large"><i class="fa fa-check"></i><b>3.5.3</b> Le format long et le format large</a></li>
+<li class="chapter" data-level="3.5.4" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#combiner-des-tableaux"><i class="fa fa-check"></i><b>3.5.4</b> Combiner des tableaux</a></li>
+<li class="chapter" data-level="3.5.5" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#opérations-sur-les-tableaux"><i class="fa fa-check"></i><b>3.5.5</b> Opérations sur les tableaux</a></li>
+<li class="chapter" data-level="3.5.6" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#exemple-difficile---extra"><i class="fa fa-check"></i><b>3.5.6</b> Exemple (difficile) - (Extra)</a></li>
+<li class="chapter" data-level="3.5.7" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#exporter-un-tableau"><i class="fa fa-check"></i><b>3.5.7</b> Exporter un tableau</a></li>
+<li class="chapter" data-level="3.5.8" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#aller-plus-loin-dans-le-tidyverse"><i class="fa fa-check"></i><b>3.5.8</b> Aller plus loin dans le tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="chapitre-tableaux.html"><a href="chapitre-tableaux.html#références"><i class="fa fa-check"></i><b>3.6</b> Références</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html"><i class="fa fa-check"></i><b>4</b> Visualisation</a><ul>
+<li class="chapter" data-level="4.1" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#pourquoi-explorer-graphiquement"><i class="fa fa-check"></i><b>4.1</b> Pourquoi explorer graphiquement ?</a></li>
+<li class="chapter" data-level="4.2" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#publier-un-graphique"><i class="fa fa-check"></i><b>4.2</b> Publier un graphique</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#cinq-qualités-dun-bon-graphique"><i class="fa fa-check"></i><b>4.2.1</b> Cinq qualités d’un bon graphique</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#choisir-le-type-de-graphique-le-plus-approprié"><i class="fa fa-check"></i><b>4.3</b> Choisir le type de graphique le plus approprié</a></li>
+<li class="chapter" data-level="4.4" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#choisir-son-outils-de-visualisation"><i class="fa fa-check"></i><b>4.4</b> Choisir son outils de visualisation</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#approche-impérative"><i class="fa fa-check"></i><b>4.4.1</b> Approche impérative</a></li>
+<li class="chapter" data-level="4.4.2" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#approche-déclarative"><i class="fa fa-check"></i><b>4.4.2</b> Approche déclarative</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#visualisation-en-r"><i class="fa fa-check"></i><b>4.5</b> Visualisation en R</a></li>
+<li class="chapter" data-level="4.6" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#module-de-base-pour-les-graphiques"><i class="fa fa-check"></i><b>4.6</b> Module de base pour les graphiques</a></li>
+<li class="chapter" data-level="4.7" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#la-grammaire-graphique-ggplot2"><i class="fa fa-check"></i><b>4.7</b> La grammaire graphique ggplot2</a></li>
+<li class="chapter" data-level="4.8" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#mon-premier-ggplot"><i class="fa fa-check"></i><b>4.8</b> Mon premier ggplot</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#les-facettes"><i class="fa fa-check"></i><b>4.8.1</b> Les facettes</a></li>
+<li class="chapter" data-level="4.8.2" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#plusieurs-sources-de-données"><i class="fa fa-check"></i><b>4.8.2</b> Plusieurs sources de données</a></li>
+<li class="chapter" data-level="4.8.3" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#exporter-avec-style"><i class="fa fa-check"></i><b>4.8.3</b> Exporter avec style</a></li>
+<li class="chapter" data-level="4.8.4" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#nuages-de-points"><i class="fa fa-check"></i><b>4.8.4</b> Nuages de points</a></li>
+<li class="chapter" data-level="4.8.5" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#diagrammes-en-lignes"><i class="fa fa-check"></i><b>4.8.5</b> Diagrammes en lignes</a></li>
+<li class="chapter" data-level="4.8.6" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#les-histogrammes"><i class="fa fa-check"></i><b>4.8.6</b> Les histogrammes</a></li>
+<li class="chapter" data-level="4.8.7" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#boxplots"><i class="fa fa-check"></i><b>4.8.7</b> Boxplots</a></li>
+<li class="chapter" data-level="4.8.8" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#les-diagrammes-en-barre"><i class="fa fa-check"></i><b>4.8.8</b> Les diagrammes en barre</a></li>
+<li class="chapter" data-level="4.8.9" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#exporter-un-graphique"><i class="fa fa-check"></i><b>4.8.9</b> Exporter un graphique</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#les-graphiques-comme-outil-dexploration-des-données"><i class="fa fa-check"></i><b>4.9</b> Les graphiques comme outil d’exploration des données</a><ul>
+<li class="chapter" data-level="4.9.1" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#des-graphiques-interactifs"><i class="fa fa-check"></i><b>4.9.1</b> Des graphiques interactifs !</a></li>
+<li class="chapter" data-level="4.9.2" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#des-extensions-de-ggplot2"><i class="fa fa-check"></i><b>4.9.2</b> Des extensions de ggplot2</a></li>
+<li class="chapter" data-level="4.9.3" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#aller-plus-loin-avec-ggplot2"><i class="fa fa-check"></i><b>4.9.3</b> Aller plus loin avec ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#choisir-les-bonnes-couleurs"><i class="fa fa-check"></i><b>4.10</b> Choisir les bonnes couleurs</a></li>
+<li class="chapter" data-level="4.11" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#règles-particulières"><i class="fa fa-check"></i><b>4.11</b> Règles particulières</a><ul>
+<li class="chapter" data-level="4.11.1" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#ne-tronquez-pas-inutilement-laxe-des-y"><i class="fa fa-check"></i><b>4.11.1</b> Ne tronquez pas inutilement l’axe des <span class="math inline">\(y\)</span></a></li>
+<li class="chapter" data-level="4.11.2" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#utilisez-un-encrage-proportionnel"><i class="fa fa-check"></i><b>4.11.2</b> Utilisez un encrage proportionnel</a></li>
+<li class="chapter" data-level="4.11.3" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#publiez-vos-données"><i class="fa fa-check"></i><b>4.11.3</b> Publiez vos données</a></li>
+<li class="chapter" data-level="4.11.4" data-path="chapitre-visualisation.html"><a href="chapitre-visualisation.html#visitez-www.junkcharts.typepad.com-de-temps-à-autre"><i class="fa fa-check"></i><b>4.11.4</b> Visitez <code>www.junkcharts.typepad.com/</code> de temps à autre</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="chapitre-biostats1.html"><a href="chapitre-biostats1.html"><i class="fa fa-check"></i><b>5</b> Biostatistiques, définitions</a><ul>
+<li class="chapter" data-level="5.1" data-path="chapitre-biostats1.html"><a href="chapitre-biostats1.html#populations-et-échantillons"><i class="fa fa-check"></i><b>5.1</b> Populations et échantillons</a></li>
+<li class="chapter" data-level="5.2" data-path="chapitre-biostats1.html"><a href="chapitre-biostats1.html#les-variables"><i class="fa fa-check"></i><b>5.2</b> Les variables</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="chapitre-biostats1.html"><a href="chapitre-biostats1.html#variables-quantitatives"><i class="fa fa-check"></i><b>5.2.1</b> Variables quantitatives</a></li>
+<li class="chapter" data-level="5.2.2" data-path="chapitre-biostats1.html"><a href="chapitre-biostats1.html#variables-qualitatives"><i class="fa fa-check"></i><b>5.2.2</b> Variables qualitatives</a></li>
+<li class="chapter" data-level="5.2.3" data-path="chapitre-biostats1.html"><a href="chapitre-biostats1.html#niveau-ou-échelle-de-mesure"><i class="fa fa-check"></i><b>5.2.3</b> Niveau ou échelle de mesure</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="chapitre-biostats1.html"><a href="chapitre-biostats1.html#les-probabilités"><i class="fa fa-check"></i><b>5.3</b> Les probabilités</a></li>
+<li class="chapter" data-level="5.4" data-path="chapitre-biostats1.html"><a href="chapitre-biostats1.html#les-distributions"><i class="fa fa-check"></i><b>5.4</b> Les distributions</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="chapitre-biostats1.html"><a href="chapitre-biostats1.html#la-distribution-binomiale"><i class="fa fa-check"></i><b>5.4.1</b> La distribution binomiale</a></li>
+<li class="chapter" data-level="5.4.2" data-path="chapitre-biostats1.html"><a href="chapitre-biostats1.html#la-distribution-de-poisson"><i class="fa fa-check"></i><b>5.4.2</b> La distribution de Poisson</a></li>
+<li class="chapter" data-level="5.4.3" data-path="chapitre-biostats1.html"><a href="chapitre-biostats1.html#distribution-uniforme"><i class="fa fa-check"></i><b>5.4.3</b> Distribution uniforme</a></li>
+<li class="chapter" data-level="5.4.4" data-path="chapitre-biostats1.html"><a href="chapitre-biostats1.html#distribution-normale"><i class="fa fa-check"></i><b>5.4.4</b> Distribution normale</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="chapitre-biostats2.html"><a href="chapitre-biostats2.html"><i class="fa fa-check"></i><b>6</b> Statistiques descriptives</a><ul>
+<li class="chapter" data-level="6.1" data-path="chapitre-biostats2.html"><a href="chapitre-biostats2.html#sommaire-des-données"><i class="fa fa-check"></i><b>6.1</b> Sommaire des données</a></li>
+<li class="chapter" data-level="6.2" data-path="chapitre-biostats2.html"><a href="chapitre-biostats2.html#moyenne-et-écart-type"><i class="fa fa-check"></i><b>6.2</b> Moyenne et écart-type</a></li>
+<li class="chapter" data-level="6.3" data-path="chapitre-biostats2.html"><a href="chapitre-biostats2.html#quartiles"><i class="fa fa-check"></i><b>6.3</b> Quartiles</a></li>
+<li class="chapter" data-level="6.4" data-path="chapitre-biostats2.html"><a href="chapitre-biostats2.html#décomptes-et-proportions"><i class="fa fa-check"></i><b>6.4</b> Décomptes et proportions</a></li>
+<li class="chapter" data-level="6.5" data-path="chapitre-biostats2.html"><a href="chapitre-biostats2.html#tests-dhypothèses-à-1-et-2-échantillons"><i class="fa fa-check"></i><b>6.5</b> Tests d’hypothèses à 1 et 2 échantillons</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="chapitre-biostats2.html"><a href="chapitre-biostats2.html#lhypothèse-nulle"><i class="fa fa-check"></i><b>6.5.1</b> L’hypothèse nulle</a></li>
+<li class="chapter" data-level="6.5.2" data-path="chapitre-biostats2.html"><a href="chapitre-biostats2.html#test-de-t-à-un-seul-échantillon"><i class="fa fa-check"></i><b>6.5.2</b> Test de t à un seul échantillon</a></li>
+<li class="chapter" data-level="6.5.3" data-path="chapitre-biostats2.html"><a href="chapitre-biostats2.html#intervalle-de-confiance"><i class="fa fa-check"></i><b>6.5.3</b> Intervalle de confiance</a></li>
+<li class="chapter" data-level="6.5.4" data-path="chapitre-biostats2.html"><a href="chapitre-biostats2.html#la-p-value"><i class="fa fa-check"></i><b>6.5.4</b> La <em>p-value</em></a></li>
+<li class="chapter" data-level="6.5.5" data-path="chapitre-biostats2.html"><a href="chapitre-biostats2.html#test-de-wilcoxon-à-un-seul-échantillon"><i class="fa fa-check"></i><b>6.5.5</b> Test de Wilcoxon à un seul échantillon</a></li>
+<li class="chapter" data-level="6.5.6" data-path="chapitre-biostats2.html"><a href="chapitre-biostats2.html#tests-de-t-à-deux-échantillons"><i class="fa fa-check"></i><b>6.5.6</b> Tests de t à deux échantillons</a></li>
+<li class="chapter" data-level="6.5.7" data-path="chapitre-biostats2.html"><a href="chapitre-biostats2.html#enregistrer-les-résultats-dun-test"><i class="fa fa-check"></i><b>6.5.7</b> Enregistrer les résultats d’un test</a></li>
+<li class="chapter" data-level="6.5.8" data-path="chapitre-biostats2.html"><a href="chapitre-biostats2.html#comparaison-des-variances"><i class="fa fa-check"></i><b>6.5.8</b> Comparaison des variances</a></li>
+<li class="chapter" data-level="6.5.9" data-path="chapitre-biostats2.html"><a href="chapitre-biostats2.html#tests-de-wilcoxon-à-deux-échantillons"><i class="fa fa-check"></i><b>6.5.9</b> Tests de Wilcoxon à deux échantillons</a></li>
+<li class="chapter" data-level="6.5.10" data-path="chapitre-biostats2.html"><a href="chapitre-biostats2.html#les-tests-pairés"><i class="fa fa-check"></i><b>6.5.10</b> Les tests pairés</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="chapitre-biostats2.html"><a href="chapitre-biostats2.html#lanalyse-de-variance"><i class="fa fa-check"></i><b>6.6</b> L’analyse de variance</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="chapitre-modelisation.html"><a href="chapitre-modelisation.html"><i class="fa fa-check"></i><b>7</b> Modèles statistiques</a><ul>
+<li class="chapter" data-level="7.1" data-path="chapitre-modelisation.html"><a href="chapitre-modelisation.html#modèles-à-effets-fixes"><i class="fa fa-check"></i><b>7.1</b> Modèles à effets fixes</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="chapitre-modelisation.html"><a href="chapitre-modelisation.html#modèle-linéaire-univarié-avec-variable-continue"><i class="fa fa-check"></i><b>7.1.1</b> Modèle linéaire univarié avec variable continue</a></li>
+<li class="chapter" data-level="7.1.2" data-path="chapitre-modelisation.html"><a href="chapitre-modelisation.html#analyse-des-résidus"><i class="fa fa-check"></i><b>7.1.2</b> Analyse des résidus</a></li>
+<li class="chapter" data-level="7.1.3" data-path="chapitre-modelisation.html"><a href="chapitre-modelisation.html#régression-multiple"><i class="fa fa-check"></i><b>7.1.3</b> Régression multiple</a></li>
+<li class="chapter" data-level="7.1.4" data-path="chapitre-modelisation.html"><a href="chapitre-modelisation.html#modèles-linéaires-univariés-avec-variable-catégorielle-nominale"><i class="fa fa-check"></i><b>7.1.4</b> Modèles linéaires univariés avec variable catégorielle <strong>nominale</strong></a></li>
+<li class="chapter" data-level="7.1.5" data-path="chapitre-modelisation.html"><a href="chapitre-modelisation.html#modèles-linéaires-univariés-avec-variable-catégorielle-ordinale"><i class="fa fa-check"></i><b>7.1.5</b> Modèles linéaires univariés avec variable catégorielle <strong>ordinale</strong></a></li>
+<li class="chapter" data-level="7.1.6" data-path="chapitre-modelisation.html"><a href="chapitre-modelisation.html#régression-multiple-à-plusieurs-variables"><i class="fa fa-check"></i><b>7.1.6</b> Régression multiple à plusieurs variables</a></li>
+<li class="chapter" data-level="7.1.7" data-path="chapitre-modelisation.html"><a href="chapitre-modelisation.html#attention-à-ne-pas-surcharger-le-modèle"><i class="fa fa-check"></i><b>7.1.7</b> Attention à ne pas surcharger le modèle</a></li>
+<li class="chapter" data-level="7.1.8" data-path="chapitre-modelisation.html"><a href="chapitre-modelisation.html#les-modèles-linéaires-généralisés"><i class="fa fa-check"></i><b>7.1.8</b> Les modèles linéaires généralisés</a></li>
+<li class="chapter" data-level="7.1.9" data-path="chapitre-modelisation.html"><a href="chapitre-modelisation.html#les-modèles-non-linéaires"><i class="fa fa-check"></i><b>7.1.9</b> Les modèles non-linéaires</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="chapitre-modelisation.html"><a href="chapitre-modelisation.html#modèles-à-effets-mixtes"><i class="fa fa-check"></i><b>7.2</b> Modèles à effets mixtes</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="chapitre-modelisation.html"><a href="chapitre-modelisation.html#modèles-mixtes-non-linéaires"><i class="fa fa-check"></i><b>7.2.1</b> Modèles mixtes non-linéaires</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="chapitre-modelisation.html"><a href="chapitre-modelisation.html#aller-plus-loin"><i class="fa fa-check"></i><b>7.3</b> Aller plus loin</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="chapitre-modelisation.html"><a href="chapitre-modelisation.html#statistiques-générales"><i class="fa fa-check"></i><b>7.3.1</b> Statistiques générales</a></li>
+<li class="chapter" data-level="7.3.2" data-path="chapitre-modelisation.html"><a href="chapitre-modelisation.html#statistiques-avec-r"><i class="fa fa-check"></i><b>7.3.2</b> Statistiques avec R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html"><i class="fa fa-check"></i><b>8</b> Association, partitionnement et ordination</a><ul>
+<li class="chapter" data-level="8.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#espaces-danalyse"><i class="fa fa-check"></i><b>8.1</b> Espaces d’analyse</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#abondance-et-occurence"><i class="fa fa-check"></i><b>8.1.1</b> Abondance et occurence</a></li>
+<li class="chapter" data-level="8.1.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#environnement"><i class="fa fa-check"></i><b>8.1.2</b> Environnement</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#analyse-dassociation"><i class="fa fa-check"></i><b>8.2</b> Analyse d’association</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#association-entre-objets-mode-q"><i class="fa fa-check"></i><b>8.2.1</b> Association entre objets (mode Q)</a></li>
+<li class="chapter" data-level="8.2.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#associations-entre-variables-mode-r"><i class="fa fa-check"></i><b>8.2.2</b> Associations entre variables (mode R)</a></li>
+<li class="chapter" data-level="8.2.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#conclusion-sur-les-associations"><i class="fa fa-check"></i><b>8.2.3</b> Conclusion sur les associations</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement"><i class="fa fa-check"></i><b>8.3</b> Partitionnement</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#évaluation-dun-partitionnement"><i class="fa fa-check"></i><b>8.3.1</b> Évaluation d’un partitionnement</a></li>
+<li class="chapter" data-level="8.3.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-non-hiérarchique"><i class="fa fa-check"></i><b>8.3.2</b> Partitionnement non hiérarchique</a></li>
+<li class="chapter" data-level="8.3.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-hiérarchique"><i class="fa fa-check"></i><b>8.3.3</b> Partitionnement hiérarchique</a></li>
+<li class="chapter" data-level="8.3.4" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-hiérarchique-basée-sur-la-densité-des-points"><i class="fa fa-check"></i><b>8.3.4</b> Partitionnement hiérarchique basée sur la densité des points</a></li>
+<li class="chapter" data-level="8.3.5" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#conclusion-sur-le-partitionnement"><i class="fa fa-check"></i><b>8.3.5</b> Conclusion sur le partitionnement</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination"><i class="fa fa-check"></i><b>8.4</b> Ordination</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination-non-contraignante"><i class="fa fa-check"></i><b>8.4.1</b> Ordination non contraignante</a></li>
+<li class="chapter" data-level="8.4.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination-contraignante"><i class="fa fa-check"></i><b>8.4.2</b> Ordination contraignante</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#chapitre-ordination"><i class="fa fa-check"></i><b>9</b> Association, partitionnement et ordination</a><ul>
+<li class="chapter" data-level="9.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#espaces-danalyse"><i class="fa fa-check"></i><b>9.1</b> Espaces d’analyse</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#abondance-et-occurence"><i class="fa fa-check"></i><b>9.1.1</b> Abondance et occurence</a></li>
+<li class="chapter" data-level="9.1.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#environnement"><i class="fa fa-check"></i><b>9.1.2</b> Environnement</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#analyse-dassociation"><i class="fa fa-check"></i><b>9.2</b> Analyse d’association</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#association-entre-objets-mode-q"><i class="fa fa-check"></i><b>9.2.1</b> Association entre objets (mode Q)</a></li>
+<li class="chapter" data-level="9.2.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#associations-entre-variables-mode-r"><i class="fa fa-check"></i><b>9.2.2</b> Associations entre variables (mode R)</a></li>
+<li class="chapter" data-level="9.2.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#conclusion-sur-les-associations"><i class="fa fa-check"></i><b>9.2.3</b> Conclusion sur les associations</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement"><i class="fa fa-check"></i><b>9.3</b> Partitionnement</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#évaluation-dun-partitionnement"><i class="fa fa-check"></i><b>9.3.1</b> Évaluation d’un partitionnement</a></li>
+<li class="chapter" data-level="9.3.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-non-hiérarchique"><i class="fa fa-check"></i><b>9.3.2</b> Partitionnement non hiérarchique</a></li>
+<li class="chapter" data-level="9.3.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-hiérarchique"><i class="fa fa-check"></i><b>9.3.3</b> Partitionnement hiérarchique</a></li>
+<li class="chapter" data-level="9.3.4" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-hiérarchique-basée-sur-la-densité-des-points"><i class="fa fa-check"></i><b>9.3.4</b> Partitionnement hiérarchique basée sur la densité des points</a></li>
+<li class="chapter" data-level="9.3.5" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#conclusion-sur-le-partitionnement"><i class="fa fa-check"></i><b>9.3.5</b> Conclusion sur le partitionnement</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination"><i class="fa fa-check"></i><b>9.4</b> Ordination</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination-non-contraignante"><i class="fa fa-check"></i><b>9.4.1</b> Ordination non contraignante</a></li>
+<li class="chapter" data-level="9.4.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination-contraignante"><i class="fa fa-check"></i><b>9.4.2</b> Ordination contraignante</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#chapitre-ordination"><i class="fa fa-check"></i><b>10</b> Association, partitionnement et ordination</a><ul>
+<li class="chapter" data-level="10.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#espaces-danalyse"><i class="fa fa-check"></i><b>10.1</b> Espaces d’analyse</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#abondance-et-occurence"><i class="fa fa-check"></i><b>10.1.1</b> Abondance et occurence</a></li>
+<li class="chapter" data-level="10.1.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#environnement"><i class="fa fa-check"></i><b>10.1.2</b> Environnement</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#analyse-dassociation"><i class="fa fa-check"></i><b>10.2</b> Analyse d’association</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#association-entre-objets-mode-q"><i class="fa fa-check"></i><b>10.2.1</b> Association entre objets (mode Q)</a></li>
+<li class="chapter" data-level="10.2.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#associations-entre-variables-mode-r"><i class="fa fa-check"></i><b>10.2.2</b> Associations entre variables (mode R)</a></li>
+<li class="chapter" data-level="10.2.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#conclusion-sur-les-associations"><i class="fa fa-check"></i><b>10.2.3</b> Conclusion sur les associations</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement"><i class="fa fa-check"></i><b>10.3</b> Partitionnement</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#évaluation-dun-partitionnement"><i class="fa fa-check"></i><b>10.3.1</b> Évaluation d’un partitionnement</a></li>
+<li class="chapter" data-level="10.3.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-non-hiérarchique"><i class="fa fa-check"></i><b>10.3.2</b> Partitionnement non hiérarchique</a></li>
+<li class="chapter" data-level="10.3.3" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-hiérarchique"><i class="fa fa-check"></i><b>10.3.3</b> Partitionnement hiérarchique</a></li>
+<li class="chapter" data-level="10.3.4" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#partitionnement-hiérarchique-basée-sur-la-densité-des-points"><i class="fa fa-check"></i><b>10.3.4</b> Partitionnement hiérarchique basée sur la densité des points</a></li>
+<li class="chapter" data-level="10.3.5" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#conclusion-sur-le-partitionnement"><i class="fa fa-check"></i><b>10.3.5</b> Conclusion sur le partitionnement</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination"><i class="fa fa-check"></i><b>10.4</b> Ordination</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination-non-contraignante"><i class="fa fa-check"></i><b>10.4.1</b> Ordination non contraignante</a></li>
+<li class="chapter" data-level="10.4.2" data-path="chapitre-ordination.html"><a href="chapitre-ordination.html#ordination-contraignante"><i class="fa fa-check"></i><b>10.4.2</b> Ordination contraignante</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Biostatistiques</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chapitre-biostats1" class="section level1">
+<h1><span class="header-section-number">Chapitre 5</span> Biostatistiques, définitions</h1>
+<hr />
+<p>️ <strong>Objectifs spécifiques</strong>:</p>
+<p>À la fin de ce chapitre,</p>
+<ul>
+<li>vous serez en mesure de définir les concepts de base en statistique : population, échantillon, variable, probabilité et distribution</li>
+<li>vous serez en mesure de calculer des statistiques descriptives de base : moyenne et écart-type, quartiles, maximum et minimum</li>
+<li>vous comprendrez les notions de test d’hypothèse, d’effet et de p-value, ainsi qu’éviter les erreurs communes dans leur interprétation</li>
+<li>vous saurez effectuer une modélisation statistique linéaire simple, multiple et mixte, entre autre sur des catégories</li>
+<li>vous saurez effectuer une modélisation statistique non linéaire simple, multiple et mixte</li>
+</ul>
+<hr />
+<p>Aux chapitres précédents, nous avons vu comment organiser, manipuler et visualiser des tableaux de données.</p>
+<p>La <strong>statistique</strong> est une collection de disciplines liées à la collecte, l’organisation, l’analyse, l’interprétation et la présentation de données. Les <strong>biostatistiques</strong> sont l’application de ces disciplines à la <a href="https://fr.wikipedia.org/wiki/Biosph%C3%A8re"><em>biosphère</em></a>.</p>
+<p>Dans <a href="https://www.amazon.com/Principles-Procedures-Statistics-Biometrical-Approach/dp/0070610282"><em>Principles and procedures of statistics: A biometrical approach</em></a>, <strong>Steel</strong>, <strong>Torie</strong> et <strong>Dickey (1997)</strong> définissent les statistiques ainsi :</p>
+<blockquote>
+<p>Les <strong>statistiques</strong> forment la science pure et appliquée, de la création, du développement, et de l’application de techniques par lesquelles l’incertitude de l’<strong>induction inférentielle</strong> peut être évaluée. (ma traduction)</p>
+</blockquote>
+<p>Alors que l’<strong>inférence</strong> consiste à généraliser des observations sur des échantillons, à l’ensemble d’une population, l’<strong>induction</strong> est un type de raisonnement qui permet de généraliser des observations en théories.</p>
+<blockquote>
+<p><em><strong>Les statistiques</strong> permettent d’évaluer l’incertitude découlant du processus qui permet d’abord de passer de l’échantillon à la population représentée par cet échantillon, puis de passer de cette représentation d’une population en lois générales la concernant</em>.</p>
+</blockquote>
+<p>La définition de <strong>Whitlock et Schuluter (2015)</strong>, dans <a href="http://whitlockschluter.zoology.ubc.ca/">The Analysis of Biological Data</a>, est plus simple, insistant sur l’<strong>inférence</strong> :</p>
+<blockquote>
+<p><strong>La statistique</strong> est l’étude des méthodes pour mesurer des aspects de populations à partir d’échantillons et pour quantifier l’incertitude des mesures. (ma traduction)</p>
+</blockquote>
+<p><strong>Les statistiques</strong> consistent à <em>faire du sens</em> (anglicisme assumé) avec des observations dans l’objectif de répondre à une question que vous aurez formulée clairement, préalablement à votre expérience.</p>
+<blockquote class="twitter-tweet" data-lang="fr">
+<p lang="en" dir="ltr">
+The more time I spend as The Statistician in the room, the more I think the best skill you can cultivate is the ability to remain calm and repeatedly ask “What question are you trying to answer?”
+</p>
+— Bryan Howie (<span class="citation">@bryan_howie</span>) <a href="https://twitter.com/bryan_howie/status/1073054519808876544?ref_src=twsrc%5Etfw">13 décembre 2018</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>Vous trouverez éventuellement selon la documentation d’autres définitions qui sommes toutes tentent de faire bien comprendre la terminologie :</p>
+<p>Statistiques = traitement de variables aléatoires dans les buts de :</p>
+<ul>
+<li><strong>représentation</strong> (tableaux et graphiques),</li>
+<li><strong>ajustement</strong> (correction pour la présence d’effets de nuisance),</li>
+<li><strong>tests d’hypothèse</strong> (ou test statistique) : démarche qui a pour but de fournir une règle de décision permettant, sur la base de résultats d’échantillon, de faire un choix entre deux hypothèses statistiques.</li>
+<li><strong>prédiction</strong> (valeurs futures). Déterminer de nouvelles valeurs relatives à un modèle mathématique particulier fondé sur l’observation de données d’expérience qui ont conduit à l’élaboration du modèle.</li>
+</ul>
+<p>Le flux de travail conventionnel consiste à :</p>
+<ol style="list-style-type: decimal">
+<li>collecter des échantillons,</li>
+<li>transformer les données,</li>
+<li>effectuer des tests,</li>
+<li>analyser les résultats, les interpréter et les visualiser.</li>
+</ol>
+<p>Bien que ces tâches soient complexes, en particulier en ce qui a trait aux <strong>tests statistiques</strong>, la plupart des opérations statistiques peuvent être effectuées sans l’assistance de statisticien.ne.s à condition de comprendre suffisamment les concepts utilisés.</p>
+<p>Ce chapitre à lui seul est trop court pour permettre d’intégrer toutes les connaissances nécessaires à une utilisation raisonnée des statistiques, mais fourni les bases pour aller plus loin. Notez que les erreurs d’interprétation statistiques sont courantes et la consultation de spécialistes n’est souvent pas un luxe.</p>
+<p>Dans ce chapitre,</p>
+<ul>
+<li>nous verrons comment répondre correctement à une question valide et adéquate avec l’aide d’outils de calcul scientifique.</li>
+<li>nous couvrirons les notions de bases des distributions et des variables aléatoires qui nous permettront d’effectuer des tests statistiques communs avec <strong>R</strong></li>
+<li>nous couvrirons aussi les erreurs communément commises en recherche académique et les moyens simples de les éviter.</li>
+</ul>
+<p>Ce chapitre est une introduction aux statistiques avec <strong>R</strong>, et ne remplacera pas un bon cours de stats.</p>
+<p>En plus des modules de base de <strong>R</strong> nous utiliserons :</p>
+<ul>
+<li>les modules de la <strong><code>tidyverse</code></strong>,</li>
+<li>le module de données agricoles <strong><code>agridat</code></strong>, ainsi que</li>
+<li>le module <strong><code>nlme</code></strong> spécialisé pour la modélisation mixte.</li>
+</ul>
+<p>Avant de survoler les applications statistiques avec <strong>R</strong>, je vais d’abord et rapidement présenter quelques notions importantes en statistiques :</p>
+<ul>
+<li>populations et échantillons,</li>
+<li>variables,</li>
+<li>probabilités et distributions.</li>
+</ul>
+<p>Nous allons effectuer :</p>
+<ul>
+<li><p>des tests d’hypothèse univariés</p>
+<ul>
+<li>notamment les tests de <em>t</em></li>
+<li>et les analyses de variance</li>
+</ul></li>
+<li><p>et détailler la notion de p-value.</p></li>
+</ul>
+<p>Mais avant tout, je vais m’attarder plus longuement aux <strong>modèles linéaires généralisés</strong>, incluant en particulier des effets fixes et aléatoires (<em>modèles mixtes</em>), qui fournissent une trousse d’analyse polyvalente en analyse multivariée. Je terminerai avec les perspectives multivariées que sont les <strong>matrices de covariance</strong> et <strong>de corrélation</strong>.</p>
+<div id="populations-et-échantillons" class="section level2">
+<h2><span class="header-section-number">5.1</span> Populations et échantillons</h2>
+<p>Le <strong>principe d’inférence</strong> consiste à généraliser des conclusions à l’échelle d’une <strong>population</strong> à partir d’<strong>échantillons</strong> issus de cette population. Alors qu’une <strong>population</strong> contient tous les éléments étudiés, un <strong>échantillon</strong> d’une population est une observation unique.</p>
+<p>Une expérience bien conçue fera en sorte que les échantillons soient représentatifs de la population qui, la plupart du temps, ne peut être observée entièrement pour des raisons pratiques.</p>
+<p><strong>Les raisons de l’échantillonnage</strong></p>
+<p>Plutôt que de travailler sur la population, l’échantillon est préféré en ce que :</p>
+<ol style="list-style-type: decimal">
+<li><p>les ressources sont limitées face à une population trop grande (<em>pêcher toutes les morues atlantiques de la mer est irréalisable</em>),</p></li>
+<li><p>les données disponibles sont limitées (<em>la reproduction des pandas captifs ne peut être étudiée que sur l’effectif captif c’est-à-dire composé d’un nombre restreint d’individus</em>),</p></li>
+<li><p>l’expérimentation est destructive (<em>impossible de sacrifier la population belge pour mesurer la longueur de l’intestin</em>).</p></li>
+</ol>
+<p>Les principes d’expérimentation servant de base à la conception d’une bonne méthodologie sont présentés dans le cours <strong>Dispositifs expérimentaux ou Expérimentation agricole</strong>. Également, je recommande le livre <em>Principes d’expérimentation : planification des expériences et analyse de leurs résultats</em> de <strong>Pierre Dagnelie (2012)</strong>, <a href="http://www.dagnelie.be/docpdf/ex2012.pdf">disponible en ligne en format PDF</a>. Un bon aperçu des dispositifs expérimentaux est aussi présenté dans <a href="https://www.springer.com/us/book/9780387790534"><em>Introductory Statistics with R</em></a>, de <strong>Peter Dalgaard (2008)</strong>.</p>
+<p>Une population est <em>échantillonnée</em> pour induire des <strong>paramètres</strong> :</p>
+<ul>
+<li>un rendement typique dans des conditions météorologiques, édaphiques et managériales données,</li>
+<li>la masse typique des faucons pèlerins, mâles et femelles,</li>
+<li>le microbiome typique d’un sol agricole ou forestier,</li>
+<li>etc.</li>
+</ul>
+<p>Une <strong>statistique</strong> est une estimation d’un paramètre calculée à partir des données, par exemple une moyenne et un écart-type.</p>
+<p>Par exemple, la moyenne (<span class="math inline">\(\mu\)</span>) et l’écart-type (<span class="math inline">\(\sigma\)</span>) d’une population sont estimés par les moyennes (<span class="math inline">\(\bar{x}\)</span>) et écarts-types (<span class="math inline">\(s\)</span>) calculés sur les données issues de l’échantillonnage.</p>
+<p>Chaque <strong>paramètre</strong> est lié à une perspective que l’on désire connaître chez une population. Ces angles d’observations sont les <strong>variables</strong>.</p>
+</div>
+<div id="les-variables" class="section level2">
+<h2><span class="header-section-number">5.2</span> Les variables</h2>
+<p>Nous avons abordé au chapitre <a href="chapitre-visualisation.html#chapitre-visualisation">4</a> la notion de <strong>variable</strong> par l’intermédiaire d’une donnée.</p>
+<blockquote>
+<p>Une <strong>variable</strong> est l’observation d’une caractéristique décrivant un échantillon et qui est susceptible de varier d’un échantillon à un autre.</p>
+</blockquote>
+<p>Si les observations varient en effet d’un échantillon à un autre, on parlera de <strong>variable aléatoire</strong>. Même le hasard est régi par certaines lois : <em>ce qui est aléatoire dans une variable peut être décrit par des <strong>lois de probabilité</strong>, que nous verrons plus bas</em>.</p>
+<p>Mais restons aux <strong>variables</strong> pour l’instant. Par convention, on peut attribuer aux variables un symbole mathématique. Par exemple, on peut donner à la masse volumique d’un sol (<em>qui est le résultat d’une méthodologie précise</em>) le symbole <span class="math inline">\(\rho\)</span>. Lorsque l’on attribue une valeur à <span class="math inline">\(\rho\)</span>, on parle d’une donnée. Chaque donnée d’une observation a un indice qui lui est propre, que l’on désigne souvent par <span class="math inline">\(i\)</span>, que l’on place en indice <span class="math inline">\(\rho_i\)</span>. Pour la première donnée, on a <span class="math inline">\(i=1\)</span>, donc <span class="math inline">\(\rho_1\)</span>. Pour un nombre <span class="math inline">\(n\)</span> d’échantillons, on aura <span class="math inline">\(\rho_1\)</span>, <span class="math inline">\(\rho_2\)</span>, <span class="math inline">\(\rho_3\)</span>, …, <span class="math inline">\(\rho_n\)</span>, formant le vecteur <span class="math inline">\(\rho = \left[\rho_1, \rho_2, \rho_3, ..., \rho_n \right]\)</span>.</p>
+<p>En <strong>R</strong>, une variable est associée à un <strong>vecteur</strong> ou une <strong>colonne</strong> d’un tableau.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">rho &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.34</span>, <span class="fl">1.52</span>, <span class="fl">1.26</span>, <span class="fl">1.43</span>, <span class="fl">1.39</span>) <span class="co"># matrice 1D</span></a>
+<a class="sourceLine" id="cb1-2" title="2">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">rho =</span> rho) <span class="co"># tableau</span></a>
+<a class="sourceLine" id="cb1-3" title="3">data</a></code></pre></div>
+<pre><code>##    rho
+## 1 1.34
+## 2 1.52
+## 3 1.26
+## 4 1.43
+## 5 1.39</code></pre>
+<p>Il existe plusieurs types de variables, qui se regroupent en deux grandes catégories : les <strong>variables quantitatives</strong> et les <strong>variables qualitatives</strong>.</p>
+<div id="variables-quantitatives" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Variables quantitatives</h3>
+<p>Les valeurs sont mesurées, exemples : poids, taille, pression artérielle, taux de lipide, température, etc.</p>
+<p>Ces variables peuvent être :</p>
+<ul>
+<li><p><strong>continues</strong> dans un espace échantillonnal réel. L’espace contient un nombre indénombrable
+(<em>infini</em>) de valeurs, exemples : poids, taille, pression artérielle, taux de lipide, température, etc.</p></li>
+<li><p>ou <strong>discrètes</strong> dans un espace échantillonnal ne considérant que des valeurs fixes. L’espace contient un nombre dénombrable de valeurs (= “valeurs isolées” de la variable, ensemble fini). **Notez (pour éviter toute confusion) qu’à chaque Race et Conformation on peut attribuer un chiffre !</p></li>
+</ul>
+<div class="figure">
+<img src="images/5_var-continue-discrete.png" alt="Figure 5…: Exemples de variables continues et discrètes" />
+<p class="caption"><strong>Figure 5…:</strong> Exemples de variables continues et discrètes</p>
+</div>
+<p>Notons que la notion de <strong>nombre réel</strong> est toujours une approximation en sciences expérimentales comme en calcul numérique, étant donnée que l’on est limité par la précision des appareils comme par le nombre d’octets à utiliser bien que les valeurs fixes des distributions discrètes ne soient pas toujours des valeurs entières, c’est bien souvent le cas en biostatistiques comme en démographie, où les décomptes d’individus sont souvent présents (<em>et où la notion de fraction d’individus n’est pas acceptée</em>).</p>
+</div>
+<div id="variables-qualitatives" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> Variables qualitatives</h3>
+<p>On exprime parfois qu’une <strong>variable qualitative</strong> est une variable impossible à mesurer numériquement mais sont des appréciations (parfois subjectives) : une couleur, l’appartenance à une espèce ou à une série de sol, sexe, race, état sanitaire, conformation, etc.</p>
+<div class="figure">
+<img src="images/5_var-quant-qual.png" alt="Figure 5… : Exemples de variables quantitatives et qualitatives" />
+<p class="caption"><strong>Figure 5… :</strong> Exemples de variables quantitatives et qualitatives</p>
+</div>
+<p>Pourtant, dans bien des cas, les <em>variables qualitatives</em> peuvent être encodées en variables quantitatives.</p>
+<blockquote>
+<p>Par exemple,</p>
+<p>on peut accoler des pourcentages de sable, limon et argile à un loam sableux, qui autrement est décrit par la classe texturale d’un sol.</p>
+<p>Pour une couleur, on peut lui associer des pourcentages de rouge, vert et bleu, ainsi qu’un ton.</p>
+<p>En ce qui a trait aux variables ordonnées, il est possible de supposer un étalement. Par exemple, une variable d’intensité faible-moyenne-forte peut être transformée linéairement en valeurs quantitatives -1, 0 et 1. Attention toutefois, l’étalement peut parfois être quadratique ou logarithmique.</p>
+<p>Les séries de sol peuvent être encodées par la proportion de gleyfication (<a href="https://www.frontiersin.org/articles/10.3389/fenvs.2017.00081/full#B4">Parent et al., 2017</a>).</p>
+<p>Quant aux catégories difficilement transformables en quantités, on pourra passer par l’<strong>encodage catégoriel</strong>, souvent appelé <em>dummyfication</em>, qui nous verrons plus loin.</p>
+</blockquote>
+</div>
+<div id="niveau-ou-échelle-de-mesure" class="section level3">
+<h3><span class="header-section-number">5.2.3</span> Niveau ou échelle de mesure</h3>
+<p>Le niveau ou l’<strong>échelle de mesure</strong> est une classification qui décrit la nature de l’information dans les valeurs attribuées aux variables. Le psychologue <a href="https://en.wikipedia.org/wiki/Level_of_measurement"><strong>Stanley Smith Stevens</strong></a> a développé la classification la plus connue avec quatre niveaux ou échelles de mesure : nominale, ordinale, intervalle et rapport.</p>
+<ul>
+<li>Variable qualitative : échelle ordinale ou nominale</li>
+<li>Variable quantitative : échelle d’intervalle (référence) ou de rapport (zéro vrai).</li>
+</ul>
+<div class="figure">
+<img src="images/5_echelle-de-mesure.png" alt="Figure 5… : Exemples d’échelles de mesure" />
+<p class="caption"><strong>Figure 5… :</strong> Exemples d’échelles de mesure</p>
+</div>
+<p>Importance de cette classification : le choix des tests statistiques sont basés sur ces critères de classification.</p>
+<p><strong>Quiz</strong></p>
+<pre><code>- Poids, Taille, Pression artérielle : Continues, Quantitatives, échelle de rapport
+- Sexe, Race : Discrètes, Qualitatives, échelle nominale
+- Etat sanitaire, Conformation : Discrètes, Qualitatives, échelle ordinale
+- Comptages (Nombre de mâles par portée, bactéries) : Discrète, Quantitative, échelle de rapport
+- Température : Continue, Quantitative, échelle d’intervalle</code></pre>
+</div>
+</div>
+<div id="les-probabilités" class="section level2">
+<h2><span class="header-section-number">5.3</span> Les probabilités</h2>
+<blockquote>
+<p>« Nous sommes si éloignés de connaître tous les agens de la nature et leurs divers modes d’action, qu’il ne serait pas philosophique de nier les phénomènes, uniquement parce qu’ils sont inexplicables dans l’état actuel de nos connaissances. Seulement, nous devons les examiner avec une attention d’autant plus scrupuleuse, qu’il paraît plus difficile de les admettre ; et c’est ici que le calcul des probabilités devient indispensable, pour déterminer jusqu’à quel point il faut multiplier les observations ou les expériences, afin d’obtenir en faveur des agens qu’elles indiquent, une probabilité supérieure aux raisons que l’on peut avoir d’ailleurs, de ne pas les admettre. » — <strong>Pierre-Simon de Laplace</strong>.</p>
+</blockquote>
+<p><strong>Une probabilité</strong> est la vraisemblance qu’un évènement se réalise chez un échantillon.</p>
+<p>Les <strong>probabilités</strong> forment le cadre des <strong>systèmes stochastiques</strong>, c’est-à-dire des systèmes trop complexes pour en connaître exactement les aboutissants, auxquels on attribue une part de hasard. Ces systèmes sont prédominants dans les processus vivants.</p>
+<p>On peut dégager deux perspectives sur les probabilités : l’une passe par une interprétation <em>fréquentielle</em>, l’autre <em>bayésienne</em>.</p>
+<blockquote>
+<p>L’interprétation <strong>fréquentielle</strong> représente <strong>la fréquence des occurrences</strong> après un nombre infini d’évènements.</p>
+<p>Par exemple, si vous jouez à pile ou face un grand nombre de fois, le nombre de pile sera égal à la moitié du nombre de lancés. Il s’agit de l’interprétation communément utilisée.</p>
+</blockquote>
+<blockquote>
+<p>L’interprétation <strong>bayésienne</strong> vise à <strong>quantifier l’incertitude</strong> des phénomènes. Dans cette perspective, plus l’information s’accumule, plus l’incertitude diminue.</p>
+<p>Cette approche gagne en notoriété notamment parce qu’elle permet de décrire des phénomènes qui, intrinsèquement, ne peuvent être répétés infiniment (<em>absence d’asymptote</em>), comme celles qui sont bien définies dans le temps ou sur des populations limitées.</p>
+</blockquote>
+<p>L’<strong>approche fréquentielle</strong> teste si les données concordent avec un modèle du réel, tandis que l’<strong>approche bayésienne</strong> évalue la probabilité que le modèle soit réel.</p>
+<p>Une erreur courante consiste à aborder des <strong>statistiques fréquentielles</strong> comme des <strong>statistiques bayésiennes</strong>.</p>
+<blockquote>
+<p>Par exemple, si l’on désire évaluer la probabilité de l’existence de vie sur Mars, on devra passer par le bayésien, car avec les stats fréquentielles, l’on devra plutôt conclure si les données sont conformes ou non avec l’hypothèse de la vie sur Mars (exemple tirée du blogue <a href="https://dynamicecology.wordpress.com/2011/10/11/frequentist-vs-bayesian-statistics-resources-to-help-you-choose/">Dynamic Ecology</a>).</p>
+</blockquote>
+<p>Des rivalités factices s’installent enter les tenants des différentes approches, chacune, en réalité, répondant à des questions différentes dont il convient de réfléchir sur les limitations. Bien que les statistiques bayésiennes soient de plus en plus utilisées, nous ne couvrirons dans ce chapitre que l’approche fréquentielle. L’approche bayésienne est néanmoins traitée dans le chapitre <a href="#chapitre-biostats-bayes"><strong>??</strong></a>-(<em>voir si à maintenir ici</em>).</p>
+</div>
+<div id="les-distributions" class="section level2">
+<h2><span class="header-section-number">5.4</span> Les distributions</h2>
+<p>Une variable aléatoire peut prendre des valeurs selon des <strong>modèles de distribution des probabilités</strong>.
+&gt; <em>Une <strong>distribution</strong> est une fonction mathématique décrivant la probabilité d’observer une série d’évènements.</em></p>
+<p>Ces évènements peuvent être</p>
+<ul>
+<li>des valeurs continues,</li>
+<li>des nombres entiers,</li>
+<li>des catégories,</li>
+<li>des valeurs booléennes (Vrai/Faux),</li>
+<li>etc.</li>
+</ul>
+<p>Dépendemment du type de valeurs et des observations obtenues, on peut associer les variables à différentes lois de probabilité. Toujours, <strong>l’aire sous la courbe d’une distribution de probabilité est égale à 1</strong>.</p>
+<p>En <strong>statistiques inférentielles</strong>, les distributions sont les <strong>modèles</strong>, comprenant certains paramètres comme <strong>la moyenne</strong> et <strong>la variance</strong> pour les <strong>distributions normales</strong>, à partir desquelles les données sont générées.</p>
+<p>Il existe deux grandes familles de distributions : <strong>discrètes</strong> et <strong>continues</strong>.</p>
+<blockquote>
+<p>Les <strong>distributions discrètes</strong> sont contraintes à des valeurs prédéfinies (finies ou infinies), c’est-à-dire dont le nombre de résultats possibles est fini ou au plus dénombrable,</p>
+<p>alors que</p>
+<p>les <strong>distributions continues</strong> prennent nécessairement un nombre infini de valeurs, dont la probabilité ne peut pas être évaluée ponctuellement, mais sur un intervalle.</p>
+</blockquote>
+<p>L’<strong>espérance mathématique</strong> est une <em>fonction de tendance centrale</em>, souvent décrite par un paramètre. Il s’agit de la moyenne d’une population pour une distribution normale.</p>
+<p>La <strong>variance</strong>, quant à elle, décrit la variabilité d’une population, c’est-à-dire son étalement autour de l’espérance. Pour une distribution normale, la variance d’une population est aussi appelée variance, souvent présentée par <strong>l’écart-type</strong>.</p>
+<div id="la-distribution-binomiale" class="section level3">
+<h3><span class="header-section-number">5.4.1</span> La distribution binomiale</h3>
+<p>En tant que <strong>scénario à deux issues possibles</strong>, des tirages à pile ou face suivent une loi binomiale, comme toute variable booléenne prenant une valeur vraie ou fausse.</p>
+<p>En biostatistiques, les cas communs sont la présence/absence d’une espèce, d’une maladie, d’un trait phylogénétique, ainsi que les catégories encodées.</p>
+<blockquote>
+<p>Lorsque l’opération ne comprend qu’un seul échantillon (<em>c’est-à-dire un seul tirage à pile ou face</em>), il s’agit d’un cas particulier d’une loi binomiale que l’on nomme une <strong>loi de Bernouilli</strong>.</p>
+</blockquote>
+<p>Pour 25 tirages à pile ou face indépendants (<em>c’est-à-dire dont l’ordre des tirages ne compte pas</em>), on peut dessiner une courbe de distribution dont la somme des probabilités est de <strong>1</strong>. La fonction <code>dbinom()</code> est la fonction de distribution de probabilités binomiale. Les fonctions de distribution de probabilités discrètes sont appelées des <strong>fonctions de masse</strong>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</a>
+<a class="sourceLine" id="cb4-2" title="2">x &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">25</span></a>
+<a class="sourceLine" id="cb4-3" title="3">y &lt;-<span class="st"> </span><span class="kw">dbinom</span>(<span class="dt">x =</span> x, <span class="dt">size =</span> <span class="dv">25</span>, <span class="dt">prob =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;La somme des probabilités est de&#39;</span>, <span class="kw">sum</span>(y)))</a></code></pre></div>
+<pre><code>## [1] &quot;La somme des probabilités est de 1&quot;</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">tibble</span>(x, y), <span class="dt">mapping =</span> <span class="kw">aes</span>(x, y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">xend =</span> x, <span class="dt">y =</span> <span class="dv">0</span>, <span class="dt">yend =</span> y), <span class="dt">color =</span> <span class="st">&quot;grey50&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="biostatistiques_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="la-distribution-de-poisson" class="section level3">
+<h3><span class="header-section-number">5.4.2</span> La distribution de Poisson</h3>
+<p>La loi de Poisson (avec un P majuscule, introduite par le mathématicien français <strong>Siméon Denis Poisson</strong> et non pas l’animal) décrit des distributions discrètes de probabilité d’un nombre d’évènements se produisant dans l’espace ou dans le temps.</p>
+<blockquote>
+<p>Les distributions de Poisson décrivent ce qui tient du décompte.</p>
+</blockquote>
+<p>Il peut s’agir :</p>
+<ul>
+<li>du nombre de grenouilles traversant une rue quotidiennement,</li>
+<li>du nombre de plants d’asclépiades se trouvant sur une terre cultivée,</li>
+<li>du nombre d’évènements de précipitation au mois de juin,</li>
+<li>etc.</li>
+</ul>
+<p>La distribution de Poisson n’a qu’un seul paramètre, <span class="math inline">\(\lambda\)</span> (<em>lambda</em>), qui décrit tant la moyenne des décomptes.</p>
+<p>Par exemple, en un mois de 30 jours, et une moyenne de 8 évènements de précipitation pour ce mois, on obtient la distribution suivante.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">30</span></a>
+<a class="sourceLine" id="cb7-2" title="2">y &lt;-<span class="st"> </span><span class="kw">dpois</span>(x, <span class="dt">lambda =</span> <span class="dv">8</span>)</a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;La somme des probabilités est de&#39;</span>, <span class="kw">sum</span>(y)))</a></code></pre></div>
+<pre><code>## [1] &quot;La somme des probabilités est de 0.999664536835124&quot;</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(x, y), <span class="dt">mapping =</span> <span class="kw">aes</span>(x, y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">xend =</span> x, <span class="dt">y =</span> <span class="dv">0</span>, <span class="dt">yend =</span> y), <span class="dt">color =</span> <span class="st">&quot;grey50&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="biostatistiques_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="distribution-uniforme" class="section level3">
+<h3><span class="header-section-number">5.4.3</span> Distribution uniforme</h3>
+<blockquote>
+<p>Si toute valeur de X est équiprobable dans l’intervalle [a,b], alors X suit une loi uniforme.</p>
+</blockquote>
+<p>La distribution la plus simple est probablement la distribution uniforme. Si la variable est discrète, chaque catégorie est associée à une probabilité égale. Si la variable est continue, la probabilité est directement proportionnelle à la largeur de l’intervalle.</p>
+<p>On utilise rarement la distribution uniforme en biostatistiques, sinon pour décrire des <em>a priori</em> vagues pour l’analyse bayésienne (ce sujet est traité dans le chapitre <a href="#chapitre-biostats-bayes"><strong>??</strong></a> si jamais on le couvre).</p>
+<p>On utilise la fonction <code>dunif()</code>. À la différence des distributions discrètes, les fonctions de distribution de probabilités continues sont appelées des fonctions de densité d’une loi de probabilité (<em>probability density function</em>).</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">increment &lt;-<span class="st"> </span><span class="fl">0.01</span></a>
+<a class="sourceLine" id="cb10-2" title="2">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="dt">by =</span> increment)</a>
+<a class="sourceLine" id="cb10-3" title="3">y1 &lt;-<span class="st"> </span><span class="kw">dunif</span>(x, <span class="dt">min =</span> <span class="dv">-3</span>, <span class="dt">max =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb10-4" title="4">y2 &lt;-<span class="st"> </span><span class="kw">dunif</span>(x, <span class="dt">min =</span> <span class="dv">-2</span>, <span class="dt">max =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb10-5" title="5">y3 &lt;-<span class="st"> </span><span class="kw">dunif</span>(x, <span class="dt">min =</span> <span class="dv">-1</span>, <span class="dt">max =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb10-6" title="6"></a>
+<a class="sourceLine" id="cb10-7" title="7"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;La somme des probabilités est de&#39;</span>, <span class="kw">sum</span>(y1 <span class="op">*</span><span class="st"> </span>increment)))</a></code></pre></div>
+<pre><code>## [1] &quot;La somme des probabilités est de 1.00166666666667&quot;</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;La somme des probabilités est de&#39;</span>, <span class="kw">sum</span>(y2 <span class="op">*</span><span class="st"> </span>increment)))</a></code></pre></div>
+<pre><code>## [1] &quot;La somme des probabilités est de 1.0025&quot;</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;La somme des probabilités est de&#39;</span>, <span class="kw">sum</span>(y3 <span class="op">*</span><span class="st"> </span>increment)))</a></code></pre></div>
+<pre><code>## [1] &quot;La somme des probabilités est de 1.005&quot;</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">gg_unif &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x, y1, y2, y3) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="st">  </span><span class="kw">gather</span>(variable, value, <span class="op">-</span>x)</a>
+<a class="sourceLine" id="cb16-3" title="3"></a>
+<a class="sourceLine" id="cb16-4" title="4"><span class="kw">ggplot</span>(<span class="dt">data =</span> gg_unif, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-5" title="5"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> variable))</a></code></pre></div>
+<p><img src="biostatistiques_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="distribution-normale" class="section level3">
+<h3><span class="header-section-number">5.4.4</span> Distribution normale</h3>
+<p>La plus répandue de ces lois est probablement la <strong>loi normale</strong>, parfois nommée <strong>loi gaussienne</strong> et plus rarement <strong>loi laplacienne</strong>. Il s’agit de la distribution classique en forme de cloche.</p>
+<blockquote>
+<p>La loi normale est décrite par <strong>une moyenne</strong>, qui désigne la tendance centrale, et <strong>une variance</strong>, qui désigne l’étalement des probabilités autour de la moyenne. La racine carrée de la variance est <strong>l’écart-type</strong>.</p>
+</blockquote>
+<p>Les distributions de mesures exclusivement positives (comme le poids ou la taille) sont parfois avantageusement approximées par une loi <strong>log-normale</strong>, qui est une loi normale sur le logarithme des valeurs : la moyenne d’une loi log-normale est la moyenne géométrique.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">increment &lt;-<span class="st"> </span><span class="fl">0.01</span></a>
+<a class="sourceLine" id="cb17-2" title="2">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dt">by =</span> increment)</a>
+<a class="sourceLine" id="cb17-3" title="3">y1 &lt;-<span class="st"> </span><span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb17-4" title="4">y2 &lt;-<span class="st"> </span><span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb17-5" title="5">y3 &lt;-<span class="st"> </span><span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb17-6" title="6"></a>
+<a class="sourceLine" id="cb17-7" title="7"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;La somme des probabilités est de&#39;</span>, <span class="kw">sum</span>(y1 <span class="op">*</span><span class="st"> </span>increment)))</a></code></pre></div>
+<pre><code>## [1] &quot;La somme des probabilités est de 1&quot;</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;La somme des probabilités est de&#39;</span>, <span class="kw">sum</span>(y2 <span class="op">*</span><span class="st"> </span>increment)))</a></code></pre></div>
+<pre><code>## [1] &quot;La somme des probabilités est de 0.999999434099481&quot;</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;La somme des probabilités est de&#39;</span>, <span class="kw">sum</span>(y3 <span class="op">*</span><span class="st"> </span>increment)))</a></code></pre></div>
+<pre><code>## [1] &quot;La somme des probabilités est de 0.999147010743368&quot;</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">gg_norm &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x, y1, y2, y3) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-2" title="2"><span class="st">  </span><span class="kw">gather</span>(variable, value, <span class="op">-</span>x)</a>
+<a class="sourceLine" id="cb23-3" title="3"></a>
+<a class="sourceLine" id="cb23-4" title="4"><span class="kw">ggplot</span>(<span class="dt">data =</span> gg_norm, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-5" title="5"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> variable))</a></code></pre></div>
+<p><img src="biostatistiques_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<blockquote>
+<p>Quelle est la probabilité d’obtenir le nombre 0 chez une observation continue distribuée normalement dont la moyenne est 0 et l’écart-type est de 1 ? Réponse : 0.</p>
+</blockquote>
+<p>La loi normale étant une distribution continue, les probabilités non-nulles ne peuvent être calculés que sur des intervalles. Par exemple, la probabilité de retrouver une valeur dans l’intervalle entre -1 et 2 est calculée en soustrayant la probabilité cumulée à -1 de la probabilité cumulée à 2.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">increment &lt;-<span class="st"> </span><span class="fl">0.01</span></a>
+<a class="sourceLine" id="cb24-2" title="2">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dt">by =</span> increment)</a>
+<a class="sourceLine" id="cb24-3" title="3">y &lt;-<span class="st"> </span><span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb24-4" title="4"></a>
+<a class="sourceLine" id="cb24-5" title="5">prob_between &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb24-6" title="6"></a>
+<a class="sourceLine" id="cb24-7" title="7">gg_norm &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x, y)</a>
+<a class="sourceLine" id="cb24-8" title="8">gg_auc &lt;-<span class="st"> </span>gg_norm <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-9" title="9"><span class="st">  </span><span class="kw">filter</span>(x <span class="op">&gt;</span><span class="st"> </span>prob_between[<span class="dv">1</span>], x <span class="op">&lt;</span><span class="st"> </span>prob_between[<span class="dv">2</span>]) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-10" title="10"><span class="st">  </span><span class="kw">rbind</span>(<span class="kw">c</span>(prob_between[<span class="dv">2</span>], <span class="dv">0</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-11" title="11"><span class="st">  </span><span class="kw">rbind</span>(<span class="kw">c</span>(prob_between[<span class="dv">1</span>], <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb24-12" title="12"></a>
+<a class="sourceLine" id="cb24-13" title="13"><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(x, y), <span class="kw">aes</span>(x, y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb24-14" title="14"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> gg_auc, <span class="dt">fill =</span> <span class="st">&#39;#71ad50&#39;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># #71ad50 est un code de couleur format hexadécimal</span></a>
+<a class="sourceLine" id="cb24-15" title="15"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
+<p><img src="biostatistiques_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">prob_norm_between &lt;-<span class="st"> </span><span class="kw">pnorm</span>(<span class="dt">q =</span> prob_between[<span class="dv">2</span>], <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="dt">q =</span> prob_between[<span class="dv">1</span>], <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb25-2" title="2"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;La probabilité d&#39;obtenir un nombre entre&quot;</span>, </a>
+<a class="sourceLine" id="cb25-3" title="3">            prob_between[<span class="dv">1</span>], <span class="st">&quot;et&quot;</span>, </a>
+<a class="sourceLine" id="cb25-4" title="4">            prob_between[<span class="dv">2</span>], <span class="st">&quot;est d&#39;environ&quot;</span>, </a>
+<a class="sourceLine" id="cb25-5" title="5">            <span class="kw">round</span>(prob_norm_between, <span class="dv">2</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="st">&quot;%&quot;</span>))</a></code></pre></div>
+<pre><code>## [1] &quot;La probabilité d&#39;obtenir un nombre entre -1 et 2 est d&#39;environ 82 %&quot;</code></pre>
+<p>La courbe normale peut être utile pour évaluer la distribution d’une population.</p>
+<blockquote>
+<p>Par exemple, on peut calculer les limites de région sur la courbe normale qui contient 95% des valeurs possibles en tranchant 2.5% de part et d’autre de la moyenne.</p>
+</blockquote>
+<p>Il s’agit ainsi de l’<strong>intervalle de confiance</strong> sur la déviation de la distribution.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">increment &lt;-<span class="st"> </span><span class="fl">0.01</span></a>
+<a class="sourceLine" id="cb27-2" title="2">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dt">by =</span> increment)</a>
+<a class="sourceLine" id="cb27-3" title="3">y &lt;-<span class="st"> </span><span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb27-4" title="4"></a>
+<a class="sourceLine" id="cb27-5" title="5">alpha &lt;-<span class="st"> </span><span class="fl">0.05</span></a>
+<a class="sourceLine" id="cb27-6" title="6">prob_between &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">qnorm</span>(<span class="dt">p =</span> alpha<span class="op">/</span><span class="dv">2</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb27-7" title="7">                  <span class="kw">qnorm</span>(<span class="dt">p =</span> <span class="dv">1</span> <span class="op">-</span><span class="st"> </span>alpha<span class="op">/</span><span class="dv">2</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb27-8" title="8"></a>
+<a class="sourceLine" id="cb27-9" title="9">gg_norm &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x, y)</a>
+<a class="sourceLine" id="cb27-10" title="10"></a>
+<a class="sourceLine" id="cb27-11" title="11">gg_auc &lt;-<span class="st"> </span>gg_norm <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-12" title="12"><span class="st">  </span><span class="kw">filter</span>(x <span class="op">&gt;</span><span class="st"> </span>prob_between[<span class="dv">1</span>], x <span class="op">&lt;</span><span class="st"> </span>prob_between[<span class="dv">2</span>]) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-13" title="13"><span class="st">  </span><span class="kw">rbind</span>(<span class="kw">c</span>(prob_between[<span class="dv">2</span>], <span class="dv">0</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-14" title="14"><span class="st">  </span><span class="kw">rbind</span>(<span class="kw">c</span>(prob_between[<span class="dv">1</span>], <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb27-15" title="15"></a>
+<a class="sourceLine" id="cb27-16" title="16"><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(x, y), <span class="dt">mapping =</span> <span class="kw">aes</span>(x, y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb27-17" title="17"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> gg_auc, <span class="dt">fill =</span> <span class="st">&#39;#71ad50&#39;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># #71ad50 est un code de couleur format hexadécimal</span></a>
+<a class="sourceLine" id="cb27-18" title="18"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb27-19" title="19"><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> prob_between,</a>
+<a class="sourceLine" id="cb27-20" title="20">                              <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb27-21" title="21">                              <span class="dt">labels =</span> <span class="kw">round</span>(prob_between, <span class="dv">2</span>)),</a>
+<a class="sourceLine" id="cb27-22" title="22">            <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">label =</span> labels))</a></code></pre></div>
+<p><img src="biostatistiques_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>On pourrait aussi être intéressé à l’intervalle de confiance sur la moyenne. En effet, la moyenne suit aussi une distribution normale, dont la tendance centrale est la moyenne de la distribution, et dont l’écart-type est noté <em>erreur standard</em>. On calcule cette erreur en divisant la variance par le nombre d’observation, ou en divisant l’écart-type par la racine carrée du nombre d’observations. Ainsi, pour 10 échantillons :</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">increment &lt;-<span class="st"> </span><span class="fl">0.01</span></a>
+<a class="sourceLine" id="cb28-2" title="2">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dt">by =</span> increment)</a>
+<a class="sourceLine" id="cb28-3" title="3">y &lt;-<span class="st"> </span><span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb28-4" title="4"></a>
+<a class="sourceLine" id="cb28-5" title="5">alpha &lt;-<span class="st"> </span><span class="fl">0.05</span></a>
+<a class="sourceLine" id="cb28-6" title="6">prob_between &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">qnorm</span>(<span class="dt">p =</span> alpha<span class="op">/</span><span class="dv">2</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb28-7" title="7">                  <span class="kw">qnorm</span>(<span class="dt">p =</span> <span class="dv">1</span> <span class="op">-</span><span class="st"> </span>alpha<span class="op">/</span><span class="dv">2</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb28-8" title="8"></a>
+<a class="sourceLine" id="cb28-9" title="9">gg_norm &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x, y)</a>
+<a class="sourceLine" id="cb28-10" title="10"></a>
+<a class="sourceLine" id="cb28-11" title="11">gg_auc &lt;-<span class="st"> </span>gg_norm <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb28-12" title="12"><span class="st">  </span><span class="kw">filter</span>(x <span class="op">&gt;</span><span class="st"> </span>prob_between[<span class="dv">1</span>], x <span class="op">&lt;</span><span class="st"> </span>prob_between[<span class="dv">2</span>]) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb28-13" title="13"><span class="st">  </span><span class="kw">rbind</span>(<span class="kw">c</span>(prob_between[<span class="dv">2</span>], <span class="dv">0</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb28-14" title="14"><span class="st">  </span><span class="kw">rbind</span>(<span class="kw">c</span>(prob_between[<span class="dv">1</span>], <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb28-15" title="15"></a>
+<a class="sourceLine" id="cb28-16" title="16"><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(x, y), <span class="dt">mapping =</span> <span class="kw">aes</span>(x, y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb28-17" title="17"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> gg_auc, <span class="dt">fill =</span> <span class="st">&#39;#71ad50&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb28-18" title="18"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb28-19" title="19"><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> prob_between,</a>
+<a class="sourceLine" id="cb28-20" title="20">                              <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb28-21" title="21">                              <span class="dt">labels =</span> <span class="kw">round</span>(prob_between, <span class="dv">2</span>)),</a>
+<a class="sourceLine" id="cb28-22" title="22">            <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">label =</span> labels))</a></code></pre></div>
+<p><img src="biostatistiques_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Il existe plusieurs autres lois de probabilités dont vous trouverez de bonnes bases pour les programmer en R sur ce lien : <a href="https://fr.wikibooks.org/wiki/Programmer_en_R/Les_loi_de_probabilit%C3%A9s,_ajustement_et_test">Les loi de probabilités, ajustement et test</a>.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="chapitre-visualisation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapitre-biostats2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["biostatistiques.pdf", "biostatistiques.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
