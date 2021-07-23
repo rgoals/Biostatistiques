@@ -5,7 +5,7 @@ date: "`r format(Sys.Date())`"
 output: github_document
 ---
 
-# Statistiques descriptives {#chapitre-biostats2}
+# Statistiques descriptives {#chapitre-statsdesc}
 
  ***
 ️\ **Objectifs spécifiques**:
@@ -92,7 +92,7 @@ prop.table(tableau_croise)
 
 ## Tests d'hypothèses à 1 et 2 échantillons
 
-Un test d'hypothèse permet de décider si une hypothèse est confirmée ou rejetée à un seuil de probabilité prédéterminé.
+Un [test d'hypothèse](https://help.xlstat.com/s/article/quest-ce-quun-test-statistique?language=fr) permet de décider si une hypothèse est confirmée ou rejetée à un seuil de probabilité prédéterminé.
 
 > En statistiques, un test d'hypothèses (ou test statistique) est une procédure de décision entre deux hypothèses. IC'est une démarche consistant à rejeter ou à ne pas rejeter une hypothèse statistique, appelée hypothèse nulle, en fonction d'un jeu de données.
 
@@ -110,7 +110,7 @@ Les tests d'hypothèse évalue des *effets* statistiques (qui ne sont pas néces
 
 ### Test de t à un seul échantillon
 
-Nous devons assumer, pour ce test, que l'échantillon est recueillit d'une population dont la distribution est normale, $\mathcal{N} \sim \left( \mu, \sigma^2 \right)$, et que chaque échantillon est indépendant l'un de l'autre. L'hypothèse nulle est souvent celle de l'avocat du diable, que la moyenne soit égale à une valeur donnée (donc la différence entre la moyenne de la population et une moyenne donnée est de zéro): ici, que $\mu = \bar{x}$. L'erreur standard sur la moyenne (ESM) de l'échantillon, $\bar{x}$ est calculée comme suit.
+Nous devons assumer, pour ce test, que l'échantillon est recueillit d'une population dont la distribution est normale, $\mathcal{N} \sim \left( \mu, \sigma^2 \right)$, et que chaque [échantillon est indépendant](https://support.minitab.com/fr-fr/minitab/18/statistics/equivalence-tests/supporting-topics/how-are-dependent-and-independent-samples-different/) l'un de l'autre. L'hypothèse nulle est souvent celle de l'avocat du diable, que la moyenne soit égale à une valeur donnée (_donc la différence entre la moyenne de la population et une moyenne donnée est de zéro_) : ici, que $\mu = \bar{x}$. L'erreur standard sur la moyenne (ESM) de l'échantillon, $\bar{x}$ est calculée comme suit.
 
 $$ESM = \frac{s}{\sqrt{n}}$$
 
@@ -214,7 +214,7 @@ Vidéo suggérée (en anglais).
 
 ### Test de Wilcoxon à un seul échantillon
 
-Le test de t suppose que la distribution des données est normale... ce qui est rarement le cas, surtout lorsque les échantillons sont peu nombreux. Le test de Wilcoxon ne demande aucune supposition sur la distribution: c'est un test non-paramétrique basé sur le tri des valeurs.
+Le _test de t_ suppose que la distribution des données est normale ... ce qui est rarement le cas, surtout lorsque les échantillons sont peu nombreux. Le test de Wilcoxon ne demande aucune supposition sur la distribution : c'est un [test non-paramétrique](https://help.xlstat.com/s/article/quelle-est-la-difference-entre-un-test-parametrique-et-un-test-non-parametrique?language=fr) basé sur le tri des valeurs.
 
 ```{r}
 wilcox.test(x, mu = 18)

@@ -182,8 +182,13 @@ Pourtant, dans bien des cas, les _variables qualitatives_ peuvent être encodée
 
 Le niveau ou l'**échelle de mesure** est une classification qui décrit la nature de l'information dans les valeurs attribuées aux variables. Le psychologue [**Stanley Smith Stevens**](https://en.wikipedia.org/wiki/Level_of_measurement) a développé la classification la plus connue avec quatre niveaux ou échelles de mesure : nominale, ordinale, intervalle et rapport.
 
-- Variable qualitative : échelle ordinale ou nominale
-- Variable quantitative : échelle d’intervalle (référence) ou de rapport (zéro vrai).
+- Variable __qualitative__ : échelle [ordinale](https://fr.wikipedia.org/wiki/Variable_ordinale) ou [nominale](https://www.ibm.com/support/knowledgecenter/fr/SSLVMB_23.0.0/spss/base/chart_creation_vartypes.html).
+
+  - on qualifie d'ordinale une variable qualitative pour laquelle la valeur mesurée sur chaque individu (parfois qualifiée de catégorie ou de modalité) est numérique. On peut alors classer les individus par valeurs croissantes ou décroissantes (par exemple, des niveaux de satisfaction allant de Très mécontent à Très satisfait, codé par des chiffres ou pas). La moyenne sur plusieurs individus n'a pas toujours de sens mathématiquement, et a peu d'intérêt en pratique. On doit s'intéresser à la médiane. 
+  
+  - Une variable peut être traitée comme étant nominale si ses valeurs représentent des catégories sans classement intrinsèque (par exemple, le service de la société dans lequel travaille un employé). La région, le code postal ou l'appartenance religieuse sont des exemples de variables nominales.
+
+- Variable __quantitative__ : échelle d’intervalle (référence) ou de rapport (zéro vrai).
 
 ![**Figure 5... :** Exemples d'échelles de mesure](images/5_echelle-de-mesure.png)
 
